@@ -1,0 +1,532 @@
+[
+  {
+    "lesson": "v01",
+    "original": "v1",
+    "parents": [],
+    "title": "跑通串行 attention：先理解数据流",
+    "original_sha256": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3",
+    "tutorial_sha256": "69865a5fcf9aa039ec25069857eb9286189d29c0e424adaec50195ae781775b8",
+    "evidence": "v01/evidence.json",
+    "anchors": [
+      [
+        37,
+        "先读 QK/PV helper：两次 GEMM 的输入位置不同"
+      ],
+      [
+        82,
+        "每个 query row 持有跨 KV tiles 的 online 状态"
+      ],
+      [
+        109,
+        "分母与 O 必须使用相同的 reference 更新"
+      ],
+      [
+        140,
+        "Host 只负责 tensor map 和 launch，主要学习 kernel 内的数据流"
+      ]
+    ]
+  },
+  {
+    "lesson": "v02",
+    "original": "v2",
+    "parents": [
+      "v1"
+    ],
+    "title": "指数指令：exp2f → ex2.approx",
+    "original_sha256": "0e37735945e71f7d5927be10278c80f39d294d618193c04417d34d20ee2b0fa3",
+    "tutorial_sha256": "1f934d85cfd927eb84748f9390f23d27f74d51cbee22bd2ef621cdf1bc985257",
+    "evidence": "v02/evidence.json",
+    "anchors": [
+      [
+        64,
+        "本课唯一核心 helper：近似 base-2 exponent"
+      ],
+      [
+        101,
+        "reference rescale 也调用同一个 helper"
+      ]
+    ]
+  },
+  {
+    "lesson": "v03",
+    "original": "v3",
+    "parents": [
+      "v2"
+    ],
+    "title": "合并写回：用 SMEM 转换线程到输出的映射",
+    "original_sha256": "19ba50f9e0447f362e466b16afba2abac5b28a065ee8f6980fe1a423194165f6",
+    "tutorial_sha256": "e907b854b832797ee713c145a0091eb13011c15b65d20c03fb1a0119cf520c5b",
+    "evidence": "v03/evidence.json",
+    "anchors": [
+      [
+        130,
+        "SMEM 作为线程间交换缓冲，而不是额外 global transpose"
+      ],
+      [
+        135,
+        "输出 ownership 从每线程一行改为连续 half2"
+      ]
+    ]
+  },
+  {
+    "lesson": "v04",
+    "original": "v4",
+    "parents": [
+      "v3"
+    ],
+    "title": "减少 O 重缩放：延迟更新 reference",
+    "original_sha256": "ddeb1611e04b78acda0de47bbd2557bc68f5c107a8f3e0d0d42beb1c68c9ec65",
+    "tutorial_sha256": "75a49d25a66ee1735ca9e92a4faf9c1ee4f1fc020912d59711ceb491acf65835",
+    "evidence": "v04/evidence.json",
+    "anchors": [
+      [
+        99,
+        "reference 不再每轮追随最大值"
+      ],
+      [
+        116,
+        "warp 内任何一行需 correction 才执行集体 TMEM 读写"
+      ]
+    ]
+  },
+  {
+    "lesson": "v05",
+    "original": "v5",
+    "parents": [
+      "v4"
+    ],
+    "title": "归一化：一行一次 reciprocal",
+    "original_sha256": "9c5380fed9f16dcb9e0946b1154aad367068f37f98fa2b5bcc2128f9f51523d5",
+    "tutorial_sha256": "bd9f4540c3680635ded943cf7d7df3871dcabc1bbf26b9e695b461871f6b9e52",
+    "evidence": "v05/evidence.json",
+    "anchors": [
+      [
+        131,
+        "每行只做一次 reciprocal"
+      ],
+      [
+        135,
+        "把结果广播给本行全部输出元素"
+      ]
+    ]
+  },
+  {
+    "lesson": "v06",
+    "original": "v6",
+    "parents": [
+      "v5"
+    ],
+    "title": "预取支线：双 K/V buffer",
+    "original_sha256": "410dae2691d845f013bf5b4c1a99c92be936dee15094dec6ab4048605b989430",
+    "tutorial_sha256": "dbaa473a3bdebbbdd69f556f4d9f07df386bfdd79147e4edcbc5e2e582d5718d",
+    "evidence": "v06/evidence.json",
+    "anchors": [
+      [
+        74,
+        "多出的两个 TILE_BYTES 对应第二组 K/V"
+      ],
+      [
+        91,
+        "在本轮计算开始前发起下一轮 TMA"
+      ]
+    ]
+  },
+  {
+    "lesson": "v07",
+    "original": "v7",
+    "parents": [
+      "v5"
+    ],
+    "title": "架构过渡：双 Q-stage 与四个 warpgroup",
+    "original_sha256": "bff7e03add4b3c9dc2dce68ffbb3b23200f031a3487982abd588d970916a6e76",
+    "tutorial_sha256": "4507d3f099fe57136dd19402596dc9de690f4441e4c6a8f8f746ab29fcdec427",
+    "evidence": "v07/evidence.json",
+    "anchors": [
+      [
+        81,
+        "把 barrier 表与 ownership 图一起看"
+      ],
+      [
+        112,
+        "metadata WG：独立 TMA 与 MMA issuer"
+      ],
+      [
+        155,
+        "两个 software owners 独立消费各自 SFULL"
+      ],
+      [
+        174,
+        "跨 WG correction mailbox 是下一课要减少的往返"
+      ]
+    ]
+  },
+  {
+    "lesson": "v08",
+    "original": "v12",
+    "parents": [
+      "v7"
+    ],
+    "title": "合并角色：softmax owner 自己修正 O",
+    "original_sha256": "5dc4077f4dbc03846acbb2a60d0872a223a2122ce9509c73230eeff7097647b9",
+    "tutorial_sha256": "cb85299cb40d92c59356a2404a49603e5cead48c65f3c9d3b92ca1a318f2245d",
+    "evidence": "v08/evidence.json",
+    "anchors": [
+      [
+        86,
+        "角色合并后使用 384-thread CTA 与新的 entry register 配额"
+      ],
+      [
+        187,
+        "O correction 与 P stores 现在由同一个 owner 发布"
+      ],
+      [
+        203,
+        "保护 causal 不同退出时刻的共享内存复用"
+      ]
+    ]
+  },
+  {
+    "lesson": "v09",
+    "original": "v13",
+    "parents": [
+      "v12"
+    ],
+    "title": "mask fast path：完整 tile 不逐元素检查",
+    "original_sha256": "4b9234fe4877bbe7c7801739b454368488914a48a9f8e24f1758dfaf738176da",
+    "tutorial_sha256": "ecf6e3869c2b8b4fbc9436d58a54cd896b0db68d60524763a5b85c9734845db5",
+    "evidence": "v09/evidence.json",
+    "anchors": [
+      [
+        162,
+        "一次判断决定是否执行逐元素 mask"
+      ]
+    ]
+  },
+  {
+    "lesson": "v10",
+    "original": "v14",
+    "parents": [
+      "v13"
+    ],
+    "title": "FMA 与数值稳定性：减少指令不保证更快",
+    "original_sha256": "f6a2e034a606b6b70a6d9e244eeae460c114455c91365ec17a342cd0534d4616",
+    "tutorial_sha256": "3189e2a44a06373395bac0adfdd347811f0cb0421e7b684e90a9be98661faad4",
+    "evidence": "v10/evidence.json",
+    "anchors": [
+      [
+        176,
+        "把公共计算提出循环，同时引入公共舍入项"
+      ],
+      [
+        181,
+        "数值稳定性分支与 FMA fast path 配套"
+      ]
+    ]
+  },
+  {
+    "lesson": "v11",
+    "original": "v15",
+    "parents": [
+      "v14"
+    ],
+    "title": "max reduction：四条独立依赖链",
+    "original_sha256": "c64b7675b5459db6f70d78827d1af81dadd694a274904f09da052c08109527b5",
+    "tutorial_sha256": "3d15fab4a2dc893609cf72f4de70ff143004e8014321b3df03903a13a0cd8fcc",
+    "evidence": "v11/evidence.json",
+    "anchors": [
+      [
+        168,
+        "四个 accumulator 分散依赖"
+      ],
+      [
+        172,
+        "最后使用短树合并"
+      ]
+    ]
+  },
+  {
+    "lesson": "v12",
+    "original": "v16",
+    "parents": [
+      "v15"
+    ],
+    "title": "寄存器预算：为 software owner 分配资源",
+    "original_sha256": "0605a762426d176c2b0def5e12ee5cef5e199b46a7344ffed6ef9b8ed8d6296a",
+    "tutorial_sha256": "8c527b7d7b635c3e608d78a88ea3e9df397ba9aae80fb21e4e2a6f333fc6a500",
+    "evidence": "v12/evidence.json",
+    "anchors": [
+      [
+        86,
+        "入口池与软件角色的动态配额是两层概念"
+      ],
+      [
+        156,
+        "增加 softmax 配额前需由 metadata 角色释放预算"
+      ]
+    ]
+  },
+  {
+    "lesson": "v13",
+    "original": "v21",
+    "parents": [
+      "v16"
+    ],
+    "title": "rowsum reduction：四条 pair-sum 链",
+    "original_sha256": "0e6fd95b7b37c898b4bd221ae79e8d0d267dafe009f86ad8280da5099ba4993a",
+    "tutorial_sha256": "4e8595a6afb601990cd8d64e2582531821174f8bded0dd50945d22af20cda455",
+    "evidence": "v13/evidence.json",
+    "anchors": [
+      [
+        178,
+        "只改变 rowsum 的依赖结构"
+      ],
+      [
+        199,
+        "在更新 online rowsum 前合并四条链"
+      ]
+    ]
+  },
+  {
+    "lesson": "v14",
+    "original": "v23",
+    "parents": [
+      "v21"
+    ],
+    "title": "causal 负载均衡：先安排较重的 query tiles",
+    "original_sha256": "c5dacb095ca57314667833032657f6a66b37347fe0fd44ff8685243b6db9c8cb",
+    "tutorial_sha256": "70710f69a78a49554166947811264737585f8c90f5464d42961b472c46966141",
+    "evidence": "v14/evidence.json",
+    "anchors": [
+      [
+        92,
+        "先线性化 grid，再映射 query-major 顺序"
+      ],
+      [
+        96,
+        "causal 重任务优先；输出仍写真实 query 位置"
+      ]
+    ]
+  },
+  {
+    "lesson": "v15",
+    "original": "v24",
+    "parents": [
+      "v23"
+    ],
+    "title": "拆开 K/V 生命周期：尽早释放 K",
+    "original_sha256": "60fa1bb7abe85db3ba11f236072a7c283663a424bfdb17dee58205ab058e74a7",
+    "tutorial_sha256": "0e8233b42137fa80893f69da5a9612504f399fbbee5dcbcc3cacf125b3339de2",
+    "evidence": "v15/evidence.json",
+    "anchors": [
+      [
+        81,
+        "分别列出四种 K/V ownership barrier"
+      ],
+      [
+        124,
+        "loader 不再必须把 K 和 V 一起等待"
+      ],
+      [
+        147,
+        "K 生命周期在两个 QK 使用结束后关闭"
+      ]
+    ]
+  },
+  {
+    "lesson": "v16",
+    "original": "v27",
+    "parents": [
+      "v24"
+    ],
+    "title": "交错 QK/PV：让另一个 stage 填补等待",
+    "original_sha256": "b581f6f2d3b963089611d1854e320faa67177bafcb2219921bb7b19e2dea08b4",
+    "tutorial_sha256": "887e40d8135fa0611e33b6f32d34aeb695558422f782447ebe2fbeafd27c7112",
+    "evidence": "v16/evidence.json",
+    "anchors": [
+      [
+        135,
+        "本课核心是 issue 顺序，不是更多 tile"
+      ],
+      [
+        147,
+        "延后一轮的 PV1 读取前一 slot"
+      ],
+      [
+        164,
+        "独立 drain 保护最后一个 stage1 输出"
+      ]
+    ]
+  },
+  {
+    "lesson": "v17",
+    "original": "v31",
+    "parents": [
+      "v27"
+    ],
+    "title": "消除多余等待：先证明 MMA 的读写顺序",
+    "original_sha256": "73fd0895906ea5db4d1b4afc94c9c1495fad6a50734062b37f504680cd26ca31",
+    "tutorial_sha256": "a3bc3eda04caf10312177e7a755cd514aa5e230de83f4aade05c465e05ae4a2b",
+    "evidence": "v17/evidence.json",
+    "anchors": [
+      [
+        142,
+        "此处不再等待前次 PV 的额外 PVDONE"
+      ],
+      [
+        156,
+        "跨线程 P producer-consumer 交接仍然存在"
+      ],
+      [
+        178,
+        "SFULL 也约束此前 O 的 PV 更新"
+      ]
+    ]
+  },
+  {
+    "lesson": "v18",
+    "original": "v42",
+    "parents": [
+      "v31"
+    ],
+    "title": "packed FP32：同时减少指令与依赖",
+    "original_sha256": "8ebdeb70f3f228a166511a70d46b4d63cdf8f0c3eec5e1ae0615f4d1b800ac1d",
+    "tutorial_sha256": "dac039ec03355fbf28670175c1966f7608ca72e73f7bc6bfe664c21208dc3a2a",
+    "evidence": "v18/evidence.json",
+    "anchors": [
+      [
+        86,
+        "两个 FP32 exponent 参数的 packed FMA"
+      ],
+      [
+        92,
+        "独立 packed sum chains 与减少指令同时考虑"
+      ],
+      [
+        98,
+        "阅读实际 helper，不按名字推断机器指令数量"
+      ]
+    ]
+  },
+  {
+    "lesson": "v19",
+    "original": "v44",
+    "parents": [
+      "v42"
+    ],
+    "title": "按模式专门化：causal 与 non-causal 分开选择",
+    "original_sha256": "333bfa204df42fc002c21ed006f17beedb6993cf9dc5b4435732cfac3f55762a",
+    "tutorial_sha256": "0ec20e9690489ac488af8b71df6800b3333a770c726f9099ab7f94e861d7b05f",
+    "evidence": "v19/evidence.json",
+    "anchors": [
+      [
+        203,
+        "同一个模板生成两种 softmax 指令组织"
+      ],
+      [
+        236,
+        "causal 只合并四条有效标量链"
+      ]
+    ]
+  },
+  {
+    "lesson": "v20",
+    "original": "v39",
+    "parents": [
+      "v31"
+    ],
+    "title": "小任务支线：更高理论 occupancy 为什么仍慢",
+    "original_sha256": "5dbd252d823c3860a834a9d9c8e288637ae4e0f554b13be0a817a5b8fe3dde45",
+    "tutorial_sha256": "32b4d96ff36f7ada4653d9a3436f0b9f9501eff0a0f5fdd0ffef523ed17644b4",
+    "evidence": "v20/evidence.json",
+    "anchors": [
+      [
+        34,
+        "K/V 每次只搬 64 rows；和 Q 的 128 rows 区分"
+      ],
+      [
+        44,
+        "实际 QK N=64 编码在 descriptor"
+      ],
+      [
+        251,
+        "host tensor map 也必须与 tile 一致"
+      ]
+    ]
+  },
+  {
+    "lesson": "v21",
+    "original": "v43",
+    "parents": [
+      "v39"
+    ],
+    "title": "小 grid 专用：恢复 N128，保留单 Q-stage",
+    "original_sha256": "584740ddfa80e613e64c789b20576127e3c2c94f34ca34abc5cb77e7dc5f0206",
+    "tutorial_sha256": "842335bf922a5e990bcea393b8336c04ce236ae2a829864878f62bff34696425",
+    "evidence": "v21/evidence.json",
+    "anchors": [
+      [
+        15,
+        "容量来自一个 Q 和一个 K/V pair"
+      ],
+      [
+        148,
+        "单 Q-stage 的角色预算"
+      ],
+      [
+        260,
+        "每 CTA 只负责 128 query rows"
+      ]
+    ]
+  },
+  {
+    "lesson": "v22",
+    "original": "v50",
+    "parents": [
+      "v43"
+    ],
+    "title": "修正 epilogue bank conflict：130 half → 129 half",
+    "original_sha256": "2d0c99aeae7b871ba2080a0ce4ff322bc91167bc37ce27243cb449ba294a29b5",
+    "tutorial_sha256": "39008210436f216d57897ed6a9b484f89f424624cec78e6766e71eaad68b2b00",
+    "evidence": "v22/evidence.json",
+    "anchors": [
+      [
+        221,
+        "写入 padding 与读取地址保持一致"
+      ],
+      [
+        229,
+        "按 half 的字节数推导 bank 映射"
+      ]
+    ]
+  },
+  {
+    "lesson": "v23",
+    "original": "v51",
+    "parents": [
+      "v44",
+      "v50"
+    ],
+    "title": "汇合：按 CTA/SM 数选择完整 kernel",
+    "original_sha256": "024609f25f3087f75d77029109c50644e4ab642b9b30a0a74377b90f7d9ae402",
+    "tutorial_sha256": "c07e46e248adc1f91e7aceb825084a604198311f7d944da0f921595536f80bf8",
+    "evidence": "v23/evidence.json",
+    "anchors": [
+      [
+        15,
+        "大 grid 组件来自原 v44"
+      ],
+      [
+        320,
+        "小 grid 组件来自原 v50"
+      ],
+      [
+        574,
+        "分别构造 context，设备属性查询放在 launch 之外"
+      ],
+      [
+        588,
+        "本课真正新增的优化点：按工作量与设备规模选择"
+      ]
+    ]
+  }
+]

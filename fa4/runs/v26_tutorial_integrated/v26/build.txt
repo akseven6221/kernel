@@ -1,0 +1,18 @@
+$ nvcc -std=c++17 -O3 -lineinfo -arch=sm_100a --shared -Xcompiler=-fPIC --keep --keep-dir /tmp/artifacts/v26 -Xptxas=-v /root/fa4/v26/kernel.cu -o /tmp/fa4_v26.so -L/usr/local/cuda/lib64/stubs -lcuda
+/root/fa4/v26/kernel.cu(219): error: identifier "st_first32" is undefined
+        st_first32(tm+stage*128+64+rowtm,packed);
+        ^
+
+/root/fa4/v26/kernel.cu(220): error: identifier "st_first16" is undefined
+        if constexpr(!CAUSAL) st_first16(tm+stage*128+64+rowtm,packed);
+                              ^
+
+/root/fa4/v26/kernel.cu(232): error: identifier "st_tail32" is undefined
+        if constexpr(CAUSAL) st_tail32(tm+stage*128+64+rowtm,packed);
+                             ^
+
+/root/fa4/v26/kernel.cu(233): error: identifier "st_tail16" is undefined
+        else st_tail16(tm+stage*128+64+rowtm,packed);
+             ^
+
+4 errors detected in the compilation of "/root/fa4/v26/kernel.cu".

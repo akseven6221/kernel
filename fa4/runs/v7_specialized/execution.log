@@ -1,0 +1,44 @@
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+ptxas fatal   : (C7602) Insufficient registers (128) to compile instruction at line 6261 in function _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii. Try to compile with register target of 146 or higher.
+ptxas fatal   : Ptx assembly aborted due to errors
+
+Traceback (most recent call last):
+  File "/root/fa4/benchmark.py", line 160, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/fa4/benchmark.py", line 110, in main
+    kernels=[] if args.mode=='official' else [Kernel(v,out,compile=args.mode not in ['probe','sanitize']) for v in args.versions.split(',')]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/fa4/benchmark.py", line 31, in __init__
+    command(['nvcc','-std=c++17','-O3','-lineinfo','-arch=sm_100a','--shared','-Xcompiler=-fPIC',
+  File "/root/fa4/benchmark.py", line 20, in command
+    if p.returncode: raise RuntimeError(f'command failed ({p.returncode}): {args}; see {logfile}')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: command failed (255): ['nvcc', '-std=c++17', '-O3', '-lineinfo', '-arch=sm_100a', '--shared', '-Xcompiler=-fPIC', '--keep', '--keep-dir', '/tmp/artifacts/v7', '-Xptxas=-v', '/root/fa4/v7/kernel.cu', '-o', '/tmp/fa4_v7.so', '-L/usr/local/cuda/lib64/stubs', '-lcuda']; see /tmp/artifacts/v7/build.txt

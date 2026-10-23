@@ -1,0 +1,41 @@
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    40 bytes stack frame, 56 bytes spill stores, 140 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 40 bytes cumulative stack size
+ptxas info    : Compile time = 135.404 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    112 bytes stack frame, 180 bytes spill stores, 216 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 112 bytes cumulative stack size
+ptxas info    : Compile time = 120.740 ms
+
+Saved /tmp/artifacts/v8/sass.txt: 2406420 bytes

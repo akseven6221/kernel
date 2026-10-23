@@ -1,0 +1,8 @@
+{
+  "timestamp_utc": "2026-10-14T15:56:33.300523+00:00",
+  "versions": "v43,v44,v45,v46",
+  "mode": "profile",
+  "profile_seq": 4096,
+  "profile_causal": false,
+  "cuda_image": "nvidia/cuda:12.8.1-devel-ubuntu24.04"
+}

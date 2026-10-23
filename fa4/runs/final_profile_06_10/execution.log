@@ -1,0 +1,205 @@
+/root/fa4/v6/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v6/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                       ^
+
+/root/fa4/v6/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                              ^
+
+/root/fa4/v6/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v6/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                       ^
+
+/root/fa4/v6/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 168 registers, used 1 barriers
+ptxas info    : Compile time = 96.720 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 168 registers, used 1 barriers
+ptxas info    : Compile time = 80.564 ms
+
+Saved /tmp/artifacts/v6/sass.txt: 1386596 bytes
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    40 bytes stack frame, 48 bytes spill stores, 128 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 40 bytes cumulative stack size
+ptxas info    : Compile time = 111.033 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    48 bytes stack frame, 100 bytes spill stores, 136 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 48 bytes cumulative stack size
+ptxas info    : Compile time = 106.520 ms
+
+Saved /tmp/artifacts/v7/sass.txt: 2118292 bytes
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v8/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    40 bytes stack frame, 56 bytes spill stores, 140 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 40 bytes cumulative stack size
+ptxas info    : Compile time = 130.965 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    112 bytes stack frame, 180 bytes spill stores, 216 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 112 bytes cumulative stack size
+ptxas info    : Compile time = 121.240 ms
+
+Saved /tmp/artifacts/v8/sass.txt: 2406420 bytes
+/root/fa4/v9/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v9/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v9/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+/root/fa4/v9/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v9/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v9/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    40 bytes stack frame, 48 bytes spill stores, 128 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 40 bytes cumulative stack size
+ptxas info    : Compile time = 110.948 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    48 bytes stack frame, 88 bytes spill stores, 128 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 48 bytes cumulative stack size
+ptxas info    : Compile time = 100.713 ms
+
+Saved /tmp/artifacts/v9/sass.txt: 2135700 bytes
+/root/fa4/v10/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v10/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v10/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+/root/fa4/v10/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v10/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v10/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    56 bytes stack frame, 68 bytes spill stores, 148 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 56 bytes cumulative stack size
+ptxas info    : Compile time = 119.853 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    48 bytes stack frame, 84 bytes spill stores, 120 bytes spill loads
+ptxas info    : Used 128 registers, used 3 barriers, 48 bytes cumulative stack size
+ptxas info    : Compile time = 102.541 ms
+
+Saved /tmp/artifacts/v10/sass.txt: 2179224 bytes

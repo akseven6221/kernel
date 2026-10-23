@@ -1,0 +1,40 @@
+--- v16/kernel.cu
++++ v21/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v16: raise startup/softmax register limits to reduce allocation pressure.
++// v21: four independent pair-sum chains for rowsum, with the stable FMA guard.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -171,7 +171,7 @@
+       rowmax=next;
+ 
+       const float scaled_ref=-next*0.127517430824596f;
+-      uint32_t packed[64];float psum=0;
++      uint32_t packed[64];float sums[4]={0,0,0,0};
+       // FMA's common reference-rounding shift can overflow FP16 P for very large scores.
+       // Subtract first in this range, so the current maximum has exponent argument exactly zero.
+       if(fabsf(next)>65536.0f) {
+@@ -179,7 +179,7 @@
+       for(int c=0;c<64;c++) {
+         float a=fast_exp2((scores[2*c]-next)*0.127517430824596f);
+         float b=fast_exp2((scores[2*c+1]-next)*0.127517430824596f);
+-        psum+=a+b;
++        sums[c%4]+=a+b;
+         const __half2_raw h=__floats2half2_rn(a,b);packed[c]=uint32_t(h.x)|(uint32_t(h.y)<<16);
+       }
+       } else {
+@@ -187,10 +187,11 @@
+       for(int c=0;c<64;c++) {
+         float a=fast_exp2(fmaf(scores[2*c],0.127517430824596f,scaled_ref));
+         float b=fast_exp2(fmaf(scores[2*c+1],0.127517430824596f,scaled_ref));
+-        psum+=a+b;
++        sums[c%4]+=a+b;
+         const __half2_raw h=__floats2half2_rn(a,b);packed[c]=uint32_t(h.x)|(uint32_t(h.y)<<16);
+       }
+       }
++      const float psum=(sums[0]+sums[1])+(sums[2]+sums[3]);
+       rowsum=rowsum*alpha+psum;
+       st64(tm+stage*128+64+rowtm,packed);
+       asm volatile("tcgen05.wait::st.sync.aligned;" ::: "memory");

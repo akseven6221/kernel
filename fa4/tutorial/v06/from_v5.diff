@@ -1,0 +1,52 @@
+--- v5/kernel.cu
++++ v6/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v5: compute one reciprocal per row for normalization.
++// v6: two K/V TMA slots, prefetch the next tile during current computation.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -8,7 +8,7 @@
+ #include <cmath>
+ namespace fa4 {
+ constexpr int M=128, N=128, D=128, THREADS=128;
+-constexpr int TILE_BYTES=32768, SHARED_BYTES=3*TILE_BYTES+32;
++constexpr int TILE_BYTES=32768, SHARED_BYTES=5*TILE_BYTES+40;
+ __device__ __forceinline__ void wait(uint32_t a, uint32_t phase) {
+   asm volatile("{ .reg .pred p; L: mbarrier.try_wait.parity.acquire.cta.shared::cta.b64 p, [%0], %1; @!p bra L; }" :: "r"(a), "r"(phase) : "memory");
+ }
+@@ -66,22 +66,27 @@
+     const __grid_constant__ CUtensorMap vm,half* output,int seq,int heads) {
+   extern __shared__ __align__(1024) unsigned char sm[];
+   const uint32_t base=uint32_t(__cvta_generic_to_shared(sm));
+-  const uint32_t qb=base, kb=base+TILE_BYTES, vb=base+2*TILE_BYTES;
+-  const uint32_t tbar=base+3*TILE_BYTES, mbar=tbar+8, alloc=tbar+16;
++  const uint32_t qb=base;
++  const uint32_t tbar=base+5*TILE_BYTES, kbar0=tbar+8, mbar=tbar+24, alloc=tbar+32;
+   int tid=threadIdx.x, warp=tid/32;
+-  if(tid==0) { init(tbar);init(mbar);asm volatile("fence.mbarrier_init.release.cluster;" ::: "memory"); }
++  if(tid==0) { init(tbar);init(kbar0);init(kbar0+8);init(mbar);asm volatile("fence.mbarrier_init.release.cluster;" ::: "memory"); }
+   if(warp==0) asm volatile("tcgen05.alloc.cta_group::1.sync.aligned.shared::cta.b32 [%0], 256;" :: "r"(alloc):"memory");
+   __syncthreads();
+-  uint32_t tm=*reinterpret_cast<uint32_t*>(sm+3*TILE_BYTES+16);
++  uint32_t tm=*reinterpret_cast<uint32_t*>(sm+5*TILE_BYTES+32);
+   int head=blockIdx.y%heads, batch=blockIdx.y/heads, qr=blockIdx.x*128;
+   uint32_t rowtm=(uint32_t(warp*32)<<16), phase=0;
+   if(tid==0) { expect(tbar,TILE_BYTES); load(qb,&qm,batch*seq+qr,head,tbar); }
+   wait(tbar,0); __syncthreads();
+   float rowmax=-INFINITY, rowsum=0;
+   const int blocks=CAUSAL?min((qr+128+127)/128,(seq+127)/128):(seq+127)/128;
++  if(tid==0) { expect(kbar0,2*TILE_BYTES);load(base+TILE_BYTES,&km,batch*seq,head,kbar0);load(base+2*TILE_BYTES,&vm,batch*seq,head,kbar0); }
+   for(int j=0;j<blocks;j++) {
+-    if(tid==0) { expect(tbar,2*TILE_BYTES); load(kb,&km,batch*seq+j*128,head,tbar);load(vb,&vm,batch*seq+j*128,head,tbar); }
+-    wait(tbar,(j+1)&1);fence();
++    const uint32_t kb=base+TILE_BYTES+(j%2)*2*TILE_BYTES, vb=kb+TILE_BYTES;
++    wait(kbar0+(j%2)*8,(j/2)&1);fence();
++    if(tid==0 && j+1<blocks) {
++      uint32_t nextk=base+TILE_BYTES+((j+1)%2)*2*TILE_BYTES, nextbar=kbar0+((j+1)%2)*8;
++      expect(nextbar,2*TILE_BYTES);load(nextk,&km,batch*seq+(j+1)*128,head,nextbar);load(nextk+TILE_BYTES,&vm,batch*seq+(j+1)*128,head,nextbar);
++    }
+     if(tid==0) {qk(tm,qb,kb);commit(mbar);}
+     wait(mbar,phase); phase^=1;fence();
+     float scores[128]; ld128(tm+rowtm,scores);

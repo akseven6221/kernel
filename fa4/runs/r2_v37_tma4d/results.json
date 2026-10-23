@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "torch": "2.10.0+cu128",
+    "device": "NVIDIA B200",
+    "capability": [
+      10,
+      0
+    ],
+    "packages": {
+      "flash-attn-4": "4.0.0b35",
+      "nvidia-cutlass-dsl": "4.8.0",
+      "apache-tvm-ffi": "0.1.14.post1",
+      "quack-kernels": "0.6.5"
+    },
+    "timing": "CUDA Graph, 20 nodes, 10 warmups, 9 alternating rounds; CUDA events; median",
+    "pid": 29,
+    "official_source_sha256": {
+      "interface.py": "ca06d6d299be83b497c934a3800ea13bb3040eb86b14a3769f2c95e55758ee30",
+      "flash_fwd_sm100.py": "c8cbc40b97c9f2a8fa5ce3da5dbe4f0eb80787158f1e4398889ca02572ec1cdb",
+      "softmax.py": "aaddf3030dba7b9809c4fefae3caab22d0f22b9ecf5050601d6646aefb611a49",
+      "utils.py": "c949e86b6e78f39283ccc24819eeec0e08301ee8bf1954def22831f1193c9204"
+    }
+  },
+  "correctness": [
+    {
+      "version": "v31",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": false,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0002970099449157715,
+        "rmse": 3.882059536408633e-05,
+        "relative_l2": 0.0002689365646801889,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0002970099449157715,
+        "rmse": 3.892551831086166e-05,
+        "relative_l2": 0.0002696634619496763,
+        "passed": true
+      }
+    },
+    {
+      "version": "v37",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": false,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.913692831993103,
+        "rmse": 0.1781810075044632,
+        "relative_l2": 1.2343806028366089,
+        "passed": false
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0002970099449157715,
+        "rmse": 3.892551831086166e-05,
+        "relative_l2": 0.0002696634619496763,
+        "passed": true
+      }
+    }
+  ],
+  "benchmarks": []
+}

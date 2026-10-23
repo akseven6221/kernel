@@ -1,0 +1,29 @@
+--- v2/kernel.cu
++++ v3/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v2: direct ex2.approx.ftz.f32 instead of the general exp2f library routine.
++// v3: coalesced output via a padded shared-memory transpose.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -122,9 +122,17 @@
+   }
+   fence(); float o[128]; ld128(tm+128+rowtm,o);
+   asm volatile("tcgen05.wait::ld.sync.aligned;" ::: "memory");
+-  if(qr+tid<seq) {
++  // Q/K/V storage is dead here; reuse it for bank-friendly output exchange.
++  float* staging=reinterpret_cast<float*>(sm);
+ #pragma unroll
+-    for(int c=0;c<128;c++) output[((int64_t(batch)*seq+qr+tid)*heads+head)*128+c]=__float2half_rn(o[c]/rowsum);
++  for(int c=0;c<128;c++) staging[c*129+tid]=o[c]/rowsum;
++  __syncthreads();
++  for(int i=tid;i<128*64;i+=THREADS) {
++    int r=i/64, c=(i%64)*2;
++    if(qr+r<seq) {
++      const __half2 value=__floats2half2_rn(staging[c*129+r],staging[(c+1)*129+r]);
++      *reinterpret_cast<__half2*>(output+((int64_t(batch)*seq+qr+r)*heads+head)*128+c)=value;
++    }
+   }
+   asm volatile("tcgen05.fence::before_thread_sync;" ::: "memory");
+   __syncthreads();

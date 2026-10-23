@@ -1,0 +1,36 @@
+--- v13/kernel.cu
++++ v14/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v13: skip per-element masking for fully valid tiles.
++// v14: fuse score scaling and reference subtraction into one FMA.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -169,13 +169,26 @@
+       const float alpha=j==0?0.0f:fast_exp2((rowmax-next)*0.127517430824596f);
+       rowmax=next;
+ 
++      const float scaled_ref=-next*0.127517430824596f;
+       uint32_t packed[64];float psum=0;
++      // FMA's common reference-rounding shift can overflow FP16 P for very large scores.
++      // Subtract first in this range, so the current maximum has exponent argument exactly zero.
++      if(fabsf(next)>65536.0f) {
+ #pragma unroll
+       for(int c=0;c<64;c++) {
+         float a=fast_exp2((scores[2*c]-next)*0.127517430824596f);
+         float b=fast_exp2((scores[2*c+1]-next)*0.127517430824596f);
+         psum+=a+b;
+         const __half2_raw h=__floats2half2_rn(a,b);packed[c]=uint32_t(h.x)|(uint32_t(h.y)<<16);
++      }
++      } else {
++#pragma unroll
++      for(int c=0;c<64;c++) {
++        float a=fast_exp2(fmaf(scores[2*c],0.127517430824596f,scaled_ref));
++        float b=fast_exp2(fmaf(scores[2*c+1],0.127517430824596f,scaled_ref));
++        psum+=a+b;
++        const __half2_raw h=__floats2half2_rn(a,b);packed[c]=uint32_t(h.x)|(uint32_t(h.y)<<16);
++      }
+       }
+       rowsum=rowsum*alpha+psum;
+       st64(tm+stage*128+64+rowtm,packed);

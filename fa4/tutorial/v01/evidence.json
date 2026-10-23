@@ -1,0 +1,499 @@
+{
+  "original": "v1",
+  "parents": [],
+  "run": "runs/final_all_versions",
+  "original_sha256": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3",
+  "tutorial_sha256": "69865a5fcf9aa039ec25069857eb9286189d29c0e424adaec50195ae781775b8",
+  "source_result_sha256": "5a3490291c505aa68ffa75ccd2a72b8eb92dea442ce333c86b3e60a77b817e71",
+  "timing": "CUDA Graph, 20 nodes, 10 warmups, 9 alternating rounds; CUDA events; median",
+  "benchmarks": [
+    {
+      "shape": [
+        1,
+        512,
+        8,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 10.639999806880951,
+          "samples_us": [
+            12.350399792194366,
+            10.648000240325928,
+            10.552000254392624,
+            10.644800215959549,
+            10.553599894046783,
+            10.639999806880951,
+            10.555200278759003,
+            10.675200074911118,
+            10.577599704265594
+          ],
+          "min_us": 10.552000254392624,
+          "max_us": 12.350399792194366,
+          "tflops": 100.91558679405284,
+          "official_throughput_percent": 100.0
+        },
+        "v1": {
+          "median_us": 31.839999556541443,
+          "samples_us": [
+            31.963199377059937,
+            31.779199838638306,
+            31.84959888458252,
+            31.84959888458252,
+            31.839999556541443,
+            31.833600997924805,
+            31.832000613212585,
+            31.84320032596588,
+            31.774398684501648
+          ],
+          "min_us": 31.774398684501648,
+          "max_us": 31.963199377059937,
+          "tflops": 33.723047705866016,
+          "official_throughput_percent": 33.41708528602976
+        }
+      },
+      "errors": {
+        "v1": {
+          "finite": true,
+          "max_abs": 0.000244140625,
+          "rmse": 2.6930774765787646e-05,
+          "relative_l2": 0.000365496234735474,
+          "passed": true
+        }
+      },
+      "source_sha256": {
+        "v1": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3"
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 257.89 W, 1000.00 W, 34\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 268.01 W, 1000.00 W, 35\n"
+    },
+    {
+      "shape": [
+        1,
+        1024,
+        8,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 16.313600540161133,
+          "samples_us": [
+            16.444799304008484,
+            16.32480025291443,
+            16.174399852752686,
+            16.363200545310974,
+            16.18559956550598,
+            16.313600540161133,
+            16.15999937057495,
+            16.32000058889389,
+            16.18559956550598
+          ],
+          "min_us": 16.15999937057495,
+          "max_us": 16.444799304008484,
+          "tflops": 263.27525216929075,
+          "official_throughput_percent": 100.0
+        },
+        "v1": {
+          "median_us": 43.988800048828125,
+          "samples_us": [
+            43.988800048828125,
+            44.02720034122467,
+            43.92800033092499,
+            44.02720034122467,
+            43.96800100803375,
+            44.01920139789581,
+            43.857601284980774,
+            44.01920139789581,
+            43.9520001411438
+          ],
+          "min_us": 43.857601284980774,
+          "max_us": 44.02720034122467,
+          "tflops": 97.63774622705171,
+          "official_throughput_percent": 37.08580484589903
+        }
+      },
+      "errors": {
+        "v1": {
+          "finite": true,
+          "max_abs": 0.000244140625,
+          "rmse": 1.9621566025307402e-05,
+          "relative_l2": 0.00037942445487715304,
+          "passed": true
+        }
+      },
+      "source_sha256": {
+        "v1": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3"
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 270.76 W, 1000.00 W, 35\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 315.07 W, 1000.00 W, 36\n"
+    },
+    {
+      "shape": [
+        1,
+        4096,
+        8,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 53.8752019405365,
+          "samples_us": [
+            53.8752019405365,
+            54.524797201156616,
+            52.532798051834106,
+            54.417598247528076,
+            52.532798051834106,
+            54.56960201263428,
+            52.532798051834106,
+            54.572802782058716,
+            52.52320170402527
+          ],
+          "min_us": 52.52320170402527,
+          "max_us": 54.572802782058716,
+          "tflops": 1275.5307499700423,
+          "official_throughput_percent": 100.0
+        },
+        "v1": {
+          "median_us": 228.6463975906372,
+          "samples_us": [
+            229.367995262146,
+            228.6463975906372,
+            228.3008098602295,
+            228.80160808563232,
+            228.38399410247803,
+            228.71201038360596,
+            228.387188911438,
+            228.77440452575684,
+            228.38239669799805
+          ],
+          "min_us": 228.3008098602295,
+          "max_us": 229.367995262146,
+          "tflops": 300.5491337721998,
+          "official_throughput_percent": 23.562672540764588
+        }
+      },
+      "errors": {
+        "v1": {
+          "finite": true,
+          "max_abs": 0.0001220703125,
+          "rmse": 1.007105311146006e-05,
+          "relative_l2": 0.00038194635999388993,
+          "passed": true
+        }
+      },
+      "source_sha256": {
+        "v1": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3"
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 319.53 W, 1000.00 W, 36\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 791.33 W, 1000.00 W, 48\n"
+    },
+    {
+      "shape": [
+        1,
+        8192,
+        8,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 202.4048089981079,
+          "samples_us": [
+            202.4048089981079,
+            202.70559787750244,
+            201.61919593811035,
+            202.9088020324707,
+            201.61120891571045,
+            202.9263973236084,
+            201.70400142669678,
+            202.76319980621338,
+            201.70879364013672
+          ],
+          "min_us": 201.61120891571045,
+          "max_us": 202.9263973236084,
+          "tflops": 1358.0601582770178,
+          "official_throughput_percent": 100.0
+        },
+        "v1": {
+          "median_us": 829.2160034179688,
+          "samples_us": [
+            829.2767524719238,
+            828.7535667419434,
+            829.2160034179688,
+            828.7391662597656,
+            829.9360275268555,
+            828.7839889526367,
+            829.4320106506348,
+            828.495979309082,
+            829.2367935180664
+          ],
+          "min_us": 828.495979309082,
+          "max_us": 829.9360275268555,
+          "tflops": 331.49131928348345,
+          "official_throughput_percent": 24.409177845556506
+        }
+      },
+      "errors": {
+        "v1": {
+          "finite": true,
+          "max_abs": 6.103515625e-05,
+          "rmse": 7.112383627827512e-06,
+          "relative_l2": 0.00038913130993023515,
+          "passed": true
+        }
+      },
+      "source_sha256": {
+        "v1": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3"
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 756.29 W, 1000.00 W, 47\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 820.84 W, 1000.00 W, 50\n"
+    },
+    {
+      "shape": [
+        1,
+        4096,
+        8,
+        128
+      ],
+      "causal": true,
+      "timing": {
+        "official_fa4": {
+          "median_us": 53.23039889335632,
+          "samples_us": [
+            54.47360277175903,
+            53.47200036048889,
+            52.003198862075806,
+            53.46879959106445,
+            52.031999826431274,
+            53.50080132484436,
+            52.03679800033569,
+            53.23039889335632,
+            51.90240144729614
+          ],
+          "min_us": 51.90240144729614,
+          "max_us": 54.47360277175903,
+          "tflops": 645.4909052407727,
+          "official_throughput_percent": 100.0
+        },
+        "v1": {
+          "median_us": 216.68798923492432,
+          "samples_us": [
+            215.85121154785156,
+            219.27518844604492,
+            215.78400135040283,
+            216.80800914764404,
+            214.7615909576416,
+            218.35200786590576,
+            214.97600078582764,
+            217.75519847869873,
+            216.68798923492432
+          ],
+          "min_us": 214.7615909576416,
+          "max_us": 219.27518844604492,
+          "tflops": 158.56780290091928,
+          "official_throughput_percent": 24.565458879977925
+        }
+      },
+      "errors": {
+        "v1": {
+          "finite": true,
+          "max_abs": 0.00048828125,
+          "rmse": 1.819302087824326e-05,
+          "relative_l2": 0.0002666112850420177,
+          "passed": true
+        }
+      },
+      "source_sha256": {
+        "v1": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3"
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 803.35 W, 1000.00 W, 50\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 544.17 W, 1000.00 W, 43\n"
+    },
+    {
+      "shape": [
+        1,
+        8192,
+        8,
+        128
+      ],
+      "causal": true,
+      "timing": {
+        "official_fa4": {
+          "median_us": 104.3936014175415,
+          "samples_us": [
+            105.50559759140015,
+            104.19679880142212,
+            104.44320440292358,
+            104.20800447463989,
+            104.23680543899536,
+            104.22879457473755,
+            104.45280075073242,
+            104.3936014175415,
+            104.44159507751465
+          ],
+          "min_us": 104.19679880142212,
+          "max_us": 105.50559759140015,
+          "tflops": 1316.5457614809886,
+          "official_throughput_percent": 100.0
+        },
+        "v1": {
+          "median_us": 612.062406539917,
+          "samples_us": [
+            614.796781539917,
+            611.2864017486572,
+            617.2399997711182,
+            610.8880043029785,
+            612.6719951629639,
+            612.062406539917,
+            610.1903915405273,
+            610.5552196502686,
+            613.259220123291
+          ],
+          "min_us": 610.1903915405273,
+          "max_us": 617.2399997711182,
+          "tflops": 224.55055563527185,
+          "official_throughput_percent": 17.056038780047707
+        }
+      },
+      "errors": {
+        "v1": {
+          "finite": true,
+          "max_abs": 0.00048828125,
+          "rmse": 1.4140119674266316e-05,
+          "relative_l2": 0.0002826385316438973,
+          "passed": true
+        }
+      },
+      "source_sha256": {
+        "v1": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3"
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 517.23 W, 1000.00 W, 41\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 644.89 W, 1000.00 W, 46\n"
+    },
+    {
+      "shape": [
+        2,
+        4096,
+        16,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 214.34240341186523,
+          "samples_us": [
+            215.24479389190674,
+            214.55039978027344,
+            214.36960697174072,
+            214.02080059051514,
+            214.22080993652344,
+            214.1103982925415,
+            214.353609085083,
+            214.0944004058838,
+            214.34240341186523
+          ],
+          "min_us": 214.02080059051514,
+          "max_us": 215.24479389190674,
+          "tflops": 1282.4243013446762,
+          "official_throughput_percent": 100.0
+        },
+        "v1": {
+          "median_us": 897.0479965209961,
+          "samples_us": [
+            896.998405456543,
+            896.8784332275391,
+            897.2160339355469,
+            897.2031593322754,
+            897.105598449707,
+            896.9535827636719,
+            897.0479965209961,
+            897.5055694580078,
+            897.0463752746582
+          ],
+          "min_us": 896.8784332275391,
+          "max_us": 897.5055694580078,
+          "tflops": 306.4249716961118,
+          "official_throughput_percent": 23.894195655432622
+        }
+      },
+      "errors": {
+        "v1": {
+          "finite": true,
+          "max_abs": 0.0001220703125,
+          "rmse": 1.0026409654528834e-05,
+          "relative_l2": 0.0003856803523376584,
+          "passed": true
+        }
+      },
+      "source_sha256": {
+        "v1": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3"
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 612.00 W, 1000.00 W, 41\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 840.32 W, 1000.00 W, 51\n"
+    },
+    {
+      "shape": [
+        2,
+        4096,
+        16,
+        128
+      ],
+      "causal": true,
+      "timing": {
+        "official_fa4": {
+          "median_us": 120.89600563049316,
+          "samples_us": [
+            121.36640548706055,
+            119.78880167007446,
+            121.12480401992798,
+            119.77920532226562,
+            121.1135983467102,
+            120.12640237808228,
+            120.89600563049316,
+            119.84479427337646,
+            121.17600440979004
+          ],
+          "min_us": 119.77920532226562,
+          "max_us": 121.36640548706055,
+          "tflops": 1136.8361820990906,
+          "official_throughput_percent": 100.0
+        },
+        "v1": {
+          "median_us": 638.7279987335205,
+          "samples_us": [
+            637.5999927520752,
+            639.9280071258545,
+            642.0767784118652,
+            638.8720035552979,
+            637.9312038421631,
+            635.6575965881348,
+            636.7680072784424,
+            638.7279987335205,
+            640.825605392456
+          ],
+          "min_us": 635.6575965881348,
+          "max_us": 642.0767784118652,
+          "tflops": 215.1760275806228,
+          "official_throughput_percent": 18.927619561097618
+        }
+      },
+      "errors": {
+        "v1": {
+          "finite": true,
+          "max_abs": 0.0009765625,
+          "rmse": 1.8203569197794423e-05,
+          "relative_l2": 0.0002651466929819435,
+          "passed": true
+        }
+      },
+      "source_sha256": {
+        "v1": "1fd784f6a2f6e40630c31ebd356b57e7195c9ee55342ba905fd7f6808f49b8c3"
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 808.50 W, 1000.00 W, 52\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 755.46 W, 1000.00 W, 46\n"
+    }
+  ]
+}

@@ -1,0 +1,436 @@
+{
+  "rows": 4096,
+  "cols": 4096,
+  "dtype": "bfloat16",
+  "gpu": "NVIDIA B200",
+  "torch_version": "2.8.0+cu128",
+  "torch_cuda": "12.8",
+  "cuda_image": "nvidia/cuda:12.8.1-devel-ubuntu24.04",
+  "cutlass_commit": "f3fde58372d33e9a5650ba7b80fc48b3b49d40c8",
+  "timestamp_utc": "2026-10-07T07:46:57.929520+00:00",
+  "iterations": 100,
+  "rounds": 9,
+  "best_threads": 128,
+  "timing": "CUDA Graph 100 operations/replay; CUDA events; 9 rounds with rotating order; median",
+  "working_set": "cached: same buffers; streaming: 8 rotating input/output pairs (512 MiB at 4096^2)",
+  "results": {
+    "cute_64": {
+      "ms": 0.011041280031204224,
+      "us": 11.041280031204224,
+      "samples_ms": [
+        0.011133760213851929,
+        0.011045759916305542,
+        0.011038399934768676,
+        0.011017600297927857,
+        0.010884480476379394,
+        0.011041280031204224,
+        0.011056959629058838,
+        0.01105471968650818,
+        0.010898879766464233
+      ],
+      "effective_GBps": 6077.996736822255,
+      "speedup_vs_pytorch": 4.415488198838773
+    },
+    "cute_128": {
+      "ms": 0.010820480585098267,
+      "us": 10.820480585098267,
+      "samples_ms": [
+        0.010894720554351806,
+        0.010820480585098267,
+        0.010800000429153443,
+        0.010794559717178345,
+        0.010673279762268067,
+        0.010832959413528442,
+        0.010836479663848876,
+        0.010834879875183105,
+        0.010707839727401733
+      ],
+      "effective_GBps": 6202.0224954167825,
+      "speedup_vs_pytorch": 4.505589312271169
+    },
+    "cute_256": {
+      "ms": 0.011514559984207154,
+      "us": 11.514559984207153,
+      "samples_ms": [
+        0.011605119705200196,
+        0.01150879979133606,
+        0.011514559984207154,
+        0.011501439809799195,
+        0.011347199678421021,
+        0.011531519889831542,
+        0.011545920372009277,
+        0.011546880006790161,
+        0.011387840509414673
+      ],
+      "effective_GBps": 5828.174423689959,
+      "speedup_vs_pytorch": 4.2339995401234045
+    },
+    "pytorch": {
+      "ms": 0.048752641677856444,
+      "us": 48.752641677856445,
+      "samples_ms": [
+        0.048755202293396,
+        0.04874911785125732,
+        0.04876607894897461,
+        0.04874847888946533,
+        0.04874815940856934,
+        0.048752641677856444,
+        0.04875167846679687,
+        0.048765759468078616,
+        0.048771839141845706
+      ],
+      "effective_GBps": 1376.5174909584641
+    }
+  },
+  "streaming_results": {
+    "cute_64": {
+      "ms": 0.013882240056991577,
+      "us": 13.882240056991577,
+      "samples_ms": [
+        0.013906559944152831,
+        0.013880959749221801,
+        0.013882880210876464,
+        0.013882240056991577,
+        0.013856639862060547,
+        0.013867520093917847,
+        0.01388416051864624,
+        0.013888959884643554,
+        0.013879040479660034
+      ],
+      "effective_GBps": 4834.152393597433,
+      "speedup_vs_pytorch": 3.6812040462447104
+    },
+    "cute_128": {
+      "ms": 0.013364160060882568,
+      "us": 13.364160060882568,
+      "samples_ms": [
+        0.013375040292739868,
+        0.013326719999313355,
+        0.01337056040763855,
+        0.013411840200424194,
+        0.013375040292739868,
+        0.013348159790039062,
+        0.01333407998085022,
+        0.013364160060882568,
+        0.013330880403518677
+      ],
+      "effective_GBps": 5021.554942044606,
+      "speedup_vs_pytorch": 3.8239109705307532
+    },
+    "cute_256": {
+      "ms": 0.014043519496917725,
+      "us": 14.043519496917725,
+      "samples_ms": [
+        0.014062720537185668,
+        0.014057600498199463,
+        0.014043519496917725,
+        0.014053119421005249,
+        0.014024959802627563,
+        0.014012160301208497,
+        0.014038399457931519,
+        0.014046080112457275,
+        0.014008959531784057
+      ],
+      "effective_GBps": 4778.635726943596,
+      "speedup_vs_pytorch": 3.6389281390575894
+    },
+    "pytorch": {
+      "ms": 0.05110335826873779,
+      "us": 51.10335826873779,
+      "samples_ms": [
+        0.051086721420288084,
+        0.05110623836517334,
+        0.051091518402099606,
+        0.05110335826873779,
+        0.05110688209533691,
+        0.05108736038208008,
+        0.051084160804748535,
+        0.05111711978912353,
+        0.051109118461608885
+      ],
+      "effective_GBps": 1313.1987069635206
+    }
+  },
+  "sanitize": true,
+  "correctness": [
+    {
+      "case": "random",
+      "shape": [
+        3,
+        1
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "random",
+      "shape": [
+        7,
+        17
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "random",
+      "shape": [
+        5,
+        129
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "random",
+      "shape": [
+        9,
+        1024
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "random",
+      "shape": [
+        11,
+        2048
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 2.9802322387695312e-08
+    },
+    {
+      "case": "random",
+      "shape": [
+        7,
+        4095
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "random",
+      "shape": [
+        13,
+        4096
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 3.814697265625e-06
+    },
+    {
+      "case": "random",
+      "shape": [
+        3,
+        4097
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "random",
+      "shape": [
+        3,
+        8192
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "random",
+      "shape": [
+        2,
+        32768
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "random",
+      "shape": [
+        2,
+        32769
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 4.656612873077393e-10
+    },
+    {
+      "case": "4096 configuration",
+      "shape": [
+        13,
+        4096
+      ],
+      "threads": 64,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "4096 configuration",
+      "shape": [
+        13,
+        4096
+      ],
+      "threads": 128,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "4096 configuration",
+      "shape": [
+        13,
+        4096
+      ],
+      "threads": 256,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "unaligned input/output",
+      "shape": [
+        7,
+        4096
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 3.814697265625e-06
+    },
+    {
+      "case": "constant large logits",
+      "shape": [
+        3,
+        4096
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "large logits",
+      "shape": [
+        3,
+        4096
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "masked and nonfinite rows",
+      "shape": [
+        4,
+        4096
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 0.0
+    },
+    {
+      "case": "benchmark input",
+      "shape": [
+        4096,
+        4096
+      ],
+      "threads": 0,
+      "max_abs_error_vs_fp64_bf16": 7.62939453125e-06
+    }
+  ],
+  "logs": [
+    {
+      "command": [
+        "nvidia-smi"
+      ],
+      "output": "Wed Oct  7 07:46:28 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA B200                    On  |   00000000:87:00.0 Off |                    0 |\n| N/A   32C    P0            190W / 1000W |      90MiB / 183359MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n"
+    },
+    {
+      "command": [
+        "nvcc",
+        "--version"
+      ],
+      "output": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Fri_Feb_21_20:23:50_PST_2025\nCuda compilation tools, release 12.8, V12.8.93\nBuild cuda_12.8.r12.8/compiler.35583870_0\n"
+    },
+    {
+      "command": [
+        "nvcc",
+        "-std=c++17",
+        "-O3",
+        "-DNDEBUG",
+        "-lineinfo",
+        "-arch=sm_100a",
+        "-I/opt/cutlass/include",
+        "/root/softmax_binding.cu",
+        "--shared",
+        "-Xcompiler=-fPIC",
+        "-Xptxas=-v",
+        "-o",
+        "/root/softmax.so"
+      ],
+      "output": "ptxas info    : 10 bytes gmem\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi32768ELi256ELi1ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi32768ELi256ELi1ELi1ELb0EEEvPKT_PS3_ii\n    24 bytes stack frame, 24 bytes spill stores, 24 bytes spill loads\nptxas info    : Used 255 registers, used 1 barriers, 24 bytes cumulative stack size, 64 bytes smem\nptxas info    : Compile time = 269.388 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi16384ELi256ELi1ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi16384ELi256ELi1ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 210 registers, used 1 barriers, 64 bytes smem\nptxas info    : Compile time = 97.265 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi8192ELi128ELi1ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi8192ELi128ELi1ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 210 registers, used 1 barriers, 32 bytes smem\nptxas info    : Compile time = 95.356 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi128ELi1ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi128ELi1ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 115 registers, used 1 barriers, 32 bytes smem\nptxas info    : Compile time = 40.457 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi2048ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi2048ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 197 registers, used 0 barriers\nptxas info    : Compile time = 92.891 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi1024ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi1024ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 95 registers, used 0 barriers\nptxas info    : Compile time = 37.772 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi512ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi512ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 48 registers, used 0 barriers\nptxas info    : Compile time = 18.199 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi256ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi256ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 29 registers, used 0 barriers\nptxas info    : Compile time = 9.652 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi128ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi128ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 19 registers, used 0 barriers\nptxas info    : Compile time = 6.198 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi64ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi64ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 17 registers, used 0 barriers\nptxas info    : Compile time = 4.486 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi32ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi32ELi32ELi4ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 18 registers, used 0 barriers\nptxas info    : Compile time = 3.841 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi16ELi16ELi8ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi16ELi16ELi8ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 16 registers, used 0 barriers\nptxas info    : Compile time = 3.709 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi8ELi8ELi16ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi8ELi8ELi16ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 14 registers, used 0 barriers\nptxas info    : Compile time = 3.603 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4ELi4ELi32ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4ELi4ELi32ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 14 registers, used 0 barriers\nptxas info    : Compile time = 3.503 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi2ELi2ELi64ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi2ELi2ELi64ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 14 registers, used 0 barriers\nptxas info    : Compile time = 3.342 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi1ELi1ELi128ELi1ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi1ELi1ELi128ELi1ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 10 registers, used 0 barriers\nptxas info    : Compile time = 2.842 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi32768ELi256ELi1ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi32768ELi256ELi1ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 178 registers, used 1 barriers, 64 bytes smem\nptxas info    : Compile time = 245.192 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi16384ELi256ELi1ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi16384ELi256ELi1ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 213 registers, used 1 barriers, 64 bytes smem\nptxas info    : Compile time = 96.277 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi8192ELi128ELi1ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi8192ELi128ELi1ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 213 registers, used 1 barriers, 32 bytes smem\nptxas info    : Compile time = 95.903 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi128ELi1ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi128ELi1ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 114 registers, used 1 barriers, 32 bytes smem\nptxas info    : Compile time = 43.588 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi2048ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi2048ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 205 registers, used 0 barriers\nptxas info    : Compile time = 88.694 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi1024ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi1024ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 112 registers, used 0 barriers\nptxas info    : Compile time = 38.767 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi512ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi512ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 62 registers, used 0 barriers\nptxas info    : Compile time = 19.428 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi256ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi256ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 28 registers, used 0 barriers\nptxas info    : Compile time = 10.910 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi128ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi128ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 28 registers, used 0 barriers\nptxas info    : Compile time = 10.933 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi64ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi64ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 28 registers, used 0 barriers\nptxas info    : Compile time = 11.278 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi32ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi32ELi32ELi4ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 28 registers, used 0 barriers\nptxas info    : Compile time = 10.934 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi16ELi16ELi8ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi16ELi16ELi8ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 27 registers, used 0 barriers\nptxas info    : Compile time = 10.799 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi8ELi8ELi16ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi8ELi8ELi16ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 27 registers, used 0 barriers\nptxas info    : Compile time = 10.697 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4ELi4ELi32ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4ELi4ELi32ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 27 registers, used 0 barriers\nptxas info    : Compile time = 10.511 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi2ELi2ELi64ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi2ELi2ELi64ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 27 registers, used 0 barriers\nptxas info    : Compile time = 10.391 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi1ELi1ELi128ELi8ELb0EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi1ELi1ELi128ELi8ELb0EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 24 registers, used 0 barriers\nptxas info    : Compile time = 8.485 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi128ELi1ELi8ELb1EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi128ELi1ELi8ELb1EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 48 registers, used 1 barriers, 32 bytes smem\nptxas info    : Compile time = 18.116 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi64ELi1ELi8ELb1EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi64ELi1ELi8ELb1EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 80 registers, used 1 barriers, 16 bytes smem\nptxas info    : Compile time = 36.595 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi256ELi1ELi8ELb1EEEvPKT_PS3_ii' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax16softmax_registerIN7cutlass10bfloat16_tELi4096ELi256ELi1ELi8ELb1EEEvPKT_PS3_ii\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers, 64 bytes smem\nptxas info    : Compile time = 11.370 ms\nptxas info    : Compiling entry function '_ZN12cute_softmax17softmax_streamingIN7cutlass10bfloat16_tEEEvPKT_PS3_i' for 'sm_100a'\nptxas info    : Function properties for _ZN12cute_softmax17softmax_streamingIN7cutlass10bfloat16_tEEEvPKT_PS3_i\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 28 registers, used 1 barriers, 64 bytes smem\nptxas info    : Compile time = 21.621 ms\n"
+    },
+    {
+      "command": [
+        "nvcc",
+        "-std=c++17",
+        "-O3",
+        "-DNDEBUG",
+        "-lineinfo",
+        "-arch=sm_100a",
+        "-I/opt/cutlass/include",
+        "/root/softmax_binding.cu",
+        "--ptx",
+        "-o",
+        "/root/softmax.ptx"
+      ],
+      "output": ""
+    },
+    {
+      "command": [
+        "nvcc",
+        "-std=c++17",
+        "-O3",
+        "-arch=sm_100a",
+        "/root/softmax_check.cu",
+        "-L/root",
+        "-l:softmax.so",
+        "-Xlinker=-rpath=/root",
+        "-o",
+        "/root/softmax_check"
+      ],
+      "output": ""
+    },
+    {
+      "command": [
+        "/root/softmax_check"
+      ],
+      "output": "PASS rows=13 cols=4096 threads=64 unaligned=0\nPASS rows=13 cols=4096 threads=128 unaligned=0\nPASS rows=13 cols=4096 threads=256 unaligned=0\nPASS rows=7 cols=17 threads=0 unaligned=0\nPASS rows=7 cols=4095 threads=0 unaligned=0\nPASS rows=7 cols=4096 threads=0 unaligned=1\nPASS rows=2 cols=32769 threads=0 unaligned=0\n"
+    },
+    {
+      "command": [
+        "compute-sanitizer",
+        "--tool",
+        "memcheck",
+        "--error-exitcode",
+        "1",
+        "/root/softmax_check"
+      ],
+      "output": "========= COMPUTE-SANITIZER\nPASS rows=13 cols=4096 threads=64 unaligned=0\nPASS rows=13 cols=4096 threads=128 unaligned=0\nPASS rows=13 cols=4096 threads=256 unaligned=0\nPASS rows=7 cols=17 threads=0 unaligned=0\nPASS rows=7 cols=4095 threads=0 unaligned=0\nPASS rows=7 cols=4096 threads=0 unaligned=1\nPASS rows=2 cols=32769 threads=0 unaligned=0\n========= ERROR SUMMARY: 0 errors\n"
+    },
+    {
+      "command": [
+        "compute-sanitizer",
+        "--tool",
+        "synccheck",
+        "--error-exitcode",
+        "1",
+        "/root/softmax_check"
+      ],
+      "output": "========= COMPUTE-SANITIZER\nPASS rows=13 cols=4096 threads=64 unaligned=0\nPASS rows=13 cols=4096 threads=128 unaligned=0\nPASS rows=13 cols=4096 threads=256 unaligned=0\nPASS rows=7 cols=17 threads=0 unaligned=0\nPASS rows=7 cols=4095 threads=0 unaligned=0\nPASS rows=7 cols=4096 threads=0 unaligned=1\nPASS rows=2 cols=32769 threads=0 unaligned=0\n========= ERROR SUMMARY: 0 errors\n"
+    },
+    {
+      "command": [
+        "compute-sanitizer",
+        "--tool",
+        "racecheck",
+        "--error-exitcode",
+        "1",
+        "/root/softmax_check"
+      ],
+      "output": "========= COMPUTE-SANITIZER\nPASS rows=13 cols=4096 threads=64 unaligned=0\nPASS rows=13 cols=4096 threads=128 unaligned=0\nPASS rows=13 cols=4096 threads=256 unaligned=0\nPASS rows=7 cols=17 threads=0 unaligned=0\nPASS rows=7 cols=4095 threads=0 unaligned=0\nPASS rows=7 cols=4096 threads=0 unaligned=1\nPASS rows=2 cols=32769 threads=0 unaligned=0\n========= RACECHECK SUMMARY: 0 hazards displayed (0 errors, 0 warnings)\n"
+    }
+  ],
+  "source_sha256": {
+    "softmax.cu": "87d72a9c1ffd9072a53d976aa66015b362ed7b2520c037cfa015be3864a87957",
+    "softmax_binding.cu": "95c3925a5c8d9b117e5ab16bc14b5252a4504dfff0b7c84bafe4d42d2837976f",
+    "softmax_check.cu": "fdf134d0310989bff90a0fe11403f164a79398c0f73e59836267b3cfe16dda84"
+  }
+}

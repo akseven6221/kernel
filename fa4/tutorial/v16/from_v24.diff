@@ -1,0 +1,60 @@
+--- v24/kernel.cu
++++ v27/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v24: separate K and V readiness/lifetime to prefetch K as soon as QK completes.
++// v27: stagger QK/PV issue across the two query stages.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -128,26 +128,38 @@
+     if(warp==0) {
+       if(lane==0) {
+         wait(base+QFULL,0);fence();
++        // Stagger stages: QK0(j), PV1(j-1), QK1(j), PV0(j).
++        // QK/PV can overlap the opposite stage's software softmax.
+         for(int j=0;j<lengths[1];j++) {
+           const int slot=j%2;
+           const uint32_t kb=base+2*TILE_BYTES+slot*2*TILE_BYTES;
+           wait(base+KFULL+slot*8,(j/2)&1);fence();
+-#pragma unroll
+-          for(int s=0;s<2;s++) if(j<lengths[s]) {
+-            // P reuses S storage: wait until previous PV has finished reading P.
+-            if(j>0) wait(base+PVDONE+s*8,(j-1)&1);
+-            fence();qk(tm+s*128,base+s*TILE_BYTES,kb);commit(base+SFULL+s*8);
++          if(j<lengths[0]) {
++            if(j>0) wait(base+PVDONE,(j-1)&1);
++            fence();qk(tm,base,kb);commit(base+SFULL);
+           }
++          if(j>0) {
++            const int prev=j-1, vs=prev%2;
++            wait(base+VFULL+vs*8,(prev/2)&1);
++            wait(base+PFULL+8,prev&1);fence();
++            pv(tm+384,tm+192,base+3*TILE_BYTES+vs*2*TILE_BYTES,prev>0);
++            commit(base+PVDONE+8);commit(base+VEMPTY+vs*8);
++          }
++          if(j>0) wait(base+PVDONE+8,(j-1)&1);
++          fence();qk(tm+128,base+TILE_BYTES,kb);commit(base+SFULL+8);
+           commit(base+KEMPTY+slot*8);
+-          wait(base+VFULL+slot*8,(j/2)&1);fence();
+-#pragma unroll
+-          for(int s=0;s<2;s++) if(j<lengths[s]) {
+-            wait(base+PFULL+s*8,j&1);fence();
+-            pv(tm+256+s*128,tm+s*128+64,kb+TILE_BYTES,j>0);
+-            commit(base+PVDONE+s*8);
++          if(j<lengths[0]) {
++            wait(base+VFULL+slot*8,(j/2)&1);
++            wait(base+PFULL,j&1);fence();
++            pv(tm+256,tm+64,kb+TILE_BYTES,j>0);
++            commit(base+PVDONE);
+           }
+-          commit(base+VEMPTY+slot*8);
+         }
++        const int last=lengths[1]-1, slot=last%2;
++        wait(base+VFULL+slot*8,(last/2)&1);
++        wait(base+PFULL+8,last&1);fence();
++        pv(tm+384,tm+192,base+3*TILE_BYTES+slot*2*TILE_BYTES,last>0);
++        commit(base+PVDONE+8);commit(base+VEMPTY+slot*8);
+         commit(base+FINAL);
+       }
+       // Correction has finished all TMEM reads before relinquishing allocation.

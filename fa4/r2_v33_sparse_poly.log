@@ -1,0 +1,299 @@
+✓ Initialized. View run at 
+https://modal.com/apps/akseven6221/main/ap-H8skNhXsQRyN9FrE5Zrygr
+✓ Created objects.
+├── 🔨 Created mount 
+│   /home/alioth/2026fa/ai-agent-from-scratch/kernel/fa4/run_modal.py
+├── 🔨 Created mount /home/alioth/2026fa/ai-agent-from-scratch/kernel/fa4
+└── 🔨 Created function experiment.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.8.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+$ nvidia-smi
+Wed Oct 14 15:38:40 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA B200                    On  |   00000000:93:00.0 Off |                    0 |
+| N/A   34C    P0            195W / 1000W |       6MiB / 183359MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+$ nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Fri_Feb_21_20:23:50_PST_2025
+Cuda compilation tools, release 12.8, V12.8.93
+Build cuda_12.8.r12.8/compiler.35583870_0
+$ /usr/local/bin/python -m pip freeze
+aiohappyeyeballs==2.6.1
+aiohttp==3.12.7
+aiosignal==1.3.2
+apache-tvm-ffi==0.1.14.post1
+attrs==25.3.0
+cbor2==5.7.0
+certifi==2025.4.26
+cuda-bindings==12.9.4
+cuda-pathfinder==1.8.3
+einops==0.8.2
+filelock==4.1.1
+flash-attn-4==4.0.0b35
+frozenlist==1.6.0
+fsspec==2026.9.0
+grpclib==0.4.8
+h2==4.2.0
+hpack==4.1.0
+hyperframe==6.1.0
+idna==3.10
+Jinja2==3.1.6
+MarkupSafe==3.0.4
+mpmath==1.3.0
+multidict==6.4.4
+networkx==3.7
+ninja==1.13.2
+numpy==2.5.4
+nvidia-cublas-cu12==12.8.4.1
+nvidia-cuda-cupti-cu12==12.8.90
+nvidia-cuda-nvrtc-cu12==12.8.93
+nvidia-cuda-runtime-cu12==12.8.90
+nvidia-cudnn-cu12==9.10.2.21
+nvidia-cufft-cu12==11.3.3.83
+nvidia-cufile-cu12==1.13.1.3
+nvidia-curand-cu12==10.3.9.90
+nvidia-cusolver-cu12==11.7.3.90
+nvidia-cusparse-cu12==12.5.8.93
+nvidia-cusparselt-cu12==0.7.1
+nvidia-cutlass-dsl==4.8.0
+nvidia-cutlass-dsl-libs-base==4.8.0
+nvidia-cutlass-dsl-libs-core==4.8.0
+nvidia-cutlass-dsl-libs-cu12==4.8.0
+nvidia-nccl-cu12==2.27.5
+nvidia-nvjitlink-cu12==12.8.93
+nvidia-nvshmem-cu12==3.4.5
+nvidia-nvtx-cu12==12.8.90
+propcache==0.3.1
+protobuf==7.36.2
+quack-kernels==0.6.5
+setuptools @ file:///build/setuptools-69.0.3-py3-none-any.whl#sha256=385eb4edd9c9d5c17540511303e39a147ce2fc04bc55289c322b9e5904fe2c05
+sympy==1.14.0
+torch==2.10.0
+torch_c_dlpack_ext==0.1.5
+triton==3.6.0
+typing_extensions==4.16.0
+yarl==1.20.0
+$ /usr/local/bin/python /root/fa4/benchmark.py --versions v31,v33 --mode benchmark --output /tmp/artifacts
+/root/fa4/v31/kernel.cu(110): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+/root/fa4/v31/kernel.cu(110): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    24 bytes stack frame, 24 bytes spill stores, 52 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 127.491 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    24 bytes stack frame, 20 bytes spill stores, 32 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 124.858 ms
+
+Saved /tmp/artifacts/v31/sass.txt: 2264088 bytes
+/root/fa4/v33/kernel.cu(130): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+/root/fa4/v33/kernel.cu(130): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    24 bytes stack frame, 24 bytes spill stores, 52 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 132.702 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    24 bytes stack frame, 20 bytes spill stores, 32 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 117.379 ms
+
+Saved /tmp/artifacts/v33/sass.txt: 2374360 bytes
+/usr/local/lib/python3.12/site-packages/nvidia_cutlass_dsl/dsl_packages/cutlass/base_dsl/dsl.py:2300: UserWarning: Argument aux_data (position 18) cannot be converted to a JitArgument for function 'cutlass___call___flash_attncuteflash_fwd_sm100FlashAttentionForwardSm100_object_at__Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_None_008'. Its type `<class 'flash_attn.cute.utils.AuxData'>` is not supported. If the value is known at compile time, annotate it: `aux_data: Constexpr`. Otherwise, implement the `JitArgument` or `DynamicExpression` protocol for type `<class 'flash_attn.cute.utils.AuxData'>`, or register a custom argument adapter.
+  exe_args, func_types, adapted_args = self.generate_mlir_function_types(
+{"version": "v31", "batch": 1, "seq": 128, "heads": 2, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.882059536408633e-05, "relative_l2": 0.0002689365646801889, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.892551831086166e-05, "relative_l2": 0.0002696634619496763, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 128, "heads": 2, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.897286660503596e-05, "relative_l2": 0.00026999146211892366, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.892551831086166e-05, "relative_l2": 0.0002696634619496763, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 128, "heads": 2, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 128, "heads": 2, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 128, "heads": 2, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.001039743423461914, "rmse": 0.00013448311074171215, "relative_l2": 0.00013868039241060615, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011453628540039062, "rmse": 0.0001346105564152822, "relative_l2": 0.00013881182530894876, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 128, "heads": 2, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.001039743423461914, "rmse": 0.0001347335783066228, "relative_l2": 0.00013893868890590966, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011453628540039062, "rmse": 0.0001346105564152822, "relative_l2": 0.00013881182530894876, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 128, "heads": 2, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.00011479854583740234, "rmse": 1.9433678971836343e-05, "relative_l2": 0.0002232518163509667, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 32768, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 1, "seq": 128, "heads": 2, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.00011479854583740234, "rmse": 1.9433678971836343e-05, "relative_l2": 0.0002232518163509667, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 32768, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v31", "batch": 1, "seq": 128, "heads": 2, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007168054580688477, "rmse": 6.726569699821994e-05, "relative_l2": 0.00024167935771401972, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007168054580688477, "rmse": 6.733789632562548e-05, "relative_l2": 0.0002419387747067958, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 128, "heads": 2, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007168054580688477, "rmse": 6.736473005730659e-05, "relative_l2": 0.00024203518114518374, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007168054580688477, "rmse": 6.733789632562548e-05, "relative_l2": 0.0002419387747067958, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 128, "heads": 2, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 3.97783333028201e-05, "relative_l2": 0.0001927773846546188, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 3.97783333028201e-05, "relative_l2": 0.0001927773846546188, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 128, "heads": 2, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 3.97783333028201e-05, "relative_l2": 0.0001927773846546188, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 3.97783333028201e-05, "relative_l2": 0.0001927773846546188, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 128, "heads": 2, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0014162063598632812, "rmse": 0.00012605755182448775, "relative_l2": 0.000131509848870337, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0014162063598632812, "rmse": 0.0001265429164050147, "relative_l2": 0.0001320162118645385, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 128, "heads": 2, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0014162063598632812, "rmse": 0.0001264024613192305, "relative_l2": 0.00013186968863010406, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0014162063598632812, "rmse": 0.0001265429164050147, "relative_l2": 0.0001320162118645385, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 128, "heads": 2, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 3.844454840873368e-05, "relative_l2": 0.00018868224287871271, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 32768, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 1, "seq": 128, "heads": 2, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 3.844454840873368e-05, "relative_l2": 0.00018868224287871271, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 32768, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v31", "batch": 1, "seq": 256, "heads": 2, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0001707226037979126, "rmse": 2.866317481675651e-05, "relative_l2": 0.00027934618992730975, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00024068355560302734, "rmse": 2.8938602554262616e-05, "relative_l2": 0.00028203046531416476, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 256, "heads": 2, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0001707226037979126, "rmse": 2.8703969292109832e-05, "relative_l2": 0.00027974374825134873, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00024068355560302734, "rmse": 2.8938602554262616e-05, "relative_l2": 0.00028203046531416476, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 256, "heads": 2, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 5.982816219329834e-05, "rmse": 1.4124397239356767e-05, "relative_l2": 0.00021389337780419737, "passed": true}, "official_error": {"finite": true, "max_abs": 5.982816219329834e-05, "rmse": 1.4124397239356767e-05, "relative_l2": 0.00021389337780419737, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 256, "heads": 2, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 5.982816219329834e-05, "rmse": 1.4124397239356767e-05, "relative_l2": 0.00021389337780419737, "passed": true}, "official_error": {"finite": true, "max_abs": 5.982816219329834e-05, "rmse": 1.4124397239356767e-05, "relative_l2": 0.00021389337780419737, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 256, "heads": 2, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0018913745880126953, "rmse": 0.0001549799635540694, "relative_l2": 0.00016227393643930554, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0017843246459960938, "rmse": 0.00015099093434400856, "relative_l2": 0.00015809717297088355, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 256, "heads": 2, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0018913745880126953, "rmse": 0.00015508719661738724, "relative_l2": 0.00016238621901720762, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0017843246459960938, "rmse": 0.00015099093434400856, "relative_l2": 0.00015809717297088355, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 256, "heads": 2, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 6.0170888900756836e-05, "rmse": 1.3865873370377813e-05, "relative_l2": 0.00022061431081965566, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 65536, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 1, "seq": 256, "heads": 2, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 6.0170888900756836e-05, "rmse": 1.3865873370377813e-05, "relative_l2": 0.00022061431081965566, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 65536, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v31", "batch": 1, "seq": 256, "heads": 2, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0008306503295898438, "rmse": 5.109038465889171e-05, "relative_l2": 0.00024239516642410308, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0008306503295898438, "rmse": 5.156034603714943e-05, "relative_l2": 0.0002446248836349696, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 256, "heads": 2, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0008306503295898438, "rmse": 5.1166403864044696e-05, "relative_l2": 0.00024275583564303815, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0008306503295898438, "rmse": 5.156034603714943e-05, "relative_l2": 0.0002446248836349696, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 256, "heads": 2, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.00048828125, "rmse": 2.907352609327063e-05, "relative_l2": 0.0001861939235823229, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00048828125, "rmse": 2.907352609327063e-05, "relative_l2": 0.0001861939235823229, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 256, "heads": 2, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.00048828125, "rmse": 2.907352609327063e-05, "relative_l2": 0.0001861939235823229, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00048828125, "rmse": 2.907352609327063e-05, "relative_l2": 0.0001861939235823229, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 256, "heads": 2, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0018799304962158203, "rmse": 0.0001412503479514271, "relative_l2": 0.00014695498975925148, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0015590190887451172, "rmse": 0.0001401670597260818, "relative_l2": 0.00014582794392481446, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 256, "heads": 2, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0019729137420654297, "rmse": 0.00014241351163946092, "relative_l2": 0.00014816512702964246, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0015590190887451172, "rmse": 0.0001401670597260818, "relative_l2": 0.00014582794392481446, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 256, "heads": 2, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.9601727874251083e-05, "relative_l2": 0.0001958628126885742, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 65536, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 1, "seq": 256, "heads": 2, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.9601727874251083e-05, "relative_l2": 0.0001958628126885742, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 65536, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v31", "batch": 1, "seq": 257, "heads": 2, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.00022938847541809082, "rmse": 2.8761291105183773e-05, "relative_l2": 0.0002792614104691893, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00020009279251098633, "rmse": 3.0027906177565455e-05, "relative_l2": 0.0002915597870014608, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 257, "heads": 2, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.00022938847541809082, "rmse": 2.8895545256091282e-05, "relative_l2": 0.0002805649710353464, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00020009279251098633, "rmse": 3.0027906177565455e-05, "relative_l2": 0.0002915597870014608, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 257, "heads": 2, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 6.103515625e-05, "rmse": 1.4205542356648948e-05, "relative_l2": 0.00022261332196649164, "passed": true}, "official_error": {"finite": true, "max_abs": 6.103515625e-05, "rmse": 1.4205542356648948e-05, "relative_l2": 0.00022261332196649164, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 257, "heads": 2, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 6.103515625e-05, "rmse": 1.4205542356648948e-05, "relative_l2": 0.00022261332196649164, "passed": true}, "official_error": {"finite": true, "max_abs": 6.103515625e-05, "rmse": 1.4205542356648948e-05, "relative_l2": 0.00022261332196649164, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 257, "heads": 2, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0013723373413085938, "rmse": 0.00014812350855208933, "relative_l2": 0.00015418858674820513, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0021936893463134766, "rmse": 0.00015101795725058764, "relative_l2": 0.0001572015753481537, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 257, "heads": 2, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0013725757598876953, "rmse": 0.00014885405835229903, "relative_l2": 0.00015494906983803958, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0021936893463134766, "rmse": 0.00015101795725058764, "relative_l2": 0.0001572015753481537, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 257, "heads": 2, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 6.00665807723999e-05, "rmse": 1.3775878869637381e-05, "relative_l2": 0.00022091368737164885, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 65792, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 1, "seq": 257, "heads": 2, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 6.00665807723999e-05, "rmse": 1.3775878869637381e-05, "relative_l2": 0.00022091368737164885, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 65792, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v31", "batch": 1, "seq": 257, "heads": 2, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0010027885437011719, "rmse": 5.276292358757928e-05, "relative_l2": 0.00024557681172154844, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0010027885437011719, "rmse": 5.331529246177524e-05, "relative_l2": 0.0002481477567926049, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 257, "heads": 2, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0010027885437011719, "rmse": 5.278692697174847e-05, "relative_l2": 0.00024568854132667184, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0010027885437011719, "rmse": 5.331529246177524e-05, "relative_l2": 0.0002481477567926049, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 257, "heads": 2, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.9324150091269985e-05, "relative_l2": 0.00019223919662181288, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.9324150091269985e-05, "relative_l2": 0.00019223919662181288, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 257, "heads": 2, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.9324150091269985e-05, "relative_l2": 0.00019223919662181288, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.9324150091269985e-05, "relative_l2": 0.00019223919662181288, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 257, "heads": 2, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0017168521881103516, "rmse": 0.00015127916412893683, "relative_l2": 0.0001580575917614624, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0015249252319335938, "rmse": 0.0001512939197709784, "relative_l2": 0.00015807300223968923, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 257, "heads": 2, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0015385150909423828, "rmse": 0.00015189179976005107, "relative_l2": 0.00015869767230469733, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0015249252319335938, "rmse": 0.0001512939197709784, "relative_l2": 0.00015807300223968923, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 257, "heads": 2, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.00048828125, "rmse": 3.071369064855389e-05, "relative_l2": 0.00019027100643143058, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 65792, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 1, "seq": 257, "heads": 2, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.00048828125, "rmse": 3.071369064855389e-05, "relative_l2": 0.00019027100643143058, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 65792, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v31", "batch": 1, "seq": 511, "heads": 2, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.00013372302055358887, "rmse": 2.0753755961777642e-05, "relative_l2": 0.00028785012545995414, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00015944242477416992, "rmse": 2.092415525112301e-05, "relative_l2": 0.0002902135020121932, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 511, "heads": 2, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0001445859670639038, "rmse": 2.077362296404317e-05, "relative_l2": 0.00028812565142288804, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00015944242477416992, "rmse": 2.092415525112301e-05, "relative_l2": 0.0002902135020121932, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 511, "heads": 2, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 2.9899179935455322e-05, "rmse": 8.619350410299376e-06, "relative_l2": 0.00021231350547168404, "passed": true}, "official_error": {"finite": true, "max_abs": 2.9899179935455322e-05, "rmse": 8.619350410299376e-06, "relative_l2": 0.00021231350547168404, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 511, "heads": 2, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 2.9899179935455322e-05, "rmse": 8.619350410299376e-06, "relative_l2": 0.00021231350547168404, "passed": true}, "official_error": {"finite": true, "max_abs": 2.9899179935455322e-05, "rmse": 8.619350410299376e-06, "relative_l2": 0.00021231350547168404, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 511, "heads": 2, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0019099712371826172, "rmse": 0.00016273217624984682, "relative_l2": 0.00016971322475001216, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0019276142120361328, "rmse": 0.0001657028478803113, "relative_l2": 0.0001728113420540467, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 511, "heads": 2, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0019099712371826172, "rmse": 0.00016361016605515033, "relative_l2": 0.00017062888946384192, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0019276142120361328, "rmse": 0.0001657028478803113, "relative_l2": 0.0001728113420540467, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 511, "heads": 2, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 3.0316412448883057e-05, "rmse": 9.591794878360815e-06, "relative_l2": 0.00021534164261538535, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 130816, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 1, "seq": 511, "heads": 2, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 3.0316412448883057e-05, "rmse": 9.591794878360815e-06, "relative_l2": 0.00021534164261538535, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 130816, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v31", "batch": 1, "seq": 511, "heads": 2, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0008380413055419922, "rmse": 4.0016424463829026e-05, "relative_l2": 0.00024952524108812213, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0008380413055419922, "rmse": 4.04119782615453e-05, "relative_l2": 0.00025199176161549985, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 511, "heads": 2, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0008380413055419922, "rmse": 4.010237898910418e-05, "relative_l2": 0.00025006121722981334, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0008380413055419922, "rmse": 4.04119782615453e-05, "relative_l2": 0.00025199176161549985, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 511, "heads": 2, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2057696696720086e-05, "relative_l2": 0.00019277188403066248, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2057696696720086e-05, "relative_l2": 0.00019277188403066248, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 511, "heads": 2, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2057696696720086e-05, "relative_l2": 0.00019277188403066248, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2057696696720086e-05, "relative_l2": 0.00019277188403066248, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 511, "heads": 2, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0018982887268066406, "rmse": 0.000155224755872041, "relative_l2": 0.0001614246139070019, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0020551681518554688, "rmse": 0.0001511137670604512, "relative_l2": 0.00015714943583589047, "passed": true}}
+{"version": "v33", "batch": 1, "seq": 511, "heads": 2, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0018982887268066406, "rmse": 0.0001556819333927706, "relative_l2": 0.00016190003952942789, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0020551681518554688, "rmse": 0.0001511137670604512, "relative_l2": 0.00015714943583589047, "passed": true}}
+{"version": "v31", "batch": 1, "seq": 511, "heads": 2, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.326534922758583e-05, "relative_l2": 0.0001966772833839059, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 130816, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 1, "seq": 511, "heads": 2, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.326534922758583e-05, "relative_l2": 0.0001966772833839059, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 130816, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v31", "batch": 2, "seq": 257, "heads": 3, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0004019737243652344, "rmse": 2.9023462047916837e-05, "relative_l2": 0.000280743814073503, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0003521442413330078, "rmse": 3.0274684831965715e-05, "relative_l2": 0.0002928468747995794, "passed": true}}
+{"version": "v33", "batch": 2, "seq": 257, "heads": 3, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0004163980484008789, "rmse": 2.9057116989861242e-05, "relative_l2": 0.0002810693404171616, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0003521442413330078, "rmse": 3.0274684831965715e-05, "relative_l2": 0.0002928468747995794, "passed": true}}
+{"version": "v31", "batch": 2, "seq": 257, "heads": 3, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 5.836784839630127e-05, "rmse": 1.2144113497924991e-05, "relative_l2": 0.00020451945601962507, "passed": true}, "official_error": {"finite": true, "max_abs": 5.836784839630127e-05, "rmse": 1.2144113497924991e-05, "relative_l2": 0.00020451945601962507, "passed": true}}
+{"version": "v33", "batch": 2, "seq": 257, "heads": 3, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 5.836784839630127e-05, "rmse": 1.2144113497924991e-05, "relative_l2": 0.00020451945601962507, "passed": true}, "official_error": {"finite": true, "max_abs": 5.836784839630127e-05, "rmse": 1.2144113497924991e-05, "relative_l2": 0.00020451945601962507, "passed": true}}
+{"version": "v31", "batch": 2, "seq": 257, "heads": 3, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0020029544830322266, "rmse": 0.00015422033902723342, "relative_l2": 0.00016017734014894813, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0020775794982910156, "rmse": 0.00015524130139965564, "relative_l2": 0.00016123775276355445, "passed": true}}
+{"version": "v33", "batch": 2, "seq": 257, "heads": 3, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0020029544830322266, "rmse": 0.00015491516387555748, "relative_l2": 0.00016089901328086853, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0020775794982910156, "rmse": 0.00015524130139965564, "relative_l2": 0.00016123775276355445, "passed": true}}
+{"version": "v31", "batch": 2, "seq": 257, "heads": 3, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 6.0364603996276855e-05, "rmse": 1.267795141757233e-05, "relative_l2": 0.00020545026927720755, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 197376, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 2, "seq": 257, "heads": 3, "causal": false, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 6.0364603996276855e-05, "rmse": 1.267795141757233e-05, "relative_l2": 0.00020545026927720755, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 197376, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v31", "batch": 2, "seq": 257, "heads": 3, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0009679794311523438, "rmse": 5.2167215471854433e-05, "relative_l2": 0.00024171640689019114, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009679794311523438, "rmse": 5.2570529078366235e-05, "relative_l2": 0.000243585163843818, "passed": true}}
+{"version": "v33", "batch": 2, "seq": 257, "heads": 3, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0009679794311523438, "rmse": 5.220656021265313e-05, "relative_l2": 0.00024189872783608735, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009679794311523438, "rmse": 5.2570529078366235e-05, "relative_l2": 0.000243585163843818, "passed": true}}
+{"version": "v31", "batch": 2, "seq": 257, "heads": 3, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.873550693038851e-05, "relative_l2": 0.00019021581101696938, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.8735508749377914e-05, "relative_l2": 0.00019021581101696938, "passed": true}}
+{"version": "v33", "batch": 2, "seq": 257, "heads": 3, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.873550693038851e-05, "relative_l2": 0.00019021581101696938, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.8735508749377914e-05, "relative_l2": 0.00019021581101696938, "passed": true}}
+{"version": "v31", "batch": 2, "seq": 257, "heads": 3, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0021588802337646484, "rmse": 0.0001406525116181001, "relative_l2": 0.00014505091530736536, "passed": true}, "official_error": {"finite": true, "max_abs": 0.002036571502685547, "rmse": 0.00013878682511858642, "relative_l2": 0.00014312687562778592, "passed": true}}
+{"version": "v33", "batch": 2, "seq": 257, "heads": 3, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0021588802337646484, "rmse": 0.00014136252866592258, "relative_l2": 0.0001457831240259111, "passed": true}, "official_error": {"finite": true, "max_abs": 0.002036571502685547, "rmse": 0.00013878682511858642, "relative_l2": 0.00014312687562778592, "passed": true}}
+{"version": "v31", "batch": 2, "seq": 257, "heads": 3, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.00048828125, "rmse": 2.989528002217412e-05, "relative_l2": 0.00019055970187764615, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 197376, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"version": "v33", "batch": 2, "seq": 257, "heads": 3, "causal": true, "distribution": "constant_large_logits", "error": {"finite": true, "max_abs": 0.00048828125, "rmse": 2.989528002217412e-05, "relative_l2": 0.00019055970187764615, "passed": true}, "official_error": {"finite": false, "nonfinite_count": 197376, "max_abs": null, "rmse": null, "relative_l2": null, "passed": false}}
+{"shape": [1, 512, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 10.715200006961823, "samples_us": [10.766399651765823, 10.684800148010254, 10.708799958229065, 10.69440022110939, 10.793600231409073, 10.713600367307663, 10.715200006961823, 10.768000036478043, 10.740800201892853], "min_us": 10.684800148010254, "max_us": 10.793600231409073, "tflops": 100.2073524808099, "official_throughput_percent": 100.0}, "v31": {"median_us": 15.283200144767761, "samples_us": [15.26080071926117, 15.300799906253815, 15.283200144767761, 15.331199765205383, 15.304000675678253, 15.283200144767761, 15.20799994468689, 15.20639955997467, 15.201599895954132], "min_us": 15.201599895954132, "max_us": 15.331199765205383, "tflops": 70.25634774321776, "official_throughput_percent": 70.11097090572484}, "v33": {"median_us": 15.379199385643005, "samples_us": [15.39199948310852, 15.39199948310852, 15.409600734710693, 15.396800637245178, 15.300799906253815, 15.334400534629822, 15.379199385643005, 15.308800339698792, 15.343999862670898], "min_us": 15.300799906253815, "max_us": 15.409600734710693, "tflops": 69.81779721266724, "official_throughput_percent": 69.6733278389304}}, "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 254.34 W, 1000.00 W, 35\n", "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 254.34 W, 1000.00 W, 35\n", "errors": {"v31": {"finite": true, "max_abs": 0.00048828125, "rmse": 2.8327553081908263e-05, "relative_l2": 0.0003844529273919761, "passed": true}, "v33": {"finite": true, "max_abs": 0.00048828125, "rmse": 2.833740654750727e-05, "relative_l2": 0.00038458663038909435, "passed": true}}, "source_sha256": {"v31": "73fd0895906ea5db4d1b4afc94c9c1495fad6a50734062b37f504680cd26ca31", "v33": "db8d0e042adffeacab301f65d33aff57e47265fbda59736277552904f1ba726f"}}
+{"shape": [1, 1024, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 16.223999857902527, "samples_us": [16.230399906635284, 16.24000072479248, 16.140800714492798, 16.198399662971497, 16.196799278259277, 16.204799711704254, 16.223999857902527, 16.289600729942322, 16.249600052833557], "min_us": 16.140800714492798, "max_us": 16.289600729942322, "tflops": 264.72924886694756, "official_throughput_percent": 100.0}, "v31": {"median_us": 23.43679964542389, "samples_us": [23.40639978647232, 23.50880056619644, 23.475199937820435, 23.40800017118454, 23.43679964542389, 23.43199998140335, 23.43679964542389, 23.553599417209625, 23.425599932670593], "min_us": 23.40639978647232, "max_us": 23.553599417209625, "tflops": 183.25741402319008, "official_throughput_percent": 69.22446794509469}, "v33": {"median_us": 23.812800645828247, "samples_us": [23.705600202083588, 23.824000358581543, 23.798400163650513, 23.836800456047058, 23.793600499629974, 23.848000168800354, 23.8304004073143, 23.812800645828247, 23.795199394226074], "min_us": 23.705600202083588, "max_us": 23.848000168800354, "tflops": 180.36380348031147, "official_throughput_percent": 68.13142267138075}}, "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 255.77 W, 1000.00 W, 36\n", "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 255.86 W, 1000.00 W, 35\n", "errors": {"v31": {"finite": true, "max_abs": 0.000244140625, "rmse": 2.0155635866103694e-05, "relative_l2": 0.00038975183269940317, "passed": true}, "v33": {"finite": true, "max_abs": 0.000244140625, "rmse": 2.0216641132719815e-05, "relative_l2": 0.00039093149825930595, "passed": true}}, "source_sha256": {"v31": "73fd0895906ea5db4d1b4afc94c9c1495fad6a50734062b37f504680cd26ca31", "v33": "db8d0e042adffeacab301f65d33aff57e47265fbda59736277552904f1ba726f"}}
+{"shape": [1, 4096, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 53.729599714279175, "samples_us": [52.747201919555664, 53.08160185813904, 53.729599714279175, 55.217599868774414, 54.126399755477905, 54.948800802230835, 53.71040105819702, 54.90559935569763, 53.71040105819702], "min_us": 52.747201919555664, "max_us": 55.217599868774414, "tflops": 1278.9873198652756, "official_throughput_percent": 100.0}, "v31": {"median_us": 79.21280264854431, "samples_us": [74.00000095367432, 74.50079917907715, 79.35199737548828, 79.94400262832642, 79.21280264854431, 79.83840107917786, 78.96320223808289, 79.9456000328064, 78.77920269966125], "min_us": 74.00000095367432, "max_us": 79.9456000328064, "tflops": 867.5299249402691, "official_throughput_percent": 67.82943907775817}, "v33": {"median_us": 81.39839768409729, "samples_us": [76.14079713821411, 76.02559924125671, 81.65919780731201, 81.66239857673645, 81.65919780731201, 81.23040199279785, 81.42399787902832, 81.39839768409729, 81.34880065917969], "min_us": 76.02559924125671, "max_us": 81.66239857673645, "tflops": 844.236234264666, "official_throughput_percent": 66.00817859191872}}, "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 260.84 W, 1000.00 W, 36\n", "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1822 MHz, 3996 MHz, 309.90 W, 1000.00 W, 46\n", "errors": {"v31": {"finite": true, "max_abs": 0.0001220703125, "rmse": 1.0263129297527485e-05, "relative_l2": 0.00038923087413422763, "passed": true}, "v33": {"finite": true, "max_abs": 0.0001220703125, "rmse": 1.0275186468788888e-05, "relative_l2": 0.00038968815351836383, "passed": true}}, "source_sha256": {"v31": "73fd0895906ea5db4d1b4afc94c9c1495fad6a50734062b37f504680cd26ca31", "v33": "db8d0e042adffeacab301f65d33aff57e47265fbda59736277552904f1ba726f"}}
+{"shape": [1, 8192, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 212.2096061706543, "samples_us": [212.2096061706543, 206.9983959197998, 205.58080673217773, 215.78080654144287, 212.3647928237915, 213.8144016265869, 212.58399486541748, 205.49280643463135, 203.73599529266357], "min_us": 203.73599529266357, "max_us": 215.78080654144287, "tflops": 1295.3132136862325, "official_throughput_percent": 100.0}, "v31": {"median_us": 317.3088073730469, "samples_us": [317.3088073730469, 312.09280490875244, 311.8160009384155, 322.20160961151123, 327.87840366363525, 325.1535892486572, 324.94239807128906, 312.01438903808594, 313.4864091873169], "min_us": 311.8160009384155, "max_us": 327.87840366363525, "tflops": 866.2788443210068, "official_throughput_percent": 66.8779438955718}, "v33": {"median_us": 325.29280185699463, "samples_us": [325.29280185699463, 320.03040313720703, 319.23038959503174, 311.6976022720337, 338.00320625305176, 336.5504026412964, 333.0847978591919, 325.91679096221924, 323.4623908996582], "min_us": 311.6976022720337, "max_us": 338.00320625305176, "tflops": 845.0168751807854, "official_throughput_percent": 65.23649000507118}}, "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1822 MHz, 3996 MHz, 309.90 W, 1000.00 W, 46\n", "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1762 MHz, 3996 MHz, 568.03 W, 1000.00 W, 50\n", "errors": {"v31": {"finite": true, "max_abs": 6.103515625e-05, "rmse": 7.2182947405963205e-06, "relative_l2": 0.00039492588257417083, "passed": true}, "v33": {"finite": true, "max_abs": 6.103515625e-05, "rmse": 7.231647032313049e-06, "relative_l2": 0.0003956564178224653, "passed": true}}, "source_sha256": {"v31": "73fd0895906ea5db4d1b4afc94c9c1495fad6a50734062b37f504680cd26ca31", "v33": "db8d0e042adffeacab301f65d33aff57e47265fbda59736277552904f1ba726f"}}
+{"shape": [1, 4096, 8, 128], "causal": true, "timing": {"official_fa4": {"median_us": 50.20959973335266, "samples_us": [50.39359927177429, 50.21759867668152, 49.83200132846832, 50.20959973335266, 49.851199984550476, 50.45440196990967, 49.929600954055786, 50.23360252380371, 49.82239902019501], "min_us": 49.82239902019501, "max_us": 50.45440196990967, "tflops": 684.3260760984697, "official_throughput_percent": 100.0}, "v31": {"median_us": 74.58720207214355, "samples_us": [74.58720207214355, 74.72320199012756, 74.37599897384644, 74.78240132331848, 74.38719868659973, 74.70560073852539, 74.46879744529724, 74.89759922027588, 74.32159781455994], "min_us": 74.32159781455994, "max_us": 74.89759922027588, "tflops": 460.6653341784555, "official_throughput_percent": 67.31664191504066}, "v33": {"median_us": 77.76960134506226, "samples_us": [77.78239846229553, 77.67840027809143, 77.77119874954224, 77.65920162200928, 77.56159901618958, 77.59680151939392, 77.76960134506226, 77.87839770317078, 77.88000106811523], "min_us": 77.56159901618958, "max_us": 77.88000106811523, "tflops": 441.81451073082513, "official_throughput_percent": 64.56198677240688}}, "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1762 MHz, 3996 MHz, 568.03 W, 1000.00 W, 50\n", "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1935 MHz, 3996 MHz, 586.19 W, 1000.00 W, 43\n", "errors": {"v31": {"finite": true, "max_abs": 0.00048828125, "rmse": 1.8762733816402033e-05, "relative_l2": 0.0002749602135736495, "passed": true}, "v33": {"finite": true, "max_abs": 0.00048828125, "rmse": 1.877997965493705e-05, "relative_l2": 0.00027521292213350534, "passed": true}}, "source_sha256": {"v31": "73fd0895906ea5db4d1b4afc94c9c1495fad6a50734062b37f504680cd26ca31", "v33": "db8d0e042adffeacab301f65d33aff57e47265fbda59736277552904f1ba726f"}}
+{"shape": [1, 8192, 8, 128], "causal": true, "timing": {"official_fa4": {"median_us": 108.30719470977783, "samples_us": [108.56959819793701, 108.30719470977783, 106.01119995117188, 108.38559865951538, 106.07359409332275, 108.31199884414673, 106.25760555267334, 109.91519689559937, 107.87520408630371], "min_us": 106.01119995117188, "max_us": 109.91519689559937, "tflops": 1268.973440225132, "official_throughput_percent": 100.0}, "v31": {"median_us": 159.00800228118896, "samples_us": [157.40959644317627, 159.00800228118896, 157.46560096740723, 159.4272017478943, 157.67199993133545, 159.28640365600586, 157.5168013572693, 160.04799604415894, 161.73280477523804], "min_us": 157.40959644317627, "max_us": 161.73280477523804, "tflops": 864.3524319546738, "official_throughput_percent": 68.11430440981701}, "v33": {"median_us": 165.56960344314575, "samples_us": [165.31360149383545, 165.5392050743103, 165.84960222244263, 165.55999517440796, 165.73760509490967, 165.50400257110596, 166.03360176086426, 165.56960344314575, 167.69920587539673], "min_us": 165.31360149383545, "max_us": 167.69920587539673, "tflops": 830.0977390405757, "official_throughput_percent": 65.4149025288745}}, "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 621.66 W, 1000.00 W, 42\n", "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1702 MHz, 3996 MHz, 752.98 W, 1000.00 W, 50\n", "errors": {"v31": {"finite": true, "max_abs": 0.00048828125, "rmse": 1.4526207451126538e-05, "relative_l2": 0.00029035581974312663, "passed": true}, "v33": {"finite": true, "max_abs": 0.00048828125, "rmse": 1.4569112863682676e-05, "relative_l2": 0.0002912134223151952, "passed": true}}, "source_sha256": {"v31": "73fd0895906ea5db4d1b4afc94c9c1495fad6a50734062b37f504680cd26ca31", "v33": "db8d0e042adffeacab301f65d33aff57e47265fbda59736277552904f1ba726f"}}
+{"shape": [2, 4096, 16, 128], "causal": false, "timing": {"official_fa4": {"median_us": 224.36959743499756, "samples_us": [234.06078815460205, 227.35838890075684, 224.77118968963623, 222.107195854187, 220.95680236816406, 222.20959663391113, 220.89760303497314, 224.36959743499756, 227.8320074081421], "min_us": 220.89760303497314, "max_us": 234.06078815460205, "tflops": 1225.1120922193359, "official_throughput_percent": 100.0}, "v31": {"median_us": 331.83040618896484, "samples_us": [342.37918853759766, 342.56160259246826, 336.027193069458, 331.83040618896484, 324.9119997024536, 324.3855953216553, 325.5647897720337, 324.24159049987793, 343.1936025619507], "min_us": 324.24159049987793, "max_us": 343.1936025619507, "tflops": 828.368654039098, "official_throughput_percent": 67.6157438409148}, "v33": {"median_us": 338.0592107772827, "samples_us": [348.19040298461914, 347.83360958099365, 343.92640590667725, 338.0592107772827, 329.6911954879761, 329.88479137420654, 329.98878955841064, 330.1424026489258, 348.6560106277466], "min_us": 329.6911954879761, "max_us": 348.6560106277466, "tflops": 813.1058056722871, "official_throughput_percent": 66.36991103396228}}, "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1702 MHz, 3996 MHz, 752.98 W, 1000.00 W, 50\n", "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1927 MHz, 3996 MHz, 779.74 W, 1000.00 W, 42\n", "errors": {"v31": {"finite": true, "max_abs": 0.0001220703125, "rmse": 1.0201700206380337e-05, "relative_l2": 0.0003924231568817049, "passed": true}, "v33": {"finite": true, "max_abs": 0.0001220703125, "rmse": 1.021904608933255e-05, "relative_l2": 0.000393090391298756, "passed": true}}, "source_sha256": {"v31": "73fd0895906ea5db4d1b4afc94c9c1495fad6a50734062b37f504680cd26ca31", "v33": "db8d0e042adffeacab301f65d33aff57e47265fbda59736277552904f1ba726f"}}
+{"shape": [2, 4096, 16, 128], "causal": true, "timing": {"official_fa4": {"median_us": 126.00959539413452, "samples_us": [123.50560426712036, 128.02239656448364, 126.6543984413147, 128.06400060653687, 126.4896035194397, 126.00959539413452, 124.58239793777466, 126.00159645080566, 124.65759515762329], "min_us": 123.50560426712036, "max_us": 128.06400060653687, "tflops": 1090.7022837595548, "official_throughput_percent": 100.0}, "v31": {"median_us": 184.3616008758545, "samples_us": [178.40160131454468, 187.44479417800903, 186.2928032875061, 187.44640350341797, 186.21920347213745, 183.6400032043457, 184.3616008758545, 183.74240398406982, 182.71679878234863], "min_us": 178.40160131454468, "max_us": 187.44640350341797, "tflops": 745.4857889010668, "official_throughput_percent": 68.34915448525906}, "v33": {"median_us": 193.17760467529297, "samples_us": [192.87999868392944, 193.40959787368774, 193.59840154647827, 193.31040382385254, 193.56160163879395, 193.17760467529297, 190.03360271453857, 189.7104024887085, 189.82559442520142], "min_us": 189.7104024887085, "max_us": 193.59840154647827, "tflops": 711.4642181375913, "official_throughput_percent": 65.22991917512418}}, "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 714.51 W, 1000.00 W, 41\n", "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1747 MHz, 3996 MHz, 751.22 W, 1000.00 W, 49\n", "errors": {"v31": {"finite": true, "max_abs": 0.0009765625, "rmse": 1.8756949430098757e-05, "relative_l2": 0.00027320702793076634, "passed": true}, "v33": {"finite": true, "max_abs": 0.0009765625, "rmse": 1.883319600892719e-05, "relative_l2": 0.0002743176301009953, "passed": true}}, "source_sha256": {"v31": "73fd0895906ea5db4d1b4afc94c9c1495fad6a50734062b37f504680cd26ca31", "v33": "db8d0e042adffeacab301f65d33aff57e47265fbda59736277552904f1ba726f"}}
+Returning 917790 compressed artifact bytes
+Saved /home/alioth/2026fa/ai-agent-from-scratch/kernel/fa4/runs/r2_v33_sparse_poly
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/akseven6221/main/ap-H8skNhXsQRyN9FrE5Zrygr

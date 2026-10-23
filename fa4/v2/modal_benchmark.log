@@ -1,0 +1,250 @@
+✓ Initialized. View run at 
+https://modal.com/apps/akseven6221/main/ap-UBxd4d2bz9aJuWWZ3m0MOO
+✓ Created objects.
+├── 🔨 Created mount 
+│   /home/alioth/2026fa/ai-agent-from-scratch/kernel/fa4/run_modal.py
+├── 🔨 Created mount /home/alioth/2026fa/ai-agent-from-scratch/kernel/fa4
+└── 🔨 Created function experiment.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.8.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+$ nvidia-smi
+Wed Oct 14 10:31:34 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.57.04              KMD Version: 610.57.04     CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA B200                    On  |   00000000:73:00.0 Off |                    0 |
+| N/A   34C    P0            194W / 1000W |       5MiB / 183359MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+$ nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Fri_Feb_21_20:23:50_PST_2025
+Cuda compilation tools, release 12.8, V12.8.93
+Build cuda_12.8.r12.8/compiler.35583870_0
+$ /usr/local/bin/python -m pip freeze
+aiohappyeyeballs==2.6.1
+aiohttp==3.12.7
+aiosignal==1.3.2
+apache-tvm-ffi==0.1.14.post1
+attrs==25.3.0
+cbor2==5.7.0
+certifi==2025.4.26
+cuda-bindings==12.9.4
+cuda-pathfinder==1.8.3
+einops==0.8.2
+filelock==4.1.1
+flash-attn-4==4.0.0b35
+frozenlist==1.6.0
+fsspec==2026.9.0
+grpclib==0.4.8
+h2==4.2.0
+hpack==4.1.0
+hyperframe==6.1.0
+idna==3.10
+Jinja2==3.1.6
+MarkupSafe==3.0.4
+mpmath==1.3.0
+multidict==6.4.4
+networkx==3.7
+ninja==1.13.2
+numpy==2.5.4
+nvidia-cublas-cu12==12.8.4.1
+nvidia-cuda-cupti-cu12==12.8.90
+nvidia-cuda-nvrtc-cu12==12.8.93
+nvidia-cuda-runtime-cu12==12.8.90
+nvidia-cudnn-cu12==9.10.2.21
+nvidia-cufft-cu12==11.3.3.83
+nvidia-cufile-cu12==1.13.1.3
+nvidia-curand-cu12==10.3.9.90
+nvidia-cusolver-cu12==11.7.3.90
+nvidia-cusparse-cu12==12.5.8.93
+nvidia-cusparselt-cu12==0.7.1
+nvidia-cutlass-dsl==4.8.0
+nvidia-cutlass-dsl-libs-base==4.8.0
+nvidia-cutlass-dsl-libs-core==4.8.0
+nvidia-cutlass-dsl-libs-cu12==4.8.0
+nvidia-nccl-cu12==2.27.5
+nvidia-nvjitlink-cu12==12.8.93
+nvidia-nvshmem-cu12==3.4.5
+nvidia-nvtx-cu12==12.8.90
+propcache==0.3.1
+protobuf==7.36.2
+quack-kernels==0.6.5
+setuptools @ file:///build/setuptools-69.0.3-py3-none-any.whl#sha256=385eb4edd9c9d5c17540511303e39a147ce2fc04bc55289c322b9e5904fe2c05
+sympy==1.14.0
+torch==2.10.0
+torch_c_dlpack_ext==0.1.5
+triton==3.6.0
+typing_extensions==4.16.0
+yarl==1.20.0
+$ /usr/local/bin/python /root/fa4/benchmark.py --versions v1,v2 --mode benchmark --output /tmp/artifacts
+/root/fa4/v1/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v1/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                       ^
+
+/root/fa4/v1/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                              ^
+
+/root/fa4/v1/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v1/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                       ^
+
+/root/fa4/v1/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 162 registers, used 1 barriers
+ptxas info    : Compile time = 163.338 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 168 registers, used 1 barriers
+ptxas info    : Compile time = 153.767 ms
+
+Saved /tmp/artifacts/v1/sass.txt: 2712100 bytes
+/root/fa4/v2/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v2/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                       ^
+
+/root/fa4/v2/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                              ^
+
+/root/fa4/v2/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v2/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                       ^
+
+/root/fa4/v2/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=128;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 164 registers, used 1 barriers
+ptxas info    : Compile time = 146.999 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 168 registers, used 1 barriers
+ptxas info    : Compile time = 137.065 ms
+
+Saved /tmp/artifacts/v2/sass.txt: 2489700 bytes
+/usr/local/lib/python3.12/site-packages/nvidia_cutlass_dsl/dsl_packages/cutlass/base_dsl/dsl.py:2300: UserWarning: Argument aux_data (position 18) cannot be converted to a JitArgument for function 'cutlass___call___flash_attncuteflash_fwd_sm100FlashAttentionForwardSm100_object_at__Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_None_008'. Its type `<class 'flash_attn.cute.utils.AuxData'>` is not supported. If the value is known at compile time, annotate it: `aux_data: Constexpr`. Otherwise, implement the `JitArgument` or `DynamicExpression` protocol for type `<class 'flash_attn.cute.utils.AuxData'>`, or register a custom argument adapter.
+  exe_args, func_types, adapted_args = self.generate_mlir_function_types(
+{"version": "v1", "seq": 128, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.8827245589345694e-05, "relative_l2": 0.0002689826360438019, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.892551831086166e-05, "relative_l2": 0.0002696634619496763, "passed": true}}
+{"version": "v2", "seq": 128, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.8827245589345694e-05, "relative_l2": 0.0002689826360438019, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.892551831086166e-05, "relative_l2": 0.0002696634619496763, "passed": true}}
+{"version": "v1", "seq": 128, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}}
+{"version": "v2", "seq": 128, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}}
+{"version": "v1", "seq": 128, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.001039743423461914, "rmse": 0.0001344603078905493, "relative_l2": 0.00013865689106751233, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011453628540039062, "rmse": 0.0001346105564152822, "relative_l2": 0.00013881182530894876, "passed": true}}
+{"version": "v2", "seq": 128, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.001039743423461914, "rmse": 0.0001344603078905493, "relative_l2": 0.00013865689106751233, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011453628540039062, "rmse": 0.0001346105564152822, "relative_l2": 0.00013881182530894876, "passed": true}}
+{"version": "v1", "seq": 128, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0009658336639404297, "rmse": 6.394939555320889e-05, "relative_l2": 0.00023550847254227847, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009658336639404297, "rmse": 6.407052569556981e-05, "relative_l2": 0.00023595454695168883, "passed": true}}
+{"version": "v2", "seq": 128, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0009658336639404297, "rmse": 6.394939555320889e-05, "relative_l2": 0.00023550847254227847, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009658336639404297, "rmse": 6.407052569556981e-05, "relative_l2": 0.00023595454695168883, "passed": true}}
+{"version": "v1", "seq": 128, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 4.0006943891057745e-05, "relative_l2": 0.00018906070908997208, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 4.00069220631849e-05, "relative_l2": 0.00018906059267465025, "passed": true}}
+{"version": "v2", "seq": 128, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 4.0006943891057745e-05, "relative_l2": 0.00018906070908997208, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 4.00069220631849e-05, "relative_l2": 0.00018906059267465025, "passed": true}}
+{"version": "v1", "seq": 128, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0009768009185791016, "rmse": 0.00013116770423948765, "relative_l2": 0.00013609668530989438, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011150836944580078, "rmse": 0.00013150185986887664, "relative_l2": 0.00013644338469021022, "passed": true}}
+{"version": "v2", "seq": 128, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0009768009185791016, "rmse": 0.00013116770423948765, "relative_l2": 0.00013609668530989438, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011150836944580078, "rmse": 0.00013150185986887664, "relative_l2": 0.00013644338469021022, "passed": true}}
+{"version": "v1", "seq": 256, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002593398094177246, "rmse": 2.7757379939430393e-05, "relative_l2": 0.0002709489199332893, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002289414405822754, "rmse": 2.872207187465392e-05, "relative_l2": 0.0002803655806928873, "passed": true}}
+{"version": "v2", "seq": 256, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002593398094177246, "rmse": 2.7757379939430393e-05, "relative_l2": 0.0002709489199332893, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002289414405822754, "rmse": 2.872207187465392e-05, "relative_l2": 0.0002803655806928873, "passed": true}}
+{"version": "v1", "seq": 256, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 5.415081977844238e-05, "rmse": 1.2490636436268687e-05, "relative_l2": 0.00020000521908514202, "passed": true}, "official_error": {"finite": true, "max_abs": 5.415081977844238e-05, "rmse": 1.2490636436268687e-05, "relative_l2": 0.00020000521908514202, "passed": true}}
+{"version": "v2", "seq": 256, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 5.415081977844238e-05, "rmse": 1.2490636436268687e-05, "relative_l2": 0.00020000521908514202, "passed": true}, "official_error": {"finite": true, "max_abs": 5.415081977844238e-05, "rmse": 1.2490636436268687e-05, "relative_l2": 0.00020000521908514202, "passed": true}}
+{"version": "v1", "seq": 256, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0011107921600341797, "rmse": 0.00014010557788424194, "relative_l2": 0.00014670054952148348, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0015285015106201172, "rmse": 0.0001478359627071768, "relative_l2": 0.00015479480498470366, "passed": true}}
+{"version": "v2", "seq": 256, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0011107921600341797, "rmse": 0.00014010557788424194, "relative_l2": 0.00014670054952148348, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0015285015106201172, "rmse": 0.0001478359627071768, "relative_l2": 0.00015479480498470366, "passed": true}}
+{"version": "v1", "seq": 256, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007363557815551758, "rmse": 5.170296935830265e-05, "relative_l2": 0.0002423091500531882, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007363557815551758, "rmse": 5.21007132192608e-05, "relative_l2": 0.00024417316308245063, "passed": true}}
+{"version": "v2", "seq": 256, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007363557815551758, "rmse": 5.170296935830265e-05, "relative_l2": 0.0002423091500531882, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007363557815551758, "rmse": 5.21007132192608e-05, "relative_l2": 0.00024417316308245063, "passed": true}}
+{"version": "v1", "seq": 256, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.000732421875, "rmse": 3.0250159397837706e-05, "relative_l2": 0.000192558960407041, "passed": true}, "official_error": {"finite": true, "max_abs": 0.000732421875, "rmse": 3.0250157578848302e-05, "relative_l2": 0.00019255894585512578, "passed": true}}
+{"version": "v2", "seq": 256, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.000732421875, "rmse": 3.0250159397837706e-05, "relative_l2": 0.000192558960407041, "passed": true}, "official_error": {"finite": true, "max_abs": 0.000732421875, "rmse": 3.0250157578848302e-05, "relative_l2": 0.00019255894585512578, "passed": true}}
+{"version": "v1", "seq": 256, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0019330978393554688, "rmse": 0.00013883635983802378, "relative_l2": 0.00014357996406033635, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0019330978393554688, "rmse": 0.0001448308175895363, "relative_l2": 0.00014977922546677291, "passed": true}}
+{"version": "v2", "seq": 256, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0019330978393554688, "rmse": 0.00013883635983802378, "relative_l2": 0.00014357996406033635, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0019330978393554688, "rmse": 0.0001448308175895363, "relative_l2": 0.00014977922546677291, "passed": true}}
+{"version": "v1", "seq": 257, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002224445343017578, "rmse": 2.7672869691741653e-05, "relative_l2": 0.00026994882500730455, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00038748979568481445, "rmse": 3.052099054912105e-05, "relative_l2": 0.00029773221467621624, "passed": true}}
+{"version": "v2", "seq": 257, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002224445343017578, "rmse": 2.7672869691741653e-05, "relative_l2": 0.00026994882500730455, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00038748979568481445, "rmse": 3.052099054912105e-05, "relative_l2": 0.00029773221467621624, "passed": true}}
+{"version": "v1", "seq": 257, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 4.824995994567871e-05, "rmse": 1.1812655429821461e-05, "relative_l2": 0.00019874250574503094, "passed": true}, "official_error": {"finite": true, "max_abs": 4.824995994567871e-05, "rmse": 1.1812655429821461e-05, "relative_l2": 0.00019874250574503094, "passed": true}}
+{"version": "v2", "seq": 257, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 4.824995994567871e-05, "rmse": 1.1812655429821461e-05, "relative_l2": 0.00019874250574503094, "passed": true}, "official_error": {"finite": true, "max_abs": 4.824995994567871e-05, "rmse": 1.1812655429821461e-05, "relative_l2": 0.00019874250574503094, "passed": true}}
+{"version": "v1", "seq": 257, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0011630058288574219, "rmse": 0.00014155684038996696, "relative_l2": 0.00014781131176277995, "passed": true}, "official_error": {"finite": true, "max_abs": 0.002192258834838867, "rmse": 0.00015344088023994118, "relative_l2": 0.0001602204138180241, "passed": true}}
+{"version": "v2", "seq": 257, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0011630058288574219, "rmse": 0.00014155684038996696, "relative_l2": 0.00014781131176277995, "passed": true}, "official_error": {"finite": true, "max_abs": 0.002192258834838867, "rmse": 0.00015344088023994118, "relative_l2": 0.0001602204138180241, "passed": true}}
+{"version": "v1", "seq": 257, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007419586181640625, "rmse": 5.1414670451777056e-05, "relative_l2": 0.0002437749208183959, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007419586181640625, "rmse": 5.225335917202756e-05, "relative_l2": 0.0002477514499332756, "passed": true}}
+{"version": "v2", "seq": 257, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007419586181640625, "rmse": 5.1414670451777056e-05, "relative_l2": 0.0002437749208183959, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007419586181640625, "rmse": 5.225335917202756e-05, "relative_l2": 0.0002477514499332756, "passed": true}}
+{"version": "v1", "seq": 257, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.9648104828083888e-05, "relative_l2": 0.00019244293798692524, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.964810664707329e-05, "relative_l2": 0.00019244293798692524, "passed": true}}
+{"version": "v2", "seq": 257, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.9648104828083888e-05, "relative_l2": 0.00019244293798692524, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.964810664707329e-05, "relative_l2": 0.00019244293798692524, "passed": true}}
+{"version": "v1", "seq": 257, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0009806156158447266, "rmse": 0.00013289130583871156, "relative_l2": 0.00013718748232349753, "passed": true}, "official_error": {"finite": true, "max_abs": 0.001981973648071289, "rmse": 0.00013840876636095345, "relative_l2": 0.00014288332022260875, "passed": true}}
+{"version": "v2", "seq": 257, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0009806156158447266, "rmse": 0.00013289130583871156, "relative_l2": 0.00013718748232349753, "passed": true}, "official_error": {"finite": true, "max_abs": 0.001981973648071289, "rmse": 0.00013840876636095345, "relative_l2": 0.00014288332022260875, "passed": true}}
+{"version": "v1", "seq": 511, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.00013506412506103516, "rmse": 1.995895399886649e-05, "relative_l2": 0.00027404382126405835, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0001932084560394287, "rmse": 2.0886076526949182e-05, "relative_l2": 0.00028677351656369865, "passed": true}}
+{"version": "v2", "seq": 511, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.00013506412506103516, "rmse": 1.995895399886649e-05, "relative_l2": 0.00027404382126405835, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0001932084560394287, "rmse": 2.0886076526949182e-05, "relative_l2": 0.00028677351656369865, "passed": true}}
+{"version": "v1", "seq": 511, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 2.933293581008911e-05, "rmse": 8.570445061195642e-06, "relative_l2": 0.0002052775671472773, "passed": true}, "official_error": {"finite": true, "max_abs": 2.933293581008911e-05, "rmse": 8.570445061195642e-06, "relative_l2": 0.0002052775671472773, "passed": true}}
+{"version": "v2", "seq": 511, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 2.933293581008911e-05, "rmse": 8.570445061195642e-06, "relative_l2": 0.0002052775671472773, "passed": true}, "official_error": {"finite": true, "max_abs": 2.933293581008911e-05, "rmse": 8.570445061195642e-06, "relative_l2": 0.0002052775671472773, "passed": true}}
+{"version": "v1", "seq": 511, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0018925666809082031, "rmse": 0.00014552881475538015, "relative_l2": 0.000151310334331356, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00200653076171875, "rmse": 0.00016088866686914116, "relative_l2": 0.0001672803919063881, "passed": true}}
+{"version": "v2", "seq": 511, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0018925666809082031, "rmse": 0.00014552881475538015, "relative_l2": 0.000151310334331356, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00200653076171875, "rmse": 0.00016088866686914116, "relative_l2": 0.0001672803919063881, "passed": true}}
+{"version": "v1", "seq": 511, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0012543201446533203, "rmse": 3.996140731032938e-05, "relative_l2": 0.00024929235223680735, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0012543201446533203, "rmse": 4.0727438317844644e-05, "relative_l2": 0.0002540710847824812, "passed": true}}
+{"version": "v2", "seq": 511, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0012543201446533203, "rmse": 3.996140731032938e-05, "relative_l2": 0.00024929235223680735, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0012543201446533203, "rmse": 4.0727438317844644e-05, "relative_l2": 0.0002540710847824812, "passed": true}}
+{"version": "v1", "seq": 511, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.260964538436383e-05, "relative_l2": 0.00019180020899511874, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2609629013459198e-05, "relative_l2": 0.00019180007802788168, "passed": true}}
+{"version": "v2", "seq": 511, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.260964538436383e-05, "relative_l2": 0.00019180020899511874, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2609629013459198e-05, "relative_l2": 0.00019180007802788168, "passed": true}}
+{"version": "v1", "seq": 511, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0018072128295898438, "rmse": 0.00014276569709181786, "relative_l2": 0.00014783359074499458, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0018374919891357422, "rmse": 0.0001516893389634788, "relative_l2": 0.00015707401325926185, "passed": true}}
+{"version": "v2", "seq": 511, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0018072128295898438, "rmse": 0.00014276569709181786, "relative_l2": 0.00014783359074499458, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0018374919891357422, "rmse": 0.0001516893389634788, "relative_l2": 0.00015707401325926185, "passed": true}}
+{"shape": [1, 512, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 10.622400045394897, "samples_us": [10.665600001811981, 10.646399855613708, 10.583999752998352, 10.583999752998352, 10.596799850463867, 10.633599758148193, 10.622400045394897, 10.608000308275223, 10.67039966583252], "min_us": 10.583999752998352, "max_us": 10.67039966583252, "tflops": 101.08278914476551, "official_throughput_percent": 100.0}, "v1": {"median_us": 34.55199897289276, "samples_us": [34.56160128116608, 34.55199897289276, 34.673601388931274, 34.544000029563904, 34.52480137348175, 34.537601470947266, 34.646400809288025, 34.55199897289276, 34.56319868564606], "min_us": 34.52480137348175, "max_us": 34.673601388931274, "tflops": 31.076112986759103, "official_throughput_percent": 30.743228644248738}, "v2": {"median_us": 30.75839877128601, "samples_us": [30.766400694847107, 30.774399638175964, 30.750399827957153, 30.774399638175964, 30.75839877128601, 30.740800499916077, 30.748799443244934, 30.744001269340515, 30.795198678970337], "min_us": 30.740800499916077, "max_us": 30.795198678970337, "tflops": 34.90889860633362, "official_throughput_percent": 34.534957831781746}}, "errors": {"v1": {"finite": true, "max_abs": 0.000244140625, "rmse": 2.656276774359867e-05, "relative_l2": 0.000368302600691095, "passed": true}, "v2": {"finite": true, "max_abs": 0.000244140625, "rmse": 2.656276774359867e-05, "relative_l2": 0.000368302600691095, "passed": true}}, "source_sha256": {"v1": "391d21ab78133cd581a5fff1a243c69c976de6631d1492744a633bc15c4371e1", "v2": "ac7f09df451a109631a9dff5ac558a596be104a271f037161b2678f6b5135230"}}
+{"shape": [1, 1024, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 16.24000072479248, "samples_us": [16.315199434757233, 16.262400150299072, 16.2432000041008, 16.200000047683716, 16.1871999502182, 16.150400042533875, 16.120000183582306, 16.24000072479248, 16.257600486278534], "min_us": 16.120000183582306, "max_us": 16.315199434757233, "tflops": 264.4684177534039, "official_throughput_percent": 100.0}, "v1": {"median_us": 44.66080069541931, "samples_us": [44.72160041332245, 44.758400321006775, 44.72320079803467, 44.59039866924286, 44.65920031070709, 44.655999541282654, 44.66080069541931, 44.66400146484375, 44.63840126991272], "min_us": 44.59039866924286, "max_us": 44.758400321006775, "tflops": 96.16861384306794, "official_throughput_percent": 36.36298604574314}, "v2": {"median_us": 42.03839898109436, "samples_us": [42.024001479148865, 41.99199974536896, 42.107200622558594, 42.0304000377655, 42.03839898109436, 42.09119975566864, 42.06080138683319, 42.105600237846375, 42.03520119190216], "min_us": 41.99199974536896, "max_us": 42.107200622558594, "tflops": 102.16771808868235, "official_throughput_percent": 38.63134923881374}}, "errors": {"v1": {"finite": true, "max_abs": 0.000244140625, "rmse": 1.9450275431154296e-05, "relative_l2": 0.0003785178705584258, "passed": true}, "v2": {"finite": true, "max_abs": 0.000244140625, "rmse": 1.9450275431154296e-05, "relative_l2": 0.0003785178705584258, "passed": true}}, "source_sha256": {"v1": "391d21ab78133cd581a5fff1a243c69c976de6631d1492744a633bc15c4371e1", "v2": "ac7f09df451a109631a9dff5ac558a596be104a271f037161b2678f6b5135230"}}
+{"shape": [1, 4096, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 53.45280170440674, "samples_us": [53.45280170440674, 53.57760190963745, 52.428799867630005, 53.47200036048889, 52.377599477767944, 53.593599796295166, 52.55200266838074, 53.623998165130615, 52.46880054473877], "min_us": 52.377599477767944, "max_us": 53.623998165130615, "tflops": 1285.6103804627073, "official_throughput_percent": 100.0}, "v1": {"median_us": 227.91199684143066, "samples_us": [227.91199684143066, 228.72319221496582, 227.7535915374756, 228.7519931793213, 227.65278816223145, 228.76479625701904, 227.64959335327148, 228.72960567474365, 227.7184009552002], "min_us": 227.64959335327148, "max_us": 228.76479625701904, "tflops": 301.5175931428105, "official_throughput_percent": 23.45326373564987}, "v2": {"median_us": 210.63520908355713, "samples_us": [210.6368064880371, 210.31839847564697, 210.76641082763672, 209.9695920944214, 211.07521057128906, 210.63520908355713, 210.60640811920166, 210.01598834991455, 210.86080074310303], "min_us": 209.9695920944214, "max_us": 211.07521057128906, "tflops": 326.2487645583488, "official_throughput_percent": 25.37695475365777}}, "errors": {"v1": {"finite": true, "max_abs": 0.0001220703125, "rmse": 9.960122042684816e-06, "relative_l2": 0.0003893039538525045, "passed": true}, "v2": {"finite": true, "max_abs": 0.0001220703125, "rmse": 9.960122042684816e-06, "relative_l2": 0.0003893039538525045, "passed": true}}, "source_sha256": {"v1": "391d21ab78133cd581a5fff1a243c69c976de6631d1492744a633bc15c4371e1", "v2": "ac7f09df451a109631a9dff5ac558a596be104a271f037161b2678f6b5135230"}}
+{"shape": [1, 8192, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 202.74720191955566, "samples_us": [202.60000228881836, 202.42559909820557, 204.62720394134521, 202.71680355072021, 204.66558933258057, 202.72159576416016, 204.7663927078247, 202.74720191955566, 204.75199222564697], "min_us": 202.42559909820557, "max_us": 204.7663927078247, "tflops": 1355.7667101766651, "official_throughput_percent": 100.0}, "v1": {"median_us": 825.7280349731445, "samples_us": [825.9103775024414, 825.6640434265137, 825.7280349731445, 825.0944137573242, 826.137638092041, 825.8208274841309, 825.875186920166, 825.4063606262207, 825.7023811340332], "min_us": 825.0944137573242, "max_us": 826.137638092041, "tflops": 332.89157604166843, "official_throughput_percent": 24.553750548889827}, "v2": {"median_us": 750.5087852478027, "samples_us": [750.819206237793, 750.7008075714111, 750.32639503479, 750.2016067504883, 750.8639812469482, 750.5087852478027, 750.603199005127, 750.4784107208252, 750.4687786102295], "min_us": 750.2016067504883, "max_us": 750.8639812469482, "tflops": 366.25541545558445, "official_throughput_percent": 27.014634059561697}}, "errors": {"v1": {"finite": true, "max_abs": 0.0001220703125, "rmse": 7.099630693119252e-06, "relative_l2": 0.00039204282802529633, "passed": true}, "v2": {"finite": true, "max_abs": 0.0001220703125, "rmse": 7.099630693119252e-06, "relative_l2": 0.00039204282802529633, "passed": true}}, "source_sha256": {"v1": "391d21ab78133cd581a5fff1a243c69c976de6631d1492744a633bc15c4371e1", "v2": "ac7f09df451a109631a9dff5ac558a596be104a271f037161b2678f6b5135230"}}
+{"shape": [1, 4096, 8, 128], "causal": true, "timing": {"official_fa4": {"median_us": 50.29439926147461, "samples_us": [50.29439926147461, 50.67039728164673, 50.036799907684326, 50.651198625564575, 49.91999864578247, 50.627201795578, 50.035202503204346, 50.63199996948242, 50.0544011592865], "min_us": 49.91999864578247, "max_us": 50.67039728164673, "tflops": 683.1722591886981, "official_throughput_percent": 100.0}, "v1": {"median_us": 217.38719940185547, "samples_us": [216.0640001296997, 217.8096055984497, 217.3935890197754, 217.38719940185547, 217.05119609832764, 217.70401000976562, 216.4911985397339, 217.47360229492188, 216.44320487976074], "min_us": 216.0640001296997, "max_us": 217.8096055984497, "tflops": 158.05778105859682, "official_throughput_percent": 23.135860528982615}, "v2": {"median_us": 190.60640335083008, "samples_us": [190.60640335083008, 190.35680294036865, 190.6991958618164, 190.41119813919067, 190.63199758529663, 190.5311942100525, 190.69279432296753, 190.58879613876343, 190.71840047836304], "min_us": 190.35680294036865, "max_us": 190.71840047836304, "tflops": 180.26539383756943, "official_throughput_percent": 26.38652132211044}}, "errors": {"v1": {"finite": true, "max_abs": 0.00048828125, "rmse": 1.8201682905782945e-05, "relative_l2": 0.00026370451087132096, "passed": true}, "v2": {"finite": true, "max_abs": 0.00048828125, "rmse": 1.8201682905782945e-05, "relative_l2": 0.00026370451087132096, "passed": true}}, "source_sha256": {"v1": "391d21ab78133cd581a5fff1a243c69c976de6631d1492744a633bc15c4371e1", "v2": "ac7f09df451a109631a9dff5ac558a596be104a271f037161b2678f6b5135230"}}
+{"shape": [1, 8192, 8, 128], "causal": true, "timing": {"official_fa4": {"median_us": 105.1103949546814, "samples_us": [105.03679513931274, 105.1103949546814, 106.72320127487183, 104.8799991607666, 106.41599893569946, 104.95680570602417, 106.46400451660156, 105.07040023803711, 106.49759769439697], "min_us": 104.8799991607666, "max_us": 106.72320127487183, "tflops": 1307.5676628487329, "official_throughput_percent": 100.0}, "v1": {"median_us": 610.1280212402344, "samples_us": [610.1280212402344, 611.0159873962402, 608.3727836608887, 609.8480224609375, 606.931209564209, 611.3423824310303, 608.7088108062744, 614.792013168335, 610.7359886169434], "min_us": 606.931209564209, "max_us": 614.792013168335, "tflops": 225.2624837531994, "official_throughput_percent": 17.22759671667248}, "v2": {"median_us": 525.9727954864502, "samples_us": [526.3631820678711, 525.9632110595703, 525.6703853607178, 525.9727954864502, 525.9071826934814, 526.1824131011963, 525.7503986358643, 526.1888027191162, 526.6767978668213], "min_us": 525.6703853607178, "max_us": 526.6767978668213, "tflops": 261.3043006243098, "official_throughput_percent": 19.98399838483456}}, "errors": {"v1": {"finite": true, "max_abs": 0.0009765625, "rmse": 1.4095285223447718e-05, "relative_l2": 0.00028075199224986136, "passed": true}, "v2": {"finite": true, "max_abs": 0.0009765625, "rmse": 1.4095285223447718e-05, "relative_l2": 0.00028075199224986136, "passed": true}}, "source_sha256": {"v1": "391d21ab78133cd581a5fff1a243c69c976de6631d1492744a633bc15c4371e1", "v2": "ac7f09df451a109631a9dff5ac558a596be104a271f037161b2678f6b5135230"}}
+{"shape": [2, 4096, 16, 128], "causal": false, "timing": {"official_fa4": {"median_us": 216.11359119415283, "samples_us": [215.97599983215332, 215.49279689788818, 216.3856029510498, 215.75520038604736, 216.1520004272461, 215.86880683898926, 216.1616086959839, 216.11359119415283, 216.30079746246338], "min_us": 215.49279689788818, "max_us": 216.3856029510498, "tflops": 1271.9140218120492, "official_throughput_percent": 100.0}, "v1": {"median_us": 892.743968963623, "samples_us": [893.2191848754883, 892.4624443054199, 893.1695938110352, 891.6031837463379, 892.3263549804688, 892.743968963623, 892.841625213623, 892.2080039978027, 893.1344032287598], "min_us": 891.6031837463379, "max_us": 893.2191848754883, "tflops": 307.90228385760236, "official_throughput_percent": 24.20779066645914}, "v2": {"median_us": 825.823974609375, "samples_us": [825.3888130187988, 826.2207984924316, 825.5999565124512, 825.823974609375, 825.8175849914551, 826.1072158813477, 825.1263618469238, 826.0512351989746, 826.251220703125], "min_us": 825.1263618469238, "max_us": 826.251220703125, "tflops": 332.8529025498692, "official_throughput_percent": 26.16944988747478}}, "errors": {"v1": {"finite": true, "max_abs": 0.0001220703125, "rmse": 9.967881851480342e-06, "relative_l2": 0.00038800944457761943, "passed": true}, "v2": {"finite": true, "max_abs": 0.0001220703125, "rmse": 9.967881851480342e-06, "relative_l2": 0.00038800944457761943, "passed": true}}, "source_sha256": {"v1": "391d21ab78133cd581a5fff1a243c69c976de6631d1492744a633bc15c4371e1", "v2": "ac7f09df451a109631a9dff5ac558a596be104a271f037161b2678f6b5135230"}}
+Returning 436038 compressed artifact bytes
+Saved /home/alioth/2026fa/ai-agent-from-scratch/kernel/fa4/runs/v2_fast_exp
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/akseven6221/main/ap-UBxd4d2bz9aJuWWZ3m0MOO

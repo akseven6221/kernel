@@ -1,0 +1,26 @@
+--- v43/kernel.cu
++++ v50/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v43: M128 N128, one Q-stage, one K/V pair, 256 TMEM columns per CTA.
++// v50: 129-half epilogue pitch avoids two-way shared load bank conflicts.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -214,14 +214,14 @@
+       float o[32];ld32(tm+128+c*32+rowtm,o);
+       asm volatile("tcgen05.wait::ld.sync.aligned;" ::: "memory");
+ #pragma unroll
+-      for(int d=0;d<32;d++) staging[(c*32+d)*130+local]=__float2half_rn(o[d]*inverse);
++      for(int d=0;d<32;d++) staging[(c*32+d)*129+local]=__float2half_rn(o[d]*inverse);
+     }
+     if(stage==0) asm volatile("bar.sync 2,128;" ::: "memory");
+     else asm volatile("bar.sync 3,128;" ::: "memory");
+     for(int i=local;i<128*64;i+=128) {
+       int r=i/64,c=(i%64)*2;
+       if(qr+r<seq) {
+-        const __half2 value=__halves2half2(staging[c*130+r],staging[(c+1)*130+r]);
++        const __half2 value=__halves2half2(staging[c*129+r],staging[(c+1)*129+r]);
+         *reinterpret_cast<__half2*>(output+((int64_t(batch)*seq+qr+r)*heads+head)*128+c)=value;
+       }
+     }

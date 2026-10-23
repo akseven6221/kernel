@@ -1,0 +1,21 @@
+--- v21/kernel.cu
++++ v23/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v21: four independent pair-sum chains for rowsum, with the stable FMA guard.
++// v23: combine the measured rowsum ILP and causal query-major reverse scheduling.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -85,7 +85,10 @@
+   extern __shared__ __align__(1024) unsigned char sm[];
+   const uint32_t base=uint32_t(__cvta_generic_to_shared(sm));
+   const int tid=threadIdx.x, wg=tid/128, local=tid%128, warp=local/32, lane=tid%32;
+-  const int head=blockIdx.y%heads, batch=blockIdx.y/heads, qr=blockIdx.x*256;
++  const int linear=int(blockIdx.y)*int(gridDim.x)+int(blockIdx.x);
++  const int bh=CAUSAL?linear%int(gridDim.y):int(blockIdx.y);
++  const int head=bh%heads, batch=bh/heads;
++  const int qr=(CAUSAL?(int(gridDim.x)-1-linear/int(gridDim.y)):int(blockIdx.x))*256;
+   int lengths[2];
+ #pragma unroll
+   for(int s=0;s<2;s++) lengths[s]=CAUSAL?min((qr+(s+1)*128+127)/128,(seq+127)/128):(seq+127)/128;

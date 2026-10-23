@@ -1,0 +1,31 @@
+{
+  "round": 2,
+  "versions_added": 25,
+  "successful_new_versions": 23,
+  "failed_versions": {
+    "v34": "r2_v34_v35_threads",
+    "v35": "r2_v35_timeout_audit"
+  },
+  "final_comparison_correctness_checks": 1040,
+  "final_comparison_benchmark_rows": 208,
+  "new_ncu_reports": 23,
+  "dispatch_extra_reports": 2,
+  "dispatch_sweep_shapes": 30,
+  "dispatch_stress_checks": 120,
+  "dispatch_sanitizer_checks": 12,
+  "source_hashes_match": true,
+  "sanitizer_exit_files": [
+    "runs/r2_v51_sanitize_small/v51/racecheck_noncausal.exit_code",
+    "runs/r2_v51_sanitize_small/v51/memcheck_noncausal.exit_code",
+    "runs/r2_v51_sanitize_small/v51/synccheck_noncausal.exit_code",
+    "runs/r2_v51_sanitize_small/v51/synccheck_causal.exit_code",
+    "runs/r2_v51_sanitize_small/v51/racecheck_causal.exit_code",
+    "runs/r2_v51_sanitize_small/v51/memcheck_causal.exit_code",
+    "runs/r2_v51_sanitize_large/v51/racecheck_noncausal.exit_code",
+    "runs/r2_v51_sanitize_large/v51/memcheck_noncausal.exit_code",
+    "runs/r2_v51_sanitize_large/v51/synccheck_noncausal.exit_code",
+    "runs/r2_v51_sanitize_large/v51/synccheck_causal.exit_code",
+    "runs/r2_v51_sanitize_large/v51/racecheck_causal.exit_code",
+    "runs/r2_v51_sanitize_large/v51/memcheck_causal.exit_code"
+  ]
+}

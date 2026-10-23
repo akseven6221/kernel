@@ -1,0 +1,29 @@
+--- v12/kernel.cu
++++ v13/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v12: merge rare correction + epilogue into the two softmax warpgroups.
++// v13: skip per-element masking for fully valid tiles.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -155,12 +155,15 @@
+       wait(base+SFULL+stage*8,j&1);fence();
+       float scores[128];ld128(tm+stage*128+rowtm,scores);
+       asm volatile("tcgen05.wait::ld.sync.aligned;" ::: "memory");
++      if(j*128+127>=seq || (CAUSAL && j*128+127>query)) {
++#pragma unroll
++        for(int c=0;c<128;c++) {
++          if(j*128+c>=seq || (CAUSAL && j*128+c>query)) scores[c]=-INFINITY;
++        }
++      }
+       float mx=-INFINITY;
+ #pragma unroll
+-      for(int c=0;c<128;c++) {
+-        if(j*128+c>=seq || (CAUSAL && j*128+c>query)) scores[c]=-INFINITY;
+-        mx=fmaxf(mx,scores[c]);
+-      }
++      for(int c=0;c<128;c++) mx=fmaxf(mx,scores[c]);
+       const float candidate=fmaxf(rowmax,mx);
+       const float next=(j==0||(rowmax-candidate)*0.127517430824596f<-8.0f)?candidate:rowmax;
+       const float alpha=j==0?0.0f:fast_exp2((rowmax-next)*0.127517430824596f);

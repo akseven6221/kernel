@@ -1,0 +1,47 @@
+--- v42/kernel.cu
++++ v44/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v42: max3 and four independent packed-FP32 sum chains.
++// v44: specialize packed softmax for non-causal; keep scalar causal reductions.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -195,7 +195,10 @@
+       }
+       float maxima[4]={-INFINITY,-INFINITY,-INFINITY,-INFINITY};
+ #pragma unroll
+-      for(int c=0;c<64;c++) maxima[c%4]=max3(maxima[c%4],scores[2*c],scores[2*c+1]);
++      for(int c=0;c<64;c++) {
++        if constexpr(CAUSAL) {maxima[(2*c)%4]=fmaxf(maxima[(2*c)%4],scores[2*c]);maxima[(2*c+1)%4]=fmaxf(maxima[(2*c+1)%4],scores[2*c+1]);}
++        else maxima[c%4]=max3(maxima[c%4],scores[2*c],scores[2*c+1]);
++      }
+       float mx=fmaxf(fmaxf(maxima[0],maxima[1]),fmaxf(maxima[2],maxima[3]));
+       const float candidate=fmaxf(rowmax,mx);
+       const float next=(j==0||(rowmax-candidate)*0.127517430824596f<-8.0f)?candidate:rowmax;
+@@ -211,19 +214,21 @@
+       for(int c=0;c<64;c++) {
+         float a=fast_exp2((scores[2*c]-next)*0.127517430824596f);
+         float b=fast_exp2((scores[2*c+1]-next)*0.127517430824596f);
+-        add_sum2(a,b,sums[2*(c%4)],sums[2*(c%4)+1]);
++        if constexpr(CAUSAL) sums[c%4]+=a+b; else add_sum2(a,b,sums[2*(c%4)],sums[2*(c%4)+1]);
+         const __half2_raw h=__floats2half2_rn(a,b);packed[c]=uint32_t(h.x)|(uint32_t(h.y)<<16);
+       }
+       } else {
+ #pragma unroll
+       for(int c=0;c<64;c++) {
+-        float x,y; argument2(scores[2*c],scores[2*c+1],scaled_ref,x,y);
++        float x,y;
++        if constexpr(CAUSAL) {x=fmaf(scores[2*c],0.127517430824596f,scaled_ref);y=fmaf(scores[2*c+1],0.127517430824596f,scaled_ref);}
++        else argument2(scores[2*c],scores[2*c+1],scaled_ref,x,y);
+         float a=fast_exp2(x), b=fast_exp2(y);
+-        add_sum2(a,b,sums[2*(c%4)],sums[2*(c%4)+1]);
++        if constexpr(CAUSAL) sums[c%4]+=a+b; else add_sum2(a,b,sums[2*(c%4)],sums[2*(c%4)+1]);
+         const __half2_raw h=__floats2half2_rn(a,b);packed[c]=uint32_t(h.x)|(uint32_t(h.y)<<16);
+       }
+       }
+-      const float psum=((sums[0]+sums[1])+(sums[2]+sums[3]))+((sums[4]+sums[5])+(sums[6]+sums[7]));
++      const float psum=((sums[0]+sums[1])+(sums[2]+sums[3]))+(CAUSAL?0.0f:((sums[4]+sums[5])+(sums[6]+sums[7])));
+       rowsum=rowsum*alpha+psum;
+       st64(tm+stage*128+64+rowtm,packed);
+       asm volatile("tcgen05.wait::st.sync.aligned;" ::: "memory");

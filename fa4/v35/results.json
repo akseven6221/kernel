@@ -1,0 +1,6 @@
+{
+  "status": "failed",
+  "reason": "首个输入超时：exit -9",
+  "run": "r2_v35_timeout_audit",
+  "source_sha256": "44f521dbc3c38ca06e3a158705dd086ac4d20f8e6230b0e007614ba022890c6c"
+}

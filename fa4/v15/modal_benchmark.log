@@ -1,0 +1,266 @@
+✓ Initialized. View run at 
+https://modal.com/apps/akseven6221/main/ap-LOR78wkWza5FUHvXune9EL
+✓ Created objects.
+├── 🔨 Created mount 
+│   /home/alioth/2026fa/ai-agent-from-scratch/kernel/fa4/run_modal.py
+├── 🔨 Created mount /home/alioth/2026fa/ai-agent-from-scratch/kernel/fa4
+└── 🔨 Created function experiment.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.8.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+$ nvidia-smi
+Wed Oct 14 11:09:29 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.57.04              KMD Version: 610.57.04     CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA B200                    On  |   00000000:87:00.0 Off |                    0 |
+| N/A   32C    P0            186W / 1000W |       5MiB / 183359MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+$ nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Fri_Feb_21_20:23:50_PST_2025
+Cuda compilation tools, release 12.8, V12.8.93
+Build cuda_12.8.r12.8/compiler.35583870_0
+$ /usr/local/bin/python -m pip freeze
+aiohappyeyeballs==2.6.1
+aiohttp==3.12.7
+aiosignal==1.3.2
+apache-tvm-ffi==0.1.14.post1
+attrs==25.3.0
+cbor2==5.7.0
+certifi==2025.4.26
+cuda-bindings==12.9.4
+cuda-pathfinder==1.8.3
+einops==0.8.2
+filelock==4.1.1
+flash-attn-4==4.0.0b35
+frozenlist==1.6.0
+fsspec==2026.9.0
+grpclib==0.4.8
+h2==4.2.0
+hpack==4.1.0
+hyperframe==6.1.0
+idna==3.10
+Jinja2==3.1.6
+MarkupSafe==3.0.4
+mpmath==1.3.0
+multidict==6.4.4
+networkx==3.7
+ninja==1.13.2
+numpy==2.5.4
+nvidia-cublas-cu12==12.8.4.1
+nvidia-cuda-cupti-cu12==12.8.90
+nvidia-cuda-nvrtc-cu12==12.8.93
+nvidia-cuda-runtime-cu12==12.8.90
+nvidia-cudnn-cu12==9.10.2.21
+nvidia-cufft-cu12==11.3.3.83
+nvidia-cufile-cu12==1.13.1.3
+nvidia-curand-cu12==10.3.9.90
+nvidia-cusolver-cu12==11.7.3.90
+nvidia-cusparse-cu12==12.5.8.93
+nvidia-cusparselt-cu12==0.7.1
+nvidia-cutlass-dsl==4.8.0
+nvidia-cutlass-dsl-libs-base==4.8.0
+nvidia-cutlass-dsl-libs-core==4.8.0
+nvidia-cutlass-dsl-libs-cu12==4.8.0
+nvidia-nccl-cu12==2.27.5
+nvidia-nvjitlink-cu12==12.8.93
+nvidia-nvshmem-cu12==3.4.5
+nvidia-nvtx-cu12==12.8.90
+propcache==0.3.1
+protobuf==7.36.2
+quack-kernels==0.6.5
+setuptools @ file:///build/setuptools-69.0.3-py3-none-any.whl#sha256=385eb4edd9c9d5c17540511303e39a147ce2fc04bc55289c322b9e5904fe2c05
+sympy==1.14.0
+torch==2.10.0
+torch_c_dlpack_ext==0.1.5
+triton==3.6.0
+typing_extensions==4.16.0
+yarl==1.20.0
+$ /usr/local/bin/python /root/fa4/benchmark.py --versions v14,v15 --mode benchmark --output /tmp/artifacts
+/root/fa4/v14/kernel.cu(106): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v14/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v14/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v14/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+/root/fa4/v14/kernel.cu(106): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v14/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v14/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v14/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    8 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 160 registers, used 4 barriers, 8 bytes cumulative stack size
+ptxas info    : Compile time = 179.795 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    48 bytes stack frame, 76 bytes spill stores, 92 bytes spill loads
+ptxas info    : Used 160 registers, used 4 barriers, 48 bytes cumulative stack size
+ptxas info    : Compile time = 157.407 ms
+
+Saved /tmp/artifacts/v14/sass.txt: 1802776 bytes
+/root/fa4/v15/kernel.cu(106): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v15/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v15/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v15/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+/root/fa4/v15/kernel.cu(106): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v15/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v15/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v15/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    8 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 160 registers, used 4 barriers, 8 bytes cumulative stack size
+ptxas info    : Compile time = 180.075 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    48 bytes stack frame, 76 bytes spill stores, 92 bytes spill loads
+ptxas info    : Used 160 registers, used 4 barriers, 48 bytes cumulative stack size
+ptxas info    : Compile time = 158.405 ms
+
+Saved /tmp/artifacts/v15/sass.txt: 1804984 bytes
+/usr/local/lib/python3.12/site-packages/nvidia_cutlass_dsl/dsl_packages/cutlass/base_dsl/dsl.py:2300: UserWarning: Argument aux_data (position 18) cannot be converted to a JitArgument for function 'cutlass___call___flash_attncuteflash_fwd_sm100FlashAttentionForwardSm100_object_at__Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_None_008'. Its type `<class 'flash_attn.cute.utils.AuxData'>` is not supported. If the value is known at compile time, annotate it: `aux_data: Constexpr`. Otherwise, implement the `JitArgument` or `DynamicExpression` protocol for type `<class 'flash_attn.cute.utils.AuxData'>`, or register a custom argument adapter.
+  exe_args, func_types, adapted_args = self.generate_mlir_function_types(
+{"version": "v14", "seq": 128, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.881504380842671e-05, "relative_l2": 0.00026889811852015555, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.892551831086166e-05, "relative_l2": 0.0002696634619496763, "passed": true}}
+{"version": "v15", "seq": 128, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.881504380842671e-05, "relative_l2": 0.00026889811852015555, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002970099449157715, "rmse": 3.892551831086166e-05, "relative_l2": 0.0002696634619496763, "passed": true}}
+{"version": "v14", "seq": 128, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}}
+{"version": "v15", "seq": 128, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00010895729064941406, "rmse": 1.8349424863117747e-05, "relative_l2": 0.00020510835747700185, "passed": true}}
+{"version": "v14", "seq": 128, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.001039743423461914, "rmse": 0.00013448311074171215, "relative_l2": 0.00013868039241060615, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011453628540039062, "rmse": 0.0001346105564152822, "relative_l2": 0.00013881182530894876, "passed": true}}
+{"version": "v15", "seq": 128, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.001039743423461914, "rmse": 0.00013448311074171215, "relative_l2": 0.00013868039241060615, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011453628540039062, "rmse": 0.0001346105564152822, "relative_l2": 0.00013881182530894876, "passed": true}}
+{"version": "v14", "seq": 128, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0009658336639404297, "rmse": 6.394067168002948e-05, "relative_l2": 0.000235476327361539, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009658336639404297, "rmse": 6.407052569556981e-05, "relative_l2": 0.00023595454695168883, "passed": true}}
+{"version": "v15", "seq": 128, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0009658336639404297, "rmse": 6.394067168002948e-05, "relative_l2": 0.000235476327361539, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009658336639404297, "rmse": 6.407052569556981e-05, "relative_l2": 0.00023595454695168883, "passed": true}}
+{"version": "v14", "seq": 128, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 4.00069220631849e-05, "relative_l2": 0.00018906059267465025, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 4.00069220631849e-05, "relative_l2": 0.00018906059267465025, "passed": true}}
+{"version": "v15", "seq": 128, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 4.00069220631849e-05, "relative_l2": 0.00018906059267465025, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 4.00069220631849e-05, "relative_l2": 0.00018906059267465025, "passed": true}}
+{"version": "v14", "seq": 128, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0009768009185791016, "rmse": 0.0001311726518906653, "relative_l2": 0.00013610180758405477, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011150836944580078, "rmse": 0.00013150185986887664, "relative_l2": 0.00013644338469021022, "passed": true}}
+{"version": "v15", "seq": 128, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0009768009185791016, "rmse": 0.0001311726518906653, "relative_l2": 0.00013610180758405477, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0011150836944580078, "rmse": 0.00013150185986887664, "relative_l2": 0.00013644338469021022, "passed": true}}
+{"version": "v14", "seq": 256, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002593398094177246, "rmse": 2.8753654987667687e-05, "relative_l2": 0.0002806738775689155, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002289414405822754, "rmse": 2.872207187465392e-05, "relative_l2": 0.0002803655806928873, "passed": true}}
+{"version": "v15", "seq": 256, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002593398094177246, "rmse": 2.8753654987667687e-05, "relative_l2": 0.0002806738775689155, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0002289414405822754, "rmse": 2.872207187465392e-05, "relative_l2": 0.0002803655806928873, "passed": true}}
+{"version": "v14", "seq": 256, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 5.415081977844238e-05, "rmse": 1.2490636436268687e-05, "relative_l2": 0.00020000521908514202, "passed": true}, "official_error": {"finite": true, "max_abs": 5.415081977844238e-05, "rmse": 1.2490636436268687e-05, "relative_l2": 0.00020000521908514202, "passed": true}}
+{"version": "v15", "seq": 256, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 5.415081977844238e-05, "rmse": 1.2490636436268687e-05, "relative_l2": 0.00020000521908514202, "passed": true}, "official_error": {"finite": true, "max_abs": 5.415081977844238e-05, "rmse": 1.2490636436268687e-05, "relative_l2": 0.00020000521908514202, "passed": true}}
+{"version": "v14", "seq": 256, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0019350051879882812, "rmse": 0.0001524612889625132, "relative_l2": 0.0001596378569956869, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0015285015106201172, "rmse": 0.0001478359627071768, "relative_l2": 0.00015479480498470366, "passed": true}}
+{"version": "v15", "seq": 256, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0019350051879882812, "rmse": 0.0001524612889625132, "relative_l2": 0.0001596378569956869, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0015285015106201172, "rmse": 0.0001478359627071768, "relative_l2": 0.00015479480498470366, "passed": true}}
+{"version": "v14", "seq": 256, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007363557815551758, "rmse": 5.199289444135502e-05, "relative_l2": 0.00024366787692997605, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007363557815551758, "rmse": 5.21007132192608e-05, "relative_l2": 0.00024417316308245063, "passed": true}}
+{"version": "v15", "seq": 256, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007363557815551758, "rmse": 5.199289444135502e-05, "relative_l2": 0.00024366787692997605, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007363557815551758, "rmse": 5.21007132192608e-05, "relative_l2": 0.00024417316308245063, "passed": true}}
+{"version": "v14", "seq": 256, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.000732421875, "rmse": 3.0250157578848302e-05, "relative_l2": 0.00019255894585512578, "passed": true}, "official_error": {"finite": true, "max_abs": 0.000732421875, "rmse": 3.0250157578848302e-05, "relative_l2": 0.00019255894585512578, "passed": true}}
+{"version": "v15", "seq": 256, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.000732421875, "rmse": 3.0250157578848302e-05, "relative_l2": 0.00019255894585512578, "passed": true}, "official_error": {"finite": true, "max_abs": 0.000732421875, "rmse": 3.0250157578848302e-05, "relative_l2": 0.00019255894585512578, "passed": true}}
+{"version": "v14", "seq": 256, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0019330978393554688, "rmse": 0.000142448945553042, "relative_l2": 0.00014731597912032157, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0019330978393554688, "rmse": 0.0001448308175895363, "relative_l2": 0.00014977922546677291, "passed": true}}
+{"version": "v15", "seq": 256, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0019330978393554688, "rmse": 0.000142448945553042, "relative_l2": 0.00014731597912032157, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0019330978393554688, "rmse": 0.0001448308175895363, "relative_l2": 0.00014977922546677291, "passed": true}}
+{"version": "v14", "seq": 257, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002224445343017578, "rmse": 2.8332000510999933e-05, "relative_l2": 0.0002763786178547889, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00038748979568481445, "rmse": 3.052099054912105e-05, "relative_l2": 0.00029773221467621624, "passed": true}}
+{"version": "v15", "seq": 257, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0002224445343017578, "rmse": 2.8332000510999933e-05, "relative_l2": 0.0002763786178547889, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00038748979568481445, "rmse": 3.052099054912105e-05, "relative_l2": 0.00029773221467621624, "passed": true}}
+{"version": "v14", "seq": 257, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 4.824995994567871e-05, "rmse": 1.1812655429821461e-05, "relative_l2": 0.00019874250574503094, "passed": true}, "official_error": {"finite": true, "max_abs": 4.824995994567871e-05, "rmse": 1.1812655429821461e-05, "relative_l2": 0.00019874250574503094, "passed": true}}
+{"version": "v15", "seq": 257, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 4.824995994567871e-05, "rmse": 1.1812655429821461e-05, "relative_l2": 0.00019874250574503094, "passed": true}, "official_error": {"finite": true, "max_abs": 4.824995994567871e-05, "rmse": 1.1812655429821461e-05, "relative_l2": 0.00019874250574503094, "passed": true}}
+{"version": "v14", "seq": 257, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0017752647399902344, "rmse": 0.00015466018521692604, "relative_l2": 0.0001614936045370996, "passed": true}, "official_error": {"finite": true, "max_abs": 0.002192258834838867, "rmse": 0.00015344088023994118, "relative_l2": 0.0001602204138180241, "passed": true}}
+{"version": "v15", "seq": 257, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0017752647399902344, "rmse": 0.00015466018521692604, "relative_l2": 0.0001614936045370996, "passed": true}, "official_error": {"finite": true, "max_abs": 0.002192258834838867, "rmse": 0.00015344088023994118, "relative_l2": 0.0001602204138180241, "passed": true}}
+{"version": "v14", "seq": 257, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007419586181640625, "rmse": 5.169285577721894e-05, "relative_l2": 0.00024509389186277986, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007419586181640625, "rmse": 5.225335917202756e-05, "relative_l2": 0.0002477514499332756, "passed": true}}
+{"version": "v15", "seq": 257, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0007419586181640625, "rmse": 5.169285577721894e-05, "relative_l2": 0.00024509389186277986, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0007419586181640625, "rmse": 5.225335917202756e-05, "relative_l2": 0.0002477514499332756, "passed": true}}
+{"version": "v14", "seq": 257, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.964810664707329e-05, "relative_l2": 0.00019244293798692524, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.964810664707329e-05, "relative_l2": 0.00019244293798692524, "passed": true}}
+{"version": "v15", "seq": 257, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.964810664707329e-05, "relative_l2": 0.00019244293798692524, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.964810664707329e-05, "relative_l2": 0.00019244293798692524, "passed": true}}
+{"version": "v14", "seq": 257, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0014126300811767578, "rmse": 0.00013860652688890696, "relative_l2": 0.0001430874690413475, "passed": true}, "official_error": {"finite": true, "max_abs": 0.001981973648071289, "rmse": 0.00013840876636095345, "relative_l2": 0.00014288332022260875, "passed": true}}
+{"version": "v15", "seq": 257, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0014126300811767578, "rmse": 0.00013860652688890696, "relative_l2": 0.0001430874690413475, "passed": true}, "official_error": {"finite": true, "max_abs": 0.001981973648071289, "rmse": 0.00013840876636095345, "relative_l2": 0.00014288332022260875, "passed": true}}
+{"version": "v14", "seq": 511, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.00016546249389648438, "rmse": 2.0807847249670886e-05, "relative_l2": 0.00028569941059686244, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0001932084560394287, "rmse": 2.0886076526949182e-05, "relative_l2": 0.00028677351656369865, "passed": true}}
+{"version": "v15", "seq": 511, "causal": false, "distribution": "normal", "error": {"finite": true, "max_abs": 0.00016546249389648438, "rmse": 2.0807847249670886e-05, "relative_l2": 0.00028569941059686244, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0001932084560394287, "rmse": 2.0886076526949182e-05, "relative_l2": 0.00028677351656369865, "passed": true}}
+{"version": "v14", "seq": 511, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 2.933293581008911e-05, "rmse": 8.570445061195642e-06, "relative_l2": 0.0002052775671472773, "passed": true}, "official_error": {"finite": true, "max_abs": 2.933293581008911e-05, "rmse": 8.570445061195642e-06, "relative_l2": 0.0002052775671472773, "passed": true}}
+{"version": "v15", "seq": 511, "causal": false, "distribution": "zeros", "error": {"finite": true, "max_abs": 2.933293581008911e-05, "rmse": 8.570445061195642e-06, "relative_l2": 0.0002052775671472773, "passed": true}, "official_error": {"finite": true, "max_abs": 2.933293581008911e-05, "rmse": 8.570445061195642e-06, "relative_l2": 0.0002052775671472773, "passed": true}}
+{"version": "v14", "seq": 511, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0021212100982666016, "rmse": 0.00016043045616243035, "relative_l2": 0.0001668039767537266, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00200653076171875, "rmse": 0.00016088866686914116, "relative_l2": 0.0001672803919063881, "passed": true}}
+{"version": "v15", "seq": 511, "causal": false, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.0021212100982666016, "rmse": 0.00016043045616243035, "relative_l2": 0.0001668039767537266, "passed": true}, "official_error": {"finite": true, "max_abs": 0.00200653076171875, "rmse": 0.00016088866686914116, "relative_l2": 0.0001672803919063881, "passed": true}}
+{"version": "v14", "seq": 511, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0012543201446533203, "rmse": 4.040570274810307e-05, "relative_l2": 0.0002520640264265239, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0012543201446533203, "rmse": 4.0727438317844644e-05, "relative_l2": 0.0002540710847824812, "passed": true}}
+{"version": "v15", "seq": 511, "causal": true, "distribution": "normal", "error": {"finite": true, "max_abs": 0.0012543201446533203, "rmse": 4.040570274810307e-05, "relative_l2": 0.0002520640264265239, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0012543201446533203, "rmse": 4.0727438317844644e-05, "relative_l2": 0.0002540710847824812, "passed": true}}
+{"version": "v14", "seq": 511, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2609629013459198e-05, "relative_l2": 0.00019180007802788168, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2609629013459198e-05, "relative_l2": 0.00019180007802788168, "passed": true}}
+{"version": "v15", "seq": 511, "causal": true, "distribution": "zeros", "error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2609629013459198e-05, "relative_l2": 0.00019180007802788168, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0009765625, "rmse": 2.2609629013459198e-05, "relative_l2": 0.00019180007802788168, "passed": true}}
+{"version": "v14", "seq": 511, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.002388477325439453, "rmse": 0.00015474436804652214, "relative_l2": 0.00016023748321458697, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0018374919891357422, "rmse": 0.0001516893389634788, "relative_l2": 0.00015707401325926185, "passed": true}}
+{"version": "v15", "seq": 511, "causal": true, "distribution": "large_logits", "error": {"finite": true, "max_abs": 0.002388477325439453, "rmse": 0.00015474436804652214, "relative_l2": 0.00016023748321458697, "passed": true}, "official_error": {"finite": true, "max_abs": 0.0018374919891357422, "rmse": 0.0001516893389634788, "relative_l2": 0.00015707401325926185, "passed": true}}
+{"shape": [1, 512, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 10.48159971833229, "samples_us": [10.524799674749374, 10.462400317192078, 10.414399951696396, 10.601600259542465, 10.435199737548828, 10.48159971833229, 10.4543998837471, 10.513599961996078, 10.48159971833229], "min_us": 10.414399951696396, "max_us": 10.601600259542465, "tflops": 102.44064387633772, "official_throughput_percent": 100.0}, "v14": {"median_us": 17.57279932498932, "samples_us": [17.64480024576187, 17.64640063047409, 17.556799948215485, 17.588800191879272, 17.57279932498932, 17.550399899482727, 17.580799758434296, 17.563199996948242, 17.56799966096878], "min_us": 17.550399899482727, "max_us": 17.64640063047409, "tflops": 61.10249164873182, "official_throughput_percent": 59.646727447840256}, "v15": {"median_us": 17.259199917316437, "samples_us": [17.321600019931793, 17.257599532604218, 17.27679967880249, 17.25279986858368, 17.259199917316437, 17.256000638008118, 17.310400307178497, 17.262400686740875, 17.233599722385406], "min_us": 17.233599722385406, "max_us": 17.321600019931793, "tflops": 62.21272301983693, "official_throughput_percent": 60.73050760490891}}, "errors": {"v14": {"finite": true, "max_abs": 0.000244140625, "rmse": 2.785614924505353e-05, "relative_l2": 0.0003862358280457556, "passed": true}, "v15": {"finite": true, "max_abs": 0.000244140625, "rmse": 2.785614924505353e-05, "relative_l2": 0.0003862358280457556, "passed": true}}, "source_sha256": {"v14": "6f06f1f5711a796e0fbd858c008c49d37498239b5c415e6263a12451e7990283", "v15": "b8ab614badb866a369b9c601e374eb4345ce005d5fdae64a5218184c1552d181"}}
+{"shape": [1, 1024, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 16.13599956035614, "samples_us": [16.2432000041008, 16.19359999895096, 16.05760008096695, 16.099199652671814, 16.155199706554413, 16.13599956035614, 16.062399744987488, 16.13440066576004, 16.18559956550598], "min_us": 16.05760008096695, "max_us": 16.2432000041008, "tflops": 266.1729928744002, "official_throughput_percent": 100.0}, "v14": {"median_us": 28.835201263427734, "samples_us": [28.880000114440918, 28.835201263427734, 28.748801350593567, 28.857600688934326, 28.838399052619934, 28.915199637413025, 28.726398944854736, 28.832000494003296, 28.751999139785767], "min_us": 28.726398944854736, "max_us": 28.915199637413025, "tflops": 148.94875387769162, "official_throughput_percent": 55.959378999798254}, "v15": {"median_us": 28.036800026893616, "samples_us": [28.004801273345947, 28.094398975372314, 27.988800406455994, 28.065600991249084, 28.02720069885254, 28.065600991249084, 28.13279926776886, 28.003200888633728, 28.036800026893616], "min_us": 27.988800406455994, "max_us": 28.13279926776886, "tflops": 153.19035310307018, "official_throughput_percent": 57.55292881098441}}, "errors": {"v14": {"finite": true, "max_abs": 0.000244140625, "rmse": 2.0100058463867754e-05, "relative_l2": 0.00039116316474974155, "passed": true}, "v15": {"finite": true, "max_abs": 0.000244140625, "rmse": 2.0100058463867754e-05, "relative_l2": 0.00039116316474974155, "passed": true}}, "source_sha256": {"v14": "6f06f1f5711a796e0fbd858c008c49d37498239b5c415e6263a12451e7990283", "v15": "b8ab614badb866a369b9c601e374eb4345ce005d5fdae64a5218184c1552d181"}}
+{"shape": [1, 4096, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 51.61600112915039, "samples_us": [51.77599787712097, 51.90719962120056, 50.92800259590149, 52.03999876976013, 51.06719732284546, 51.635199785232544, 51.179200410842896, 51.61600112915039, 51.0047972202301], "min_us": 50.92800259590149, "max_us": 52.03999876976013, "tflops": 1331.3599510363917, "official_throughput_percent": 100.0}, "v14": {"median_us": 95.63519954681396, "samples_us": [95.63519954681396, 96.56000137329102, 95.3216016292572, 96.1408019065857, 95.3167974948883, 96.11039757728577, 95.5568015575409, 96.2224006652832, 95.36640048027039], "min_us": 95.3167974948883, "max_us": 96.56000137329102, "tflops": 718.5584080091916, "official_throughput_percent": 53.97176078864568}, "v15": {"median_us": 92.9744005203247, "samples_us": [93.02080273628235, 93.11360120773315, 92.8928017616272, 93.10879707336426, 92.91200041770935, 92.9744005203247, 92.75519847869873, 93.12959909439087, 92.82879829406738], "min_us": 92.75519847869873, "max_us": 93.12959909439087, "tflops": 739.1225579451577, "official_throughput_percent": 55.51635809457772}}, "errors": {"v14": {"finite": true, "max_abs": 0.0001220703125, "rmse": 1.0148984983970877e-05, "relative_l2": 0.00039668590761721134, "passed": true}, "v15": {"finite": true, "max_abs": 0.0001220703125, "rmse": 1.0148984983970877e-05, "relative_l2": 0.00039668590761721134, "passed": true}}, "source_sha256": {"v14": "6f06f1f5711a796e0fbd858c008c49d37498239b5c415e6263a12451e7990283", "v15": "b8ab614badb866a369b9c601e374eb4345ce005d5fdae64a5218184c1552d181"}}
+{"shape": [1, 8192, 8, 128], "causal": false, "timing": {"official_fa4": {"median_us": 197.0687985420227, "samples_us": [197.0687985420227, 196.8783974647522, 197.60799407958984, 196.8816041946411, 197.00640439987183, 197.04320430755615, 197.38240242004395, 198.55200052261353, 197.7519989013672], "min_us": 196.8783974647522, "max_us": 198.55200052261353, "tflops": 1394.8322056948318, "official_throughput_percent": 100.0}, "v14": {"median_us": 375.56960582733154, "samples_us": [364.91520404815674, 365.20800590515137, 364.87839221954346, 381.74240589141846, 375.38719177246094, 375.56960582733154, 384.7264051437378, 393.558406829834, 375.7200002670288], "min_us": 364.87839221954346, "max_us": 393.558406829834, "tflops": 731.8960391868754, "official_throughput_percent": 52.471977360336574}, "v15": {"median_us": 367.4191951751709, "samples_us": [356.2160015106201, 356.04000091552734, 356.2367916107178, 379.6832084655762, 367.4191951751709, 367.2048091888428, 379.3839931488037, 375.9200096130371, 368.2287931442261], "min_us": 356.04000091552734, "max_us": 379.6832084655762, "tflops": 748.1315907105754, "official_throughput_percent": 53.63595618570449}}, "errors": {"v14": {"finite": true, "max_abs": 6.103515625e-05, "rmse": 7.1983545240073e-06, "relative_l2": 0.0003974943538196385, "passed": true}, "v15": {"finite": true, "max_abs": 6.103515625e-05, "rmse": 7.1983545240073e-06, "relative_l2": 0.0003974943538196385, "passed": true}}, "source_sha256": {"v14": "6f06f1f5711a796e0fbd858c008c49d37498239b5c415e6263a12451e7990283", "v15": "b8ab614badb866a369b9c601e374eb4345ce005d5fdae64a5218184c1552d181"}}
+{"shape": [1, 4096, 8, 128], "causal": true, "timing": {"official_fa4": {"median_us": 51.31999850273132, "samples_us": [51.53599977493286, 51.31999850273132, 49.92319941520691, 51.37439966201782, 49.88960027694702, 51.38239860534668, 50.04640221595764, 51.526397466659546, 49.83519911766052], "min_us": 49.83519911766052, "max_us": 51.53599977493286, "tflops": 669.5194733135335, "official_throughput_percent": 100.0}, "v14": {"median_us": 101.93920135498047, "samples_us": [101.90880298614502, 102.20639705657959, 101.92639827728271, 102.4399995803833, 101.93920135498047, 102.25759744644165, 101.88000202178955, 102.3408055305481, 101.92960500717163], "min_us": 101.88000202178955, "max_us": 102.4399995803833, "tflops": 337.06109044694097, "official_throughput_percent": 50.343732166412515}, "v15": {"median_us": 98.38079810142517, "samples_us": [98.30880165100098, 98.41600060462952, 98.48480224609375, 98.41279983520508, 98.28479886054993, 98.38079810142517, 98.4000027179718, 98.32959771156311, 98.28479886054993], "min_us": 98.28479886054993, "max_us": 98.48480224609375, "tflops": 349.2524865734166, "official_throughput_percent": 52.16464949778435}}, "errors": {"v14": {"finite": true, "max_abs": 0.00048828125, "rmse": 1.8768490917864256e-05, "relative_l2": 0.0002719163603615016, "passed": true}, "v15": {"finite": true, "max_abs": 0.00048828125, "rmse": 1.8768490917864256e-05, "relative_l2": 0.0002719163603615016, "passed": true}}, "source_sha256": {"v14": "6f06f1f5711a796e0fbd858c008c49d37498239b5c415e6263a12451e7990283", "v15": "b8ab614badb866a369b9c601e374eb4345ce005d5fdae64a5218184c1552d181"}}
+{"shape": [1, 8192, 8, 128], "causal": true, "timing": {"official_fa4": {"median_us": 101.43359899520874, "samples_us": [101.93439722061157, 101.61279439926147, 101.43359899520874, 101.51360034942627, 101.7408013343811, 101.42560005187988, 101.18399858474731, 101.24479532241821, 101.42879486083984], "min_us": 101.18399858474731, "max_us": 101.93439722061157, "tflops": 1354.9647733439092, "official_throughput_percent": 100.0}, "v14": {"median_us": 309.8031997680664, "samples_us": [309.32319164276123, 310.1439952850342, 308.90560150146484, 309.8031997680664, 309.8016023635864, 311.4272117614746, 309.97281074523926, 311.40480041503906, 309.7536087036133], "min_us": 308.90560150146484, "max_us": 311.4272117614746, "tflops": 443.63309860870845, "official_throughput_percent": 32.74130127485669}, "v15": {"median_us": 298.7168073654175, "samples_us": [297.75359630584717, 297.3104000091553, 297.83198833465576, 297.31359481811523, 299.3664026260376, 298.87681007385254, 299.29280281066895, 298.7168073654175, 299.4191884994507], "min_us": 297.3104000091553, "max_us": 299.4191884994507, "tflops": 460.09782537569845, "official_throughput_percent": 33.95644185200666}}, "errors": {"v14": {"finite": true, "max_abs": 0.0009765625, "rmse": 1.4480713616649155e-05, "relative_l2": 0.0002884289715439081, "passed": true}, "v15": {"finite": true, "max_abs": 0.0009765625, "rmse": 1.4480713616649155e-05, "relative_l2": 0.0002884289715439081, "passed": true}}, "source_sha256": {"v14": "6f06f1f5711a796e0fbd858c008c49d37498239b5c415e6263a12451e7990283", "v15": "b8ab614badb866a369b9c601e374eb4345ce005d5fdae64a5218184c1552d181"}}
+{"shape": [2, 4096, 16, 128], "causal": false, "timing": {"official_fa4": {"median_us": 210.4736089706421, "samples_us": [210.09440422058105, 209.79039669036865, 210.4736089706421, 214.85600471496582, 210.4288101196289, 211.42399311065674, 210.77759265899658, 211.30399703979492, 210.46879291534424], "min_us": 209.79039669036865, "max_us": 214.85600471496582, "tflops": 1305.9970239895556, "official_throughput_percent": 100.0}, "v14": {"median_us": 389.2496109008789, "samples_us": [378.37440967559814, 380.4431915283203, 379.37920093536377, 404.46720123291016, 396.6576099395752, 392.4448013305664, 389.2496109008789, 398.60479831695557, 389.0431880950928], "min_us": 378.37440967559814, "max_us": 404.46720123291016, "tflops": 706.17387723991, "official_throughput_percent": 54.071629894124285}, "v15": {"median_us": 394.22879219055176, "samples_us": [369.6863889694214, 369.28958892822266, 394.50879096984863, 394.22879219055176, 398.7855911254883, 398.34399223327637, 382.50720500946045, 396.6655969619751, 384.3935966491699], "min_us": 369.28958892822266, "max_us": 398.7855911254883, "tflops": 697.2547728354069, "official_throughput_percent": 53.38869538197225}}, "errors": {"v14": {"finite": true, "max_abs": 0.0001220703125, "rmse": 1.015271573123755e-05, "relative_l2": 0.00039520428981631994, "passed": true}, "v15": {"finite": true, "max_abs": 0.0001220703125, "rmse": 1.015271573123755e-05, "relative_l2": 0.00039520428981631994, "passed": true}}, "source_sha256": {"v14": "6f06f1f5711a796e0fbd858c008c49d37498239b5c415e6263a12451e7990283", "v15": "b8ab614badb866a369b9c601e374eb4345ce005d5fdae64a5218184c1552d181"}}
+Returning 523772 compressed artifact bytes
+Saved /home/alioth/2026fa/ai-agent-from-scratch/kernel/fa4/runs/v15_max_chains
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/akseven6221/main/ap-LOR78wkWza5FUHvXune9EL

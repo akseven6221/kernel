@@ -1,0 +1,1378 @@
+{
+  "metadata": {
+    "torch": "2.10.0+cu128",
+    "device": "NVIDIA B200",
+    "capability": [
+      10,
+      0
+    ],
+    "packages": {
+      "flash-attn-4": "4.0.0b35",
+      "nvidia-cutlass-dsl": "4.8.0",
+      "apache-tvm-ffi": "0.1.14.post1",
+      "quack-kernels": "0.6.5"
+    },
+    "timing": "CUDA Graph, 20 nodes, 10 warmups, 9 alternating rounds; CUDA events; median",
+    "pid": 29,
+    "official_source_sha256": {
+      "interface.py": "ca06d6d299be83b497c934a3800ea13bb3040eb86b14a3769f2c95e55758ee30",
+      "flash_fwd_sm100.py": "c8cbc40b97c9f2a8fa5ce3da5dbe4f0eb80787158f1e4398889ca02572ec1cdb",
+      "softmax.py": "aaddf3030dba7b9809c4fefae3caab22d0f22b9ecf5050601d6646aefb611a49",
+      "utils.py": "c949e86b6e78f39283ccc24819eeec0e08301ee8bf1954def22831f1193c9204"
+    }
+  },
+  "source_sha256": "34d168556b3841af90f123cde5c1f05b5a2393abdb1a1e73b3ae6701df910329",
+  "benchmark_run": "runs/r2_final_all",
+  "profile_run": "runs/r2_profile_43_46",
+  "correctness": [
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": false,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0002970099449157715,
+        "rmse": 3.882053351844661e-05,
+        "relative_l2": 0.00026893612812273204,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0002970099449157715,
+        "rmse": 3.892551831086166e-05,
+        "relative_l2": 0.0002696634619496763,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": false,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 0.00010895729064941406,
+        "rmse": 1.8349424863117747e-05,
+        "relative_l2": 0.00020510835747700185,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.00010895729064941406,
+        "rmse": 1.8349424863117747e-05,
+        "relative_l2": 0.00020510835747700185,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": false,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.001039743423461914,
+        "rmse": 0.00013448311074171215,
+        "relative_l2": 0.00013868039241060615,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0011453628540039062,
+        "rmse": 0.0001346105564152822,
+        "relative_l2": 0.00013881182530894876,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": false,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.00011479854583740234,
+        "rmse": 1.9433678971836343e-05,
+        "relative_l2": 0.0002232518163509667,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 32768,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": true,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0007168054580688477,
+        "rmse": 6.726569699821994e-05,
+        "relative_l2": 0.00024167935771401972,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0007168054580688477,
+        "rmse": 6.733789632562548e-05,
+        "relative_l2": 0.0002419387747067958,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": true,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 3.97783333028201e-05,
+        "relative_l2": 0.0001927773846546188,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 3.97783333028201e-05,
+        "relative_l2": 0.0001927773846546188,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": true,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0014162063598632812,
+        "rmse": 0.00012605755182448775,
+        "relative_l2": 0.000131509848870337,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0014162063598632812,
+        "rmse": 0.0001265429164050147,
+        "relative_l2": 0.0001320162118645385,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 128,
+      "heads": 2,
+      "causal": true,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 3.844454840873368e-05,
+        "relative_l2": 0.00018868224287871271,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 32768,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 256,
+      "heads": 2,
+      "causal": false,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0001707226037979126,
+        "rmse": 2.866269278456457e-05,
+        "relative_l2": 0.0002793415042106062,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.00024068355560302734,
+        "rmse": 2.8938602554262616e-05,
+        "relative_l2": 0.00028203046531416476,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 256,
+      "heads": 2,
+      "causal": false,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 5.982816219329834e-05,
+        "rmse": 1.4124397239356767e-05,
+        "relative_l2": 0.00021389337780419737,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 5.982816219329834e-05,
+        "rmse": 1.4124397239356767e-05,
+        "relative_l2": 0.00021389337780419737,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 256,
+      "heads": 2,
+      "causal": false,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0018913745880126953,
+        "rmse": 0.0001549799635540694,
+        "relative_l2": 0.00016227393643930554,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0017843246459960938,
+        "rmse": 0.00015099093434400856,
+        "relative_l2": 0.00015809717297088355,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 256,
+      "heads": 2,
+      "causal": false,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 6.0170888900756836e-05,
+        "rmse": 1.3865873370377813e-05,
+        "relative_l2": 0.00022061431081965566,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 65536,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 256,
+      "heads": 2,
+      "causal": true,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0008306503295898438,
+        "rmse": 5.109038465889171e-05,
+        "relative_l2": 0.00024239516642410308,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0008306503295898438,
+        "rmse": 5.156034603714943e-05,
+        "relative_l2": 0.0002446248836349696,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 256,
+      "heads": 2,
+      "causal": true,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 0.00048828125,
+        "rmse": 2.907352609327063e-05,
+        "relative_l2": 0.0001861939235823229,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.00048828125,
+        "rmse": 2.907352609327063e-05,
+        "relative_l2": 0.0001861939235823229,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 256,
+      "heads": 2,
+      "causal": true,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0018799304962158203,
+        "rmse": 0.0001412503479514271,
+        "relative_l2": 0.00014695498975925148,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0015590190887451172,
+        "rmse": 0.0001401670597260818,
+        "relative_l2": 0.00014582794392481446,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 256,
+      "heads": 2,
+      "causal": true,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 2.9601727874251083e-05,
+        "relative_l2": 0.0001958628126885742,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 65536,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 257,
+      "heads": 2,
+      "causal": false,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.00022938847541809082,
+        "rmse": 2.876105827454012e-05,
+        "relative_l2": 0.00027925914037041366,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.00020009279251098633,
+        "rmse": 3.0027906177565455e-05,
+        "relative_l2": 0.0002915597870014608,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 257,
+      "heads": 2,
+      "causal": false,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 6.103515625e-05,
+        "rmse": 1.4205542356648948e-05,
+        "relative_l2": 0.00022261332196649164,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 6.103515625e-05,
+        "rmse": 1.4205542356648948e-05,
+        "relative_l2": 0.00022261332196649164,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 257,
+      "heads": 2,
+      "causal": false,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0013723373413085938,
+        "rmse": 0.00014812350855208933,
+        "relative_l2": 0.00015418858674820513,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0021936893463134766,
+        "rmse": 0.00015101795725058764,
+        "relative_l2": 0.0001572015753481537,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 257,
+      "heads": 2,
+      "causal": false,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 6.00665807723999e-05,
+        "rmse": 1.3775878869637381e-05,
+        "relative_l2": 0.00022091368737164885,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 65792,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 257,
+      "heads": 2,
+      "causal": true,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0010027885437011719,
+        "rmse": 5.276292358757928e-05,
+        "relative_l2": 0.00024557681172154844,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0010027885437011719,
+        "rmse": 5.331529246177524e-05,
+        "relative_l2": 0.0002481477567926049,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 257,
+      "heads": 2,
+      "causal": true,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 2.9324150091269985e-05,
+        "relative_l2": 0.00019223919662181288,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 2.9324150091269985e-05,
+        "relative_l2": 0.00019223919662181288,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 257,
+      "heads": 2,
+      "causal": true,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0017168521881103516,
+        "rmse": 0.00015127916412893683,
+        "relative_l2": 0.0001580575917614624,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0015249252319335938,
+        "rmse": 0.0001512939197709784,
+        "relative_l2": 0.00015807300223968923,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 257,
+      "heads": 2,
+      "causal": true,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.00048828125,
+        "rmse": 3.071369064855389e-05,
+        "relative_l2": 0.00019027100643143058,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 65792,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 511,
+      "heads": 2,
+      "causal": false,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.00013372302055358887,
+        "rmse": 2.075377960863989e-05,
+        "relative_l2": 0.00028785044560208917,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.00015944242477416992,
+        "rmse": 2.092415525112301e-05,
+        "relative_l2": 0.0002902135020121932,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 511,
+      "heads": 2,
+      "causal": false,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 2.9899179935455322e-05,
+        "rmse": 8.619350410299376e-06,
+        "relative_l2": 0.00021231350547168404,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 2.9899179935455322e-05,
+        "rmse": 8.619350410299376e-06,
+        "relative_l2": 0.00021231350547168404,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 511,
+      "heads": 2,
+      "causal": false,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0019099712371826172,
+        "rmse": 0.00016273217624984682,
+        "relative_l2": 0.00016971322475001216,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0019276142120361328,
+        "rmse": 0.0001657028478803113,
+        "relative_l2": 0.0001728113420540467,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 511,
+      "heads": 2,
+      "causal": false,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 3.0316412448883057e-05,
+        "rmse": 9.591794878360815e-06,
+        "relative_l2": 0.00021534164261538535,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 130816,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 511,
+      "heads": 2,
+      "causal": true,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0008380413055419922,
+        "rmse": 4.0016424463829026e-05,
+        "relative_l2": 0.00024952524108812213,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0008380413055419922,
+        "rmse": 4.04119782615453e-05,
+        "relative_l2": 0.00025199176161549985,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 511,
+      "heads": 2,
+      "causal": true,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 2.2057696696720086e-05,
+        "relative_l2": 0.00019277188403066248,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 2.2057696696720086e-05,
+        "relative_l2": 0.00019277188403066248,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 511,
+      "heads": 2,
+      "causal": true,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0018982887268066406,
+        "rmse": 0.000155224755872041,
+        "relative_l2": 0.0001614246139070019,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0020551681518554688,
+        "rmse": 0.0001511137670604512,
+        "relative_l2": 0.00015714943583589047,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 1,
+      "seq": 511,
+      "heads": 2,
+      "causal": true,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 2.326534922758583e-05,
+        "relative_l2": 0.0001966772833839059,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 130816,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 2,
+      "seq": 257,
+      "heads": 3,
+      "causal": false,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0004019737243652344,
+        "rmse": 2.9023267416050658e-05,
+        "relative_l2": 0.0002807419514283538,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0003521442413330078,
+        "rmse": 3.0274684831965715e-05,
+        "relative_l2": 0.0002928468747995794,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 2,
+      "seq": 257,
+      "heads": 3,
+      "causal": false,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 5.836784839630127e-05,
+        "rmse": 1.2144113497924991e-05,
+        "relative_l2": 0.00020451945601962507,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 5.836784839630127e-05,
+        "rmse": 1.2144113497924991e-05,
+        "relative_l2": 0.00020451945601962507,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 2,
+      "seq": 257,
+      "heads": 3,
+      "causal": false,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0020029544830322266,
+        "rmse": 0.00015422033902723342,
+        "relative_l2": 0.00016017734014894813,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0020775794982910156,
+        "rmse": 0.00015524130139965564,
+        "relative_l2": 0.00016123775276355445,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 2,
+      "seq": 257,
+      "heads": 3,
+      "causal": false,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 6.0364603996276855e-05,
+        "rmse": 1.267795141757233e-05,
+        "relative_l2": 0.00020545026927720755,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 197376,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 2,
+      "seq": 257,
+      "heads": 3,
+      "causal": true,
+      "distribution": "normal",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0009679794311523438,
+        "rmse": 5.2167215471854433e-05,
+        "relative_l2": 0.00024171640689019114,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0009679794311523438,
+        "rmse": 5.2570529078366235e-05,
+        "relative_l2": 0.000243585163843818,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 2,
+      "seq": 257,
+      "heads": 3,
+      "causal": true,
+      "distribution": "zeros",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 2.873550693038851e-05,
+        "relative_l2": 0.00019021581101696938,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 2.8735508749377914e-05,
+        "relative_l2": 0.00019021581101696938,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 2,
+      "seq": 257,
+      "heads": 3,
+      "causal": true,
+      "distribution": "large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.0021588802337646484,
+        "rmse": 0.0001406525116181001,
+        "relative_l2": 0.00014505091530736536,
+        "passed": true
+      },
+      "official_error": {
+        "finite": true,
+        "max_abs": 0.002036571502685547,
+        "rmse": 0.00013878682511858642,
+        "relative_l2": 0.00014312687562778592,
+        "passed": true
+      }
+    },
+    {
+      "version": "v45",
+      "batch": 2,
+      "seq": 257,
+      "heads": 3,
+      "causal": true,
+      "distribution": "constant_large_logits",
+      "error": {
+        "finite": true,
+        "max_abs": 0.00048828125,
+        "rmse": 2.989528002217412e-05,
+        "relative_l2": 0.00019055970187764615,
+        "passed": true
+      },
+      "official_error": {
+        "finite": false,
+        "nonfinite_count": 197376,
+        "max_abs": null,
+        "rmse": null,
+        "relative_l2": null,
+        "passed": false
+      }
+    }
+  ],
+  "benchmarks": [
+    {
+      "shape": [
+        1,
+        512,
+        8,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 10.731200128793716,
+          "samples_us": [
+            11.003199964761734,
+            11.790399998426437,
+            11.456000059843063,
+            10.692799836397171,
+            10.731200128793716,
+            10.69440022110939,
+            10.838399827480316,
+            10.724800080060959,
+            10.636799782514572
+          ],
+          "min_us": 10.636799782514572,
+          "max_us": 11.790399998426437,
+          "tflops": 100.05794422927217,
+          "official_throughput_percent": 100.0
+        },
+        "v45": {
+          "median_us": 14.767999947071075,
+          "samples_us": [
+            14.767999947071075,
+            14.801600575447083,
+            14.688000082969666,
+            14.764800667762756,
+            14.804799854755402,
+            14.683200418949127,
+            14.800000190734863,
+            14.764800667762756,
+            14.827199280261993
+          ],
+          "min_us": 14.683200418949127,
+          "max_us": 14.827199280261993,
+          "tflops": 72.70732853794155,
+          "official_throughput_percent": 72.66522323438947
+        }
+      },
+      "error": {
+        "finite": true,
+        "max_abs": 0.00048828125,
+        "rmse": 2.8327734980848618e-05,
+        "relative_l2": 0.0003844553721137345,
+        "passed": true
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 263.48 W, 1000.00 W, 43\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 272.62 W, 1000.00 W, 43\n"
+    },
+    {
+      "shape": [
+        1,
+        1024,
+        8,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 16.303999722003937,
+          "samples_us": [
+            16.303999722003937,
+            16.284799575805664,
+            16.26559942960739,
+            16.392000019550323,
+            17.470400035381317,
+            16.303999722003937,
+            16.167999804019928,
+            16.307200491428375,
+            17.83519983291626
+          ],
+          "min_us": 16.167999804019928,
+          "max_us": 17.83519983291626,
+          "tflops": 263.4302851590151,
+          "official_throughput_percent": 100.0
+        },
+        "v45": {
+          "median_us": 22.790400683879852,
+          "samples_us": [
+            22.82239943742752,
+            22.787199914455414,
+            22.790400683879852,
+            22.832000255584717,
+            22.7743998169899,
+            22.731199860572815,
+            22.785599529743195,
+            22.812800109386444,
+            22.971199452877045
+          ],
+          "min_us": 22.731199860572815,
+          "max_us": 22.971199452877045,
+          "tflops": 188.4551024606568,
+          "official_throughput_percent": 71.53889020273395
+        }
+      },
+      "error": {
+        "finite": true,
+        "max_abs": 0.000244140625,
+        "rmse": 2.0155643142061308e-05,
+        "relative_l2": 0.00038975197821855545,
+        "passed": true
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 276.32 W, 1000.00 W, 43\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 313.48 W, 1000.00 W, 44\n"
+    },
+    {
+      "shape": [
+        1,
+        4096,
+        8,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 53.20960283279419,
+          "samples_us": [
+            53.25919985771179,
+            53.251200914382935,
+            52.35360264778137,
+            53.273600339889526,
+            52.35360264778137,
+            53.20960283279419,
+            53.08640003204346,
+            53.45919728279114,
+            52.95040011405945
+          ],
+          "min_us": 52.35360264778137,
+          "max_us": 53.45919728279114,
+          "tflops": 1291.486368577943,
+          "official_throughput_percent": 100.0
+        },
+        "v45": {
+          "median_us": 71.806401014328,
+          "samples_us": [
+            72.17919826507568,
+            71.63360118865967,
+            72.12640047073364,
+            71.73280119895935,
+            71.62240147590637,
+            72.61919975280762,
+            71.806401014328,
+            71.67999744415283,
+            71.9103991985321
+          ],
+          "min_us": 71.62240147590637,
+          "max_us": 72.61919975280762,
+          "tflops": 957.0104581942207,
+          "official_throughput_percent": 74.10147574751299
+        }
+      },
+      "error": {
+        "finite": true,
+        "max_abs": 0.0001220703125,
+        "rmse": 1.0263124750053976e-05,
+        "relative_l2": 0.0003892306995112449,
+        "passed": true
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 323.50 W, 1000.00 W, 44\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 915.28 W, 1000.00 W, 58\n"
+    },
+    {
+      "shape": [
+        1,
+        8192,
+        8,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 203.6639928817749,
+          "samples_us": [
+            206.36000633239746,
+            203.49760055541992,
+            203.24320793151855,
+            204.52799797058105,
+            203.96320819854736,
+            203.6639928817749,
+            203.52799892425537,
+            204.05120849609375,
+            203.24959754943848
+          ],
+          "min_us": 203.24320793151855,
+          "max_us": 206.36000633239746,
+          "tflops": 1349.6637429845744,
+          "official_throughput_percent": 100.0
+        },
+        "v45": {
+          "median_us": 272.0400094985962,
+          "samples_us": [
+            271.33119106292725,
+            270.5264091491699,
+            272.45121002197266,
+            278.931188583374,
+            272.81439304351807,
+            270.96800804138184,
+            269.4416046142578,
+            273.9039897918701,
+            272.0400094985962
+          ],
+          "min_us": 269.4416046142578,
+          "max_us": 278.931188583374,
+          "tflops": 1010.4319120214502,
+          "official_throughput_percent": 74.86545573099822
+        }
+      },
+      "error": {
+        "finite": true,
+        "max_abs": 6.103515625e-05,
+        "rmse": 7.218331120384391e-06,
+        "relative_l2": 0.00039492789073847234,
+        "passed": true
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 915.28 W, 1000.00 W, 58\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1897 MHz, 3996 MHz, 947.56 W, 1000.00 W, 62\n"
+    },
+    {
+      "shape": [
+        1,
+        4096,
+        8,
+        128
+      ],
+      "causal": true,
+      "timing": {
+        "official_fa4": {
+          "median_us": 50.74080228805542,
+          "samples_us": [
+            50.87199807167053,
+            51.04320049285889,
+            49.880000948905945,
+            50.74080228805542,
+            49.883198738098145,
+            50.940799713134766,
+            49.92800056934357,
+            50.74080228805542,
+            51.00640058517456
+          ],
+          "min_us": 49.880000948905945,
+          "max_us": 51.04320049285889,
+          "tflops": 677.1619055792584,
+          "official_throughput_percent": 100.0
+        },
+        "v45": {
+          "median_us": 74.98239874839783,
+          "samples_us": [
+            74.89920258522034,
+            75.21439790725708,
+            74.82560276985168,
+            75.13759732246399,
+            74.63359832763672,
+            75.06719827651978,
+            74.98239874839783,
+            74.85120296478271,
+            75.96480250358582
+          ],
+          "min_us": 74.63359832763672,
+          "max_us": 75.96480250358582,
+          "tflops": 458.23738559356474,
+          "official_throughput_percent": 67.67028414003575
+        }
+      },
+      "error": {
+        "finite": true,
+        "max_abs": 0.00048828125,
+        "rmse": 1.8762733816402033e-05,
+        "relative_l2": 0.0002749602135736495,
+        "passed": true
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1942 MHz, 3996 MHz, 936.67 W, 1000.00 W, 60\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 663.89 W, 1000.00 W, 55\n"
+    },
+    {
+      "shape": [
+        1,
+        8192,
+        8,
+        128
+      ],
+      "causal": true,
+      "timing": {
+        "official_fa4": {
+          "median_us": 105.7360053062439,
+          "samples_us": [
+            106.3040018081665,
+            105.84479570388794,
+            105.7360053062439,
+            105.27039766311646,
+            107.20959901809692,
+            104.86079454421997,
+            105.46079874038696,
+            106.37919902801514,
+            105.5359959602356
+          ],
+          "min_us": 104.86079454421997,
+          "max_us": 107.20959901809692,
+          "tflops": 1299.8311509304199,
+          "official_throughput_percent": 100.0
+        },
+        "v45": {
+          "median_us": 141.17920398712158,
+          "samples_us": [
+            145.36960124969482,
+            141.17920398712158,
+            141.30719900131226,
+            141.09760522842407,
+            140.27999639511108,
+            142.72480010986328,
+            140.55039882659912,
+            142.44320392608643,
+            140.17759561538696
+          ],
+          "min_us": 140.17759561538696,
+          "max_us": 145.36960124969482,
+          "tflops": 973.5070717960504,
+          "official_throughput_percent": 74.89488700891752
+        }
+      },
+      "error": {
+        "finite": true,
+        "max_abs": 0.00048828125,
+        "rmse": 1.4526207451126538e-05,
+        "relative_l2": 0.00029035581974312663,
+        "passed": true
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 632.87 W, 1000.00 W, 55\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1942 MHz, 3996 MHz, 942.32 W, 1000.00 W, 63\n"
+    },
+    {
+      "shape": [
+        2,
+        4096,
+        16,
+        128
+      ],
+      "causal": false,
+      "timing": {
+        "official_fa4": {
+          "median_us": 217.22400188446045,
+          "samples_us": [
+            218.67680549621582,
+            218.15359592437744,
+            217.12799072265625,
+            217.22400188446045,
+            216.8976068496704,
+            217.58079528808594,
+            216.98238849639893,
+            219.33441162109375,
+            216.6719913482666
+          ],
+          "min_us": 216.6719913482666,
+          "max_us": 219.33441162109375,
+          "tflops": 1265.4122222193714,
+          "official_throughput_percent": 100.0
+        },
+        "v45": {
+          "median_us": 291.53599739074707,
+          "samples_us": [
+            297.33119010925293,
+            286.1759901046753,
+            291.25280380249023,
+            286.1088037490845,
+            294.3455934524536,
+            292.09439754486084,
+            291.53599739074707,
+            289.4304037094116,
+            296.94719314575195
+          ],
+          "min_us": 286.1088037490845,
+          "max_us": 297.33119010925293,
+          "tflops": 942.8609482333663,
+          "official_throughput_percent": 74.51018187414918
+        }
+      },
+      "error": {
+        "finite": true,
+        "max_abs": 0.0001220703125,
+        "rmse": 1.0201625627814792e-05,
+        "relative_l2": 0.0003924202756024897,
+        "passed": true
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 881.17 W, 1000.00 W, 54\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1882 MHz, 3996 MHz, 970.68 W, 1000.00 W, 64\n"
+    },
+    {
+      "shape": [
+        2,
+        4096,
+        16,
+        128
+      ],
+      "causal": true,
+      "timing": {
+        "official_fa4": {
+          "median_us": 121.9823956489563,
+          "samples_us": [
+            123.86080026626587,
+            121.51999473571777,
+            121.9823956489563,
+            122.74559736251831,
+            121.91040515899658,
+            123.23839664459229,
+            121.96639776229858,
+            121.62719964981079,
+            122.00000286102295
+          ],
+          "min_us": 121.51999473571777,
+          "max_us": 123.86080026626587,
+          "tflops": 1126.7113811039171,
+          "official_throughput_percent": 100.0
+        },
+        "v45": {
+          "median_us": 166.58560037612915,
+          "samples_us": [
+            166.69600009918213,
+            163.34880590438843,
+            158.66400003433228,
+            161.95199489593506,
+            167.12640523910522,
+            166.58560037612915,
+            162.06719875335693,
+            170.8847999572754,
+            168.9792037010193
+          ],
+          "min_us": 158.66400003433228,
+          "max_us": 170.8847999572754,
+          "tflops": 825.0350160018651,
+          "official_throughput_percent": 73.22505389033357
+        }
+      },
+      "error": {
+        "finite": true,
+        "max_abs": 0.0009765625,
+        "rmse": 1.8756949430098757e-05,
+        "relative_l2": 0.00027320702793076634,
+        "passed": true
+      },
+      "clocks_before": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1965 MHz, 3996 MHz, 907.14 W, 1000.00 W, 57\n",
+      "clocks_after": "clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\n1942 MHz, 3996 MHz, 953.22 W, 1000.00 W, 61\n"
+    }
+  ],
+  "profile_metrics": {
+    "gpu__time_duration.sum": "84.448000",
+    "launch__registers_per_thread": "168",
+    "sm__pipe_tc_cycles_active.avg.pct_of_peak_sustained_active": "59.429769",
+    "sm__warps_active.avg.per_cycle_active": "9.957931",
+    "l1tex__t_requests_pipe_lsu_mem_local_op_ld.sum": "36736",
+    "l1tex__t_requests_pipe_lsu_mem_local_op_st.sum": "23040",
+    "derived__memory_l1_wavefronts_shared_excessive": "131072"
+  }
+}

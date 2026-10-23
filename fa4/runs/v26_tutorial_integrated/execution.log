@@ -1,0 +1,80 @@
+/root/fa4/v24/kernel.cu(110): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v24/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v24/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v24/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+/root/fa4/v24/kernel.cu(110): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v24/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v24/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v24/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    24 bytes stack frame, 20 bytes spill stores, 48 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 212.872 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    40 bytes stack frame, 52 bytes spill stores, 64 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 40 bytes cumulative stack size
+ptxas info    : Compile time = 175.816 ms
+
+Saved /tmp/artifacts/v24/sass.txt: 2224920 bytes
+/root/fa4/v26/kernel.cu(219): error: identifier "st_first32" is undefined
+        st_first32(tm+stage*128+64+rowtm,packed);
+        ^
+
+/root/fa4/v26/kernel.cu(220): error: identifier "st_first16" is undefined
+        if constexpr(!CAUSAL) st_first16(tm+stage*128+64+rowtm,packed);
+                              ^
+
+/root/fa4/v26/kernel.cu(232): error: identifier "st_tail32" is undefined
+        if constexpr(CAUSAL) st_tail32(tm+stage*128+64+rowtm,packed);
+                             ^
+
+/root/fa4/v26/kernel.cu(233): error: identifier "st_tail16" is undefined
+        else st_tail16(tm+stage*128+64+rowtm,packed);
+             ^
+
+4 errors detected in the compilation of "/root/fa4/v26/kernel.cu".
+
+Traceback (most recent call last):
+  File "/root/fa4/benchmark.py", line 170, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/fa4/benchmark.py", line 119, in main
+    kernels=[] if args.mode=='official' else [Kernel(v,out,compile=args.mode not in ['probe','sanitize']) for v in args.versions.split(',')]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/fa4/benchmark.py", line 31, in __init__
+    command(['nvcc','-std=c++17','-O3','-lineinfo','-arch=sm_100a','--shared','-Xcompiler=-fPIC',
+  File "/root/fa4/benchmark.py", line 20, in command
+    if p.returncode: raise RuntimeError(f'command failed ({p.returncode}): {args}; see {logfile}')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: command failed (2): ['nvcc', '-std=c++17', '-O3', '-lineinfo', '-arch=sm_100a', '--shared', '-Xcompiler=-fPIC', '--keep', '--keep-dir', '/tmp/artifacts/v26', '-Xptxas=-v', '/root/fa4/v26/kernel.cu', '-o', '/tmp/fa4_v26.so', '-L/usr/local/cuda/lib64/stubs', '-lcuda']; see /tmp/artifacts/v26/build.txt

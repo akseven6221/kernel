@@ -1,0 +1,854 @@
+{
+  "m": 4096,
+  "n": 4096,
+  "k": 4096,
+  "mma_n": 256,
+  "pairs": 6,
+  "v4_ms": 0.129934713,
+  "v5_ms": 0.1322006435,
+  "v5_latency_change_percent": 1.7438992611620074,
+  "paired_latency_change_median_percent": 1.411267503019853,
+  "paired_results": [
+    {
+      "pair": 1,
+      "order": [
+        "v4",
+        "v5"
+      ],
+      "v4_ms": 0.129617915,
+      "v5_ms": 0.135983676,
+      "v5_latency_change_percent": 4.91117373705634
+    },
+    {
+      "pair": 2,
+      "order": [
+        "v5",
+        "v4"
+      ],
+      "v4_ms": 0.131808951,
+      "v5_ms": 0.133153915,
+      "v5_latency_change_percent": 1.0203889719143655
+    },
+    {
+      "pair": 3,
+      "order": [
+        "v4",
+        "v5"
+      ],
+      "v4_ms": 0.129863992,
+      "v5_ms": 0.13139616,
+      "v5_latency_change_percent": 1.179825120422917
+    },
+    {
+      "pair": 4,
+      "order": [
+        "v5",
+        "v4"
+      ],
+      "v4_ms": 0.133440316,
+      "v5_ms": 0.130364805,
+      "v5_latency_change_percent": -2.304783960493617
+    },
+    {
+      "pair": 5,
+      "order": [
+        "v4",
+        "v5"
+      ],
+      "v4_ms": 0.130005434,
+      "v5_ms": 0.13241376,
+      "v5_latency_change_percent": 1.8524810278314874
+    },
+    {
+      "pair": 6,
+      "order": [
+        "v5",
+        "v4"
+      ],
+      "v4_ms": 0.129854396,
+      "v5_ms": 0.131987527,
+      "v5_latency_change_percent": 1.6427098856167888
+    }
+  ],
+  "runs": {
+    "v4": [
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 5,
+        "shared_bytes": 229536,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.129617915,
+        "cublas_ms": 0.100057915,
+        "custom_tflops": 1060.339182,
+        "cublas_tflops": 1373.59402,
+        "throughput_percent": 77.194511,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.12828736,
+          0.1281984,
+          0.128021121,
+          0.129617915,
+          0.135720313,
+          0.131373122,
+          0.131370559
+        ],
+        "cublas_ms_samples": [
+          0.099358082,
+          0.099100798,
+          0.098118074,
+          0.101578884,
+          0.10244032,
+          0.100637123,
+          0.100057915
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 5,
+        "shared_bytes": 229536,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.131808951,
+        "cublas_ms": 0.101902083,
+        "custom_tflops": 1042.713351,
+        "cublas_tflops": 1348.735472,
+        "throughput_percent": 77.310442,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.132826239,
+          0.133787841,
+          0.131497607,
+          0.131808951,
+          0.133936644,
+          0.131457284,
+          0.131455675
+        ],
+        "cublas_ms_samples": [
+          0.103464641,
+          0.103221439,
+          0.102004156,
+          0.101902083,
+          0.099218883,
+          0.099323198,
+          0.101863682
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 5,
+        "shared_bytes": 229536,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.129863992,
+        "cublas_ms": 0.100569919,
+        "custom_tflops": 1058.329957,
+        "cublas_tflops": 1366.601019,
+        "throughput_percent": 77.442497,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.133117437,
+          0.131747842,
+          0.131476477,
+          0.12980032,
+          0.129863992,
+          0.129718721,
+          0.12936832
+        ],
+        "cublas_ms_samples": [
+          0.102956802,
+          0.102787837,
+          0.101983041,
+          0.100569919,
+          0.099848956,
+          0.099548794,
+          0.097972482
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 5,
+        "shared_bytes": 229536,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.133440316,
+        "cublas_ms": 0.105862401,
+        "custom_tflops": 1029.96574,
+        "cublas_tflops": 1298.279197,
+        "throughput_percent": 79.333147,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.131232649,
+          0.128157124,
+          0.130477756,
+          0.136961922,
+          0.137028486,
+          0.137005761,
+          0.133440316
+        ],
+        "cublas_ms_samples": [
+          0.09946432,
+          0.09824384,
+          0.106051832,
+          0.105911039,
+          0.10596928,
+          0.105862401,
+          0.102021433
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 5,
+        "shared_bytes": 229536,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.130005434,
+        "cublas_ms": 0.101083517,
+        "custom_tflops": 1057.178528,
+        "cublas_tflops": 1359.657414,
+        "throughput_percent": 77.753301,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.133099839,
+          0.128616005,
+          0.130005434,
+          0.134361923,
+          0.134447351,
+          0.129779518,
+          0.129796803
+        ],
+        "cublas_ms_samples": [
+          0.102070719,
+          0.099099837,
+          0.104466878,
+          0.099766396,
+          0.103441603,
+          0.101083517,
+          0.099287681
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 5,
+        "shared_bytes": 229536,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.129854396,
+        "cublas_ms": 0.099845439,
+        "custom_tflops": 1058.408169,
+        "cublas_tflops": 1376.517091,
+        "throughput_percent": 76.890304,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.130790725,
+          0.129654393,
+          0.128982082,
+          0.136349112,
+          0.13633056,
+          0.129836485,
+          0.129854396
+        ],
+        "cublas_ms_samples": [
+          0.099845439,
+          0.099544965,
+          0.09932512,
+          0.103005759,
+          0.104984961,
+          0.10244032,
+          0.09915968
+        ]
+      }
+    ],
+    "v5": [
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 6,
+        "shared_bytes": 213100,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.135983676,
+        "cublas_ms": 0.103011198,
+        "custom_tflops": 1010.701856,
+        "cublas_tflops": 1334.213714,
+        "throughput_percent": 75.752621,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.131126717,
+          0.131228805,
+          0.136104003,
+          0.135983676,
+          0.136046082,
+          0.138172805,
+          0.134545609
+        ],
+        "cublas_ms_samples": [
+          0.099493764,
+          0.099231355,
+          0.103137285,
+          0.103011198,
+          0.105048001,
+          0.105906241,
+          0.100777283
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 6,
+        "shared_bytes": 213100,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.133153915,
+        "cublas_ms": 0.103032,
+        "custom_tflops": 1032.181089,
+        "cublas_tflops": 1333.944338,
+        "throughput_percent": 77.378123,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.133153915,
+          0.129728645,
+          0.129804477,
+          0.137941435,
+          0.134922877,
+          0.135986879,
+          0.132915512
+        ],
+        "cublas_ms_samples": [
+          0.101062715,
+          0.098304316,
+          0.104254723,
+          0.104648322,
+          0.103108481,
+          0.103032,
+          0.098772161
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 6,
+        "shared_bytes": 213100,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.13139616,
+        "cublas_ms": 0.102779195,
+        "custom_tflops": 1045.989121,
+        "cublas_tflops": 1337.225436,
+        "throughput_percent": 78.220851,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.13139616,
+          0.129736319,
+          0.132279992,
+          0.138010249,
+          0.134853438,
+          0.129165113,
+          0.12803936
+        ],
+        "cublas_ms_samples": [
+          0.098719046,
+          0.09832608,
+          0.106073596,
+          0.105923519,
+          0.102864958,
+          0.102779195,
+          0.097421758
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 6,
+        "shared_bytes": 213100,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.130364805,
+        "cublas_ms": 0.098578557,
+        "custom_tflops": 1054.264247,
+        "cublas_tflops": 1394.207393,
+        "throughput_percent": 75.617462,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.128433928,
+          0.129676163,
+          0.129717767,
+          0.130364805,
+          0.131736636,
+          0.131785601,
+          0.130841285
+        ],
+        "cublas_ms_samples": [
+          0.098565757,
+          0.098306559,
+          0.098578557,
+          0.098272964,
+          0.100654401,
+          0.100554876,
+          0.102618873
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 6,
+        "shared_bytes": 213100,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.13241376,
+        "cublas_ms": 0.100506566,
+        "custom_tflops": 1037.950691,
+        "cublas_tflops": 1367.462429,
+        "throughput_percent": 75.903416,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.13133055,
+          0.132846713,
+          0.135984004,
+          0.132131517,
+          0.132991359,
+          0.13241376,
+          0.130284801
+        ],
+        "cublas_ms_samples": [
+          0.099898554,
+          0.099575356,
+          0.100506566,
+          0.100572154,
+          0.102010876,
+          0.101890236,
+          0.098092802
+        ]
+      },
+      {
+        "gpu": "NVIDIA B200",
+        "sms": 148,
+        "cuda_runtime": 12080,
+        "driver": 13030,
+        "cublas_version": 120804,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096,
+        "warmup": 100,
+        "iterations": 100,
+        "rounds": 7,
+        "mma_n": 256,
+        "ab_stages": 6,
+        "shared_bytes": 213100,
+        "graph_warmup_replays": 50,
+        "custom_ms": 0.131987527,
+        "cublas_ms": 0.100554235,
+        "custom_tflops": 1041.302588,
+        "cublas_tflops": 1366.814168,
+        "throughput_percent": 76.18465,
+        "max_abs_error": 0,
+        "relative_l2": 0,
+        "custom_ms_samples": [
+          0.131761596,
+          0.135310397,
+          0.136593282,
+          0.131721601,
+          0.131987527,
+          0.131744951,
+          0.132012159
+        ],
+        "cublas_ms_samples": [
+          0.099756479,
+          0.09836448,
+          0.104341768,
+          0.102596484,
+          0.100554563,
+          0.100554235,
+          0.10010688
+        ]
+      }
+    ]
+  },
+  "timestamp_utc": "2026-10-18T09:44:47.158045+00:00",
+  "cuda_image": "nvidia/cuda:12.8.1-devel-ubuntu24.04",
+  "cutlass_commit": "f3fde58372d33e9a5650ba7b80fc48b3b49d40c8",
+  "timing": "same GPU; balanced AB/BA pairs; unchanged benchmark_v6: deterministic inputs, correctness before/after timing, 100 direct warmups, 50 alternating warmup graph replays each, 100 GEMMs/replay, CUDA events, 7 alternating custom/cuBLAS rounds; median of run medians",
+  "clocks_locked": false,
+  "source_sha256": {
+    "user_v4.cu": "448993e8286b5d2e87be6c1873fe2d7950552495a8eb166e5101c1ef53dfd645",
+    "user_v5.cu": "3de8bfb9f6134f141d2d77aca89454ba7f1d2ee6dd1a3295b0c59b1974c6bb99",
+    "benchmark_original.cu": "8ecd06438b76428bf326fd57089db926313a0b5a4a959d42db00bd95f0438c52",
+    "variant_v4.cu": "db4aeadb82a1850b9e57d6227561b55959616c46fb826b9cac9a46ec5fee0fb5",
+    "variant_v5.cu": "c8b7eb487ecf1ff309f149896425b52faefd19e77362d6fcab99d19ddbaf421b",
+    "benchmark_v4.cu": "9cdcc594a21434cc7844ca651ff47a87e66b2aeb6f278e26f6125d1fe64b561f",
+    "benchmark_v5.cu": "8d57251559ef0dde60ff305f874e65eccf6d5bf77940f32d050695b6d5bd3301"
+  },
+  "logs": [
+    {
+      "command": [
+        "nvidia-smi"
+      ],
+      "output": "Sun Oct 18 09:43:47 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 610.57.04              KMD Version: 610.57.04     CUDA UMD Version: 13.3     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA B200                    On  |   00000000:75:00.0 Off |                    0 |\n| N/A   38C    P0            195W / 1000W |     130MiB / 183359MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n"
+    },
+    {
+      "command": [
+        "nvcc",
+        "--version"
+      ],
+      "output": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Fri_Feb_21_20:23:50_PST_2025\nCuda compilation tools, release 12.8, V12.8.93\nBuild cuda_12.8.r12.8/compiler.35583870_0\n"
+    },
+    {
+      "command": [
+        "nvcc",
+        "-std=c++17",
+        "-O3",
+        "-lineinfo",
+        "-arch=sm_100a",
+        "-I/opt/cutlass/include",
+        "-DMOJO_V6_MMA_N=256",
+        "-Xptxas=-v",
+        "/root/benchmark_v4.cu",
+        "-o",
+        "/root/benchmark_v4",
+        "-L/usr/local/cuda/lib64/stubs",
+        "-lcuda",
+        "-lcublas"
+      ],
+      "output": "ptxas info    : 611 bytes gmem\nptxas info    : Compiling entry function '_ZN2v44gemmE14CUtensorMap_stS0_S0_i' for 'sm_100a'\nptxas info    : Function properties for _ZN2v44gemmE14CUtensorMap_stS0_S0_i\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 241 registers, used 2 barriers\nptxas info    : Compile time = 147.491 ms\n"
+    },
+    {
+      "command": [
+        "nvcc",
+        "-std=c++17",
+        "-O3",
+        "-lineinfo",
+        "-arch=sm_100a",
+        "-I/opt/cutlass/include",
+        "-DMOJO_V6_MMA_N=256",
+        "-Xptxas=-v",
+        "/root/benchmark_v5.cu",
+        "-o",
+        "/root/benchmark_v5",
+        "-L/usr/local/cuda/lib64/stubs",
+        "-lcuda",
+        "-lcublas"
+      ],
+      "output": "ptxas info    : 608 bytes gmem\nptxas info    : Compiling entry function '_ZN2v54gemmE14CUtensorMap_stS0_S0_i' for 'sm_100a'\nptxas info    : Function properties for _ZN2v54gemmE14CUtensorMap_stS0_S0_i\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 47 registers, used 2 barriers\nptxas info    : Compile time = 85.186 ms\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 120 MHz, 3996 MHz, 193.87 W, 1000.00 W, 38\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v4",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=5 shared_bytes=229536\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v4: 0.129618 ms, 1060.34 TFLOPS\ncuBLAS:  0.100058 ms, 1373.59 TFLOPS\nCUDA/cuBLAS throughput: 77.19%; CUDA latency / cuBLAS: 1.295x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":5,\"shared_bytes\":229536,\"graph_warmup_replays\":50,\"custom_ms\":0.129617915,\"cublas_ms\":0.100057915,\"custom_tflops\":1060.339182,\"cublas_tflops\":1373.594020,\"throughput_percent\":77.194511,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.128287360,0.128198400,0.128021121,0.129617915,0.135720313,0.131373122,0.131370559],\"cublas_ms_samples\":[0.099358082,0.099100798,0.098118074,0.101578884,0.102440320,0.100637123,0.100057915]}\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v5",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=6 shared_bytes=213100\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v5: 0.135984 ms, 1010.70 TFLOPS\ncuBLAS:  0.103011 ms, 1334.21 TFLOPS\nCUDA/cuBLAS throughput: 75.75%; CUDA latency / cuBLAS: 1.320x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":6,\"shared_bytes\":213100,\"graph_warmup_replays\":50,\"custom_ms\":0.135983676,\"cublas_ms\":0.103011198,\"custom_tflops\":1010.701856,\"cublas_tflops\":1334.213714,\"throughput_percent\":75.752621,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.131126717,0.131228805,0.136104003,0.135983676,0.136046082,0.138172805,0.134545609],\"cublas_ms_samples\":[0.099493764,0.099231355,0.103137285,0.103011198,0.105048001,0.105906241,0.100777283]}\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 750.48 W, 1000.00 W, 44\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 671.88 W, 1000.00 W, 44\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v5",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=6 shared_bytes=213100\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v5: 0.133154 ms, 1032.18 TFLOPS\ncuBLAS:  0.103032 ms, 1333.94 TFLOPS\nCUDA/cuBLAS throughput: 77.38%; CUDA latency / cuBLAS: 1.292x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":6,\"shared_bytes\":213100,\"graph_warmup_replays\":50,\"custom_ms\":0.133153915,\"cublas_ms\":0.103032000,\"custom_tflops\":1032.181089,\"cublas_tflops\":1333.944338,\"throughput_percent\":77.378123,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.133153915,0.129728645,0.129804477,0.137941435,0.134922877,0.135986879,0.132915512],\"cublas_ms_samples\":[0.101062715,0.098304316,0.104254723,0.104648322,0.103108481,0.103032000,0.098772161]}\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v4",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=5 shared_bytes=229536\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v4: 0.131809 ms, 1042.71 TFLOPS\ncuBLAS:  0.101902 ms, 1348.74 TFLOPS\nCUDA/cuBLAS throughput: 77.31%; CUDA latency / cuBLAS: 1.293x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":5,\"shared_bytes\":229536,\"graph_warmup_replays\":50,\"custom_ms\":0.131808951,\"cublas_ms\":0.101902083,\"custom_tflops\":1042.713351,\"cublas_tflops\":1348.735472,\"throughput_percent\":77.310442,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.132826239,0.133787841,0.131497607,0.131808951,0.133936644,0.131457284,0.131455675],\"cublas_ms_samples\":[0.103464641,0.103221439,0.102004156,0.101902083,0.099218883,0.099323198,0.101863682]}\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 766.83 W, 1000.00 W, 46\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 766.83 W, 1000.00 W, 46\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v4",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=5 shared_bytes=229536\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v4: 0.129864 ms, 1058.33 TFLOPS\ncuBLAS:  0.100570 ms, 1366.60 TFLOPS\nCUDA/cuBLAS throughput: 77.44%; CUDA latency / cuBLAS: 1.291x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":5,\"shared_bytes\":229536,\"graph_warmup_replays\":50,\"custom_ms\":0.129863992,\"cublas_ms\":0.100569919,\"custom_tflops\":1058.329957,\"cublas_tflops\":1366.601019,\"throughput_percent\":77.442497,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.133117437,0.131747842,0.131476477,0.129800320,0.129863992,0.129718721,0.129368320],\"cublas_ms_samples\":[0.102956802,0.102787837,0.101983041,0.100569919,0.099848956,0.099548794,0.097972482]}\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v5",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=6 shared_bytes=213100\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v5: 0.131396 ms, 1045.99 TFLOPS\ncuBLAS:  0.102779 ms, 1337.23 TFLOPS\nCUDA/cuBLAS throughput: 78.22%; CUDA latency / cuBLAS: 1.278x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":6,\"shared_bytes\":213100,\"graph_warmup_replays\":50,\"custom_ms\":0.131396160,\"cublas_ms\":0.102779195,\"custom_tflops\":1045.989121,\"cublas_tflops\":1337.225436,\"throughput_percent\":78.220851,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.131396160,0.129736319,0.132279992,0.138010249,0.134853438,0.129165113,0.128039360],\"cublas_ms_samples\":[0.098719046,0.098326080,0.106073596,0.105923519,0.102864958,0.102779195,0.097421758]}\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 731.15 W, 1000.00 W, 46\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 731.15 W, 1000.00 W, 46\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v5",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=6 shared_bytes=213100\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v5: 0.130365 ms, 1054.26 TFLOPS\ncuBLAS:  0.098579 ms, 1394.21 TFLOPS\nCUDA/cuBLAS throughput: 75.62%; CUDA latency / cuBLAS: 1.322x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":6,\"shared_bytes\":213100,\"graph_warmup_replays\":50,\"custom_ms\":0.130364805,\"cublas_ms\":0.098578557,\"custom_tflops\":1054.264247,\"cublas_tflops\":1394.207393,\"throughput_percent\":75.617462,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.128433928,0.129676163,0.129717767,0.130364805,0.131736636,0.131785601,0.130841285],\"cublas_ms_samples\":[0.098565757,0.098306559,0.098578557,0.098272964,0.100654401,0.100554876,0.102618873]}\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v4",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=5 shared_bytes=229536\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v4: 0.133440 ms, 1029.97 TFLOPS\ncuBLAS:  0.105862 ms, 1298.28 TFLOPS\nCUDA/cuBLAS throughput: 79.33%; CUDA latency / cuBLAS: 1.261x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":5,\"shared_bytes\":229536,\"graph_warmup_replays\":50,\"custom_ms\":0.133440316,\"cublas_ms\":0.105862401,\"custom_tflops\":1029.965740,\"cublas_tflops\":1298.279197,\"throughput_percent\":79.333147,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.131232649,0.128157124,0.130477756,0.136961922,0.137028486,0.137005761,0.133440316],\"cublas_ms_samples\":[0.099464320,0.098243840,0.106051832,0.105911039,0.105969280,0.105862401,0.102021433]}\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 671.21 W, 1000.00 W, 46\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 600.73 W, 1000.00 W, 45\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v4",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=5 shared_bytes=229536\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v4: 0.130005 ms, 1057.18 TFLOPS\ncuBLAS:  0.101084 ms, 1359.66 TFLOPS\nCUDA/cuBLAS throughput: 77.75%; CUDA latency / cuBLAS: 1.286x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":5,\"shared_bytes\":229536,\"graph_warmup_replays\":50,\"custom_ms\":0.130005434,\"cublas_ms\":0.101083517,\"custom_tflops\":1057.178528,\"cublas_tflops\":1359.657414,\"throughput_percent\":77.753301,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.133099839,0.128616005,0.130005434,0.134361923,0.134447351,0.129779518,0.129796803],\"cublas_ms_samples\":[0.102070719,0.099099837,0.104466878,0.099766396,0.103441603,0.101083517,0.099287681]}\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v5",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=6 shared_bytes=213100\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v5: 0.132414 ms, 1037.95 TFLOPS\ncuBLAS:  0.100507 ms, 1367.46 TFLOPS\nCUDA/cuBLAS throughput: 75.90%; CUDA latency / cuBLAS: 1.317x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":6,\"shared_bytes\":213100,\"graph_warmup_replays\":50,\"custom_ms\":0.132413760,\"cublas_ms\":0.100506566,\"custom_tflops\":1037.950691,\"cublas_tflops\":1367.462429,\"throughput_percent\":75.903416,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.131330550,0.132846713,0.135984004,0.132131517,0.132991359,0.132413760,0.130284801],\"cublas_ms_samples\":[0.099898554,0.099575356,0.100506566,0.100572154,0.102010876,0.101890236,0.098092802]}\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 720.99 W, 1000.00 W, 47\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 720.99 W, 1000.00 W, 47\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v5",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=6 shared_bytes=213100\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v5: 0.131988 ms, 1041.30 TFLOPS\ncuBLAS:  0.100554 ms, 1366.81 TFLOPS\nCUDA/cuBLAS throughput: 76.18%; CUDA latency / cuBLAS: 1.313x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":6,\"shared_bytes\":213100,\"graph_warmup_replays\":50,\"custom_ms\":0.131987527,\"cublas_ms\":0.100554235,\"custom_tflops\":1041.302588,\"cublas_tflops\":1366.814168,\"throughput_percent\":76.184650,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.131761596,0.135310397,0.136593282,0.131721601,0.131987527,0.131744951,0.132012159],\"cublas_ms_samples\":[0.099756479,0.098364480,0.104341768,0.102596484,0.100554563,0.100554235,0.100106880]}\n"
+    },
+    {
+      "command": [
+        "/root/benchmark_v4",
+        "4096",
+        "4096",
+        "4096"
+      ],
+      "output": "GPU=NVIDIA B200 SMs=148 CUDA_runtime=12080 driver=13030 cuBLAS=120804\nM=4096 N=4096 K=4096; BF16 A/B/C, FP32 accumulation; tile=128x128x64 per CTA; MMA=256x256x16; cluster=2x1x1; 128B swizzle; warp-specialized pipeline; stmatrix + TMA output; TMEM=512\nAB stages=5 shared_bytes=229536\nPASS: original Mojo identity input, exact comparison (CUDA and cuBLAS)\nPASS: dense random input vs cuBLAS, max_abs_error=0 relative_l2=0; CPU FP64 samples=32\nCuTe v4: 0.129854 ms, 1058.41 TFLOPS\ncuBLAS:  0.099845 ms, 1376.52 TFLOPS\nCUDA/cuBLAS throughput: 76.89%; CUDA latency / cuBLAS: 1.301x\nRESULT_JSON={\"gpu\":\"NVIDIA B200\",\"sms\":148,\"cuda_runtime\":12080,\"driver\":13030,\"cublas_version\":120804,\"m\":4096,\"n\":4096,\"k\":4096,\"warmup\":100,\"iterations\":100,\"rounds\":7,\"mma_n\":256,\"ab_stages\":5,\"shared_bytes\":229536,\"graph_warmup_replays\":50,\"custom_ms\":0.129854396,\"cublas_ms\":0.099845439,\"custom_tflops\":1058.408169,\"cublas_tflops\":1376.517091,\"throughput_percent\":76.890304,\"max_abs_error\":0,\"relative_l2\":0,\"custom_ms_samples\":[0.130790725,0.129654393,0.128982082,0.136349112,0.136330560,0.129836485,0.129854396],\"cublas_ms_samples\":[0.099845439,0.099544965,0.099325120,0.103005759,0.104984961,0.102440320,0.099159680]}\n"
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=uuid,name,clocks.sm,clocks.mem,power.draw,power.limit,temperature.gpu",
+        "--format=csv"
+      ],
+      "output": "uuid, name, clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], power.limit [W], temperature.gpu\nGPU-15e6a31d-4269-0390-2b5d-f8b6526bdad3, NVIDIA B200, 1965 MHz, 3996 MHz, 732.63 W, 1000.00 W, 47\n"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+ptxas info    : (C7508) Potential Performance Loss: 'setmaxnreg' ignored; unable to determine register count at entry.
+ptxas info    : (C7508) Potential Performance Loss: 'setmaxnreg' ignored; unable to determine register count at entry.
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    8 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 152 registers, used 3 barriers, 8 bytes cumulative stack size
+ptxas info    : Compile time = 157.345 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    8 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 152 registers, used 3 barriers, 8 bytes cumulative stack size
+ptxas info    : Compile time = 152.239 ms
+
+Saved /tmp/artifacts/v7/sass.txt: 2105364 bytes
+/usr/local/lib/python3.12/site-packages/nvidia_cutlass_dsl/dsl_packages/cutlass/base_dsl/dsl.py:2300: UserWarning: Argument aux_data (position 18) cannot be converted to a JitArgument for function 'cutlass___call___flash_attncuteflash_fwd_sm100FlashAttentionForwardSm100_object_at__Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_Tensorgmemoi64i64i641_None_008'. Its type `<class 'flash_attn.cute.utils.AuxData'>` is not supported. If the value is known at compile time, annotate it: `aux_data: Constexpr`. Otherwise, implement the `JitArgument` or `DynamicExpression` protocol for type `<class 'flash_attn.cute.utils.AuxData'>`, or register a custom argument adapter.
+  exe_args, func_types, adapted_args = self.generate_mlir_function_types(
+Traceback (most recent call last):
+  File "/root/fa4/benchmark.py", line 167, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/fa4/benchmark.py", line 144, in main
+    launch,o,ctx=kernel.bind(q,k,v,causal);launch();torch.cuda.synchronize()
+                                           ^^^^^^^^
+  File "/root/fa4/benchmark.py", line 50, in launch
+    if rc: raise RuntimeError(f'fa4_launch error {rc}')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: fa4_launch error 701

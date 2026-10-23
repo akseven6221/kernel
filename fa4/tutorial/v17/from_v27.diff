@@ -1,0 +1,43 @@
+--- v27/kernel.cu
++++ v31/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v27: stagger QK/PV issue across the two query stages.
++// v31: rely on same-warp MMA A-read -> D-write ordering for P/S reuse.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -135,7 +135,6 @@
+           const uint32_t kb=base+2*TILE_BYTES+slot*2*TILE_BYTES;
+           wait(base+KFULL+slot*8,(j/2)&1);fence();
+           if(j<lengths[0]) {
+-            if(j>0) wait(base+PVDONE,(j-1)&1);
+             fence();qk(tm,base,kb);commit(base+SFULL);
+           }
+           if(j>0) {
+@@ -143,23 +142,21 @@
+             wait(base+VFULL+vs*8,(prev/2)&1);
+             wait(base+PFULL+8,prev&1);fence();
+             pv(tm+384,tm+192,base+3*TILE_BYTES+vs*2*TILE_BYTES,prev>0);
+-            commit(base+PVDONE+8);commit(base+VEMPTY+vs*8);
++            commit(base+VEMPTY+vs*8);
+           }
+-          if(j>0) wait(base+PVDONE+8,(j-1)&1);
+           fence();qk(tm+128,base+TILE_BYTES,kb);commit(base+SFULL+8);
+           commit(base+KEMPTY+slot*8);
+           if(j<lengths[0]) {
+             wait(base+VFULL+slot*8,(j/2)&1);
+             wait(base+PFULL,j&1);fence();
+             pv(tm+256,tm+64,kb+TILE_BYTES,j>0);
+-            commit(base+PVDONE);
+           }
+         }
+         const int last=lengths[1]-1, slot=last%2;
+         wait(base+VFULL+slot*8,(last/2)&1);
+         wait(base+PFULL+8,last&1);fence();
+         pv(tm+384,tm+192,base+3*TILE_BYTES+slot*2*TILE_BYTES,last>0);
+-        commit(base+PVDONE+8);commit(base+VEMPTY+slot*8);
++        commit(base+VEMPTY+slot*8);
+         commit(base+FINAL);
+       }
+       // Correction has finished all TMEM reads before relinquishing allocation.

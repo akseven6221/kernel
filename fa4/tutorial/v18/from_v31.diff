@@ -1,0 +1,74 @@
+--- v31/kernel.cu
++++ v42/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v31: rely on same-warp MMA A-read -> D-write ordering for P/S reuse.
++// v42: max3 and four independent packed-FP32 sum chains.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -79,6 +79,21 @@
+ constexpr int SFULL=QFULL+72, PFULL=QFULL+88, CFULL=QFULL+104;
+ constexpr int CACK=QFULL+120, PVDONE=QFULL+136, EPIDONE=QFULL+152;
+ constexpr int ALLOC=QFULL+160, FINAL=QFULL+168, SCALE=QFULL+176;
++__device__ __forceinline__ void argument2(float x,float y,float ref,float& a,float& b) {
++  asm("{ .reg .b64 xy,scale,r,z; mov.b64 xy,{%2,%3}; mov.b64 scale,{%4,%4}; "
++      "mov.b64 r,{%5,%5}; fma.rn.ftz.f32x2 z,xy,scale,r; mov.b64 {%0,%1},z; }"
++      : "=f"(a),"=f"(b):"f"(x),"f"(y),"f"(0.127517430824596f),"f"(ref));
++}
++__device__ __forceinline__ void add_sum2(float a,float b,float& x,float& y) {
++  asm("{ .reg .b64 xy,ab,z; mov.b64 xy,{%0,%1};mov.b64 ab,{%2,%3}; "
++      "add.rn.ftz.f32x2 z,xy,ab;mov.b64 {%0,%1},z; }"
++      : "+f"(x),"+f"(y):"f"(a),"f"(b));
++}
++__device__ __forceinline__ float max3(float a,float b,float c) {
++  float out;
++  asm("{ .reg .f32 t; max.f32 t,%2,%3;max.f32 %0,%1,t; }" : "=f"(out):"f"(a),"f"(b),"f"(c));
++  return out;
++}
+ template<bool CAUSAL>
+ __global__ __maxnreg__(168) void attention(
+     const __grid_constant__ CUtensorMap qm,const __grid_constant__ CUtensorMap km,
+@@ -180,7 +195,7 @@
+       }
+       float maxima[4]={-INFINITY,-INFINITY,-INFINITY,-INFINITY};
+ #pragma unroll
+-      for(int c=0;c<128;c++) maxima[c%4]=fmaxf(maxima[c%4],scores[c]);
++      for(int c=0;c<64;c++) maxima[c%4]=max3(maxima[c%4],scores[2*c],scores[2*c+1]);
+       float mx=fmaxf(fmaxf(maxima[0],maxima[1]),fmaxf(maxima[2],maxima[3]));
+       const float candidate=fmaxf(rowmax,mx);
+       const float next=(j==0||(rowmax-candidate)*0.127517430824596f<-8.0f)?candidate:rowmax;
+@@ -188,7 +203,7 @@
+       rowmax=next;
+ 
+       const float scaled_ref=-next*0.127517430824596f;
+-      uint32_t packed[64];float sums[4]={0,0,0,0};
++      uint32_t packed[64];float sums[8]={0,0,0,0,0,0,0,0};
+       // FMA's common reference-rounding shift can overflow FP16 P for very large scores.
+       // Subtract first in this range, so the current maximum has exponent argument exactly zero.
+       if(fabsf(next)>65536.0f) {
+@@ -196,19 +211,19 @@
+       for(int c=0;c<64;c++) {
+         float a=fast_exp2((scores[2*c]-next)*0.127517430824596f);
+         float b=fast_exp2((scores[2*c+1]-next)*0.127517430824596f);
+-        sums[c%4]+=a+b;
++        add_sum2(a,b,sums[2*(c%4)],sums[2*(c%4)+1]);
+         const __half2_raw h=__floats2half2_rn(a,b);packed[c]=uint32_t(h.x)|(uint32_t(h.y)<<16);
+       }
+       } else {
+ #pragma unroll
+       for(int c=0;c<64;c++) {
+-        float a=fast_exp2(fmaf(scores[2*c],0.127517430824596f,scaled_ref));
+-        float b=fast_exp2(fmaf(scores[2*c+1],0.127517430824596f,scaled_ref));
+-        sums[c%4]+=a+b;
++        float x,y; argument2(scores[2*c],scores[2*c+1],scaled_ref,x,y);
++        float a=fast_exp2(x), b=fast_exp2(y);
++        add_sum2(a,b,sums[2*(c%4)],sums[2*(c%4)+1]);
+         const __half2_raw h=__floats2half2_rn(a,b);packed[c]=uint32_t(h.x)|(uint32_t(h.y)<<16);
+       }
+       }
+-      const float psum=(sums[0]+sums[1])+(sums[2]+sums[3]);
++      const float psum=((sums[0]+sums[1])+(sums[2]+sums[3]))+((sums[4]+sums[5])+(sums[6]+sums[7]));
+       rowsum=rowsum*alpha+psum;
+       st64(tm+stage*128+64+rowtm,packed);
+       asm volatile("tcgen05.wait::st.sync.aligned;" ::: "memory");

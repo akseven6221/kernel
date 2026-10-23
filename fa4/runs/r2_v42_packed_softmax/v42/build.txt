@@ -1,0 +1,6 @@
+$ nvcc -std=c++17 -O3 -lineinfo -arch=sm_100a --shared -Xcompiler=-fPIC --keep --keep-dir /tmp/artifacts/v42 -Xptxas=-v /root/fa4/v42/kernel.cu -o /tmp/fa4_v42.so -L/usr/local/cuda/lib64/stubs -lcuda
+/root/fa4/v42/kernel.cu(220): error: identifier "scale_pair" is undefined
+          float x,y; scale_pair(scores[2*c],scores[2*c+1],scaled_ref,x,y);
+                     ^
+
+1 error detected in the compilation of "/root/fa4/v42/kernel.cu".

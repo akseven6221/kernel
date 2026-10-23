@@ -1,0 +1,68 @@
+/root/fa4/v31/kernel.cu(110): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+/root/fa4/v31/kernel.cu(110): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v31/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    24 bytes stack frame, 24 bytes spill stores, 52 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 125.693 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    24 bytes stack frame, 20 bytes spill stores, 32 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 113.232 ms
+
+Saved /tmp/artifacts/v31/sass.txt: 2264088 bytes
+/root/fa4/v42/kernel.cu(220): error: identifier "scale_pair" is undefined
+          float x,y; scale_pair(scores[2*c],scores[2*c+1],scaled_ref,x,y);
+                     ^
+
+1 error detected in the compilation of "/root/fa4/v42/kernel.cu".
+
+Traceback (most recent call last):
+  File "/root/fa4/benchmark.py", line 173, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/fa4/benchmark.py", line 120, in main
+    kernels=[] if args.mode=='official' else [Kernel(v,out,compile=args.mode not in ['probe','sanitize']) for v in args.versions.split(',')]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/fa4/benchmark.py", line 31, in __init__
+    command(['nvcc','-std=c++17','-O3','-lineinfo','-arch=sm_100a','--shared','-Xcompiler=-fPIC',
+  File "/root/fa4/benchmark.py", line 20, in command
+    if p.returncode: raise RuntimeError(f'command failed ({p.returncode}): {args}; see {logfile}')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: command failed (2): ['nvcc', '-std=c++17', '-O3', '-lineinfo', '-arch=sm_100a', '--shared', '-Xcompiler=-fPIC', '--keep', '--keep-dir', '/tmp/artifacts/v42', '-Xptxas=-v', '/root/fa4/v42/kernel.cu', '-o', '/tmp/fa4_v42.so', '-L/usr/local/cuda/lib64/stubs', '-lcuda']; see /tmp/artifacts/v42/build.txt

@@ -1,0 +1,21 @@
+--- v4/kernel.cu
++++ v5/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v4: conditional reference rescaling (threshold = 8 in log2 space).
++// v5: compute one reciprocal per row for normalization.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -124,9 +124,10 @@
+   fence(); float o[128]; ld128(tm+128+rowtm,o);
+   asm volatile("tcgen05.wait::ld.sync.aligned;" ::: "memory");
+   // Q/K/V storage is dead here; reuse it for bank-friendly output exchange.
++  float inverse; asm("rcp.approx.ftz.f32 %0, %1;" : "=f"(inverse) : "f"(rowsum));
+   float* staging=reinterpret_cast<float*>(sm);
+ #pragma unroll
+-  for(int c=0;c<128;c++) staging[c*129+tid]=o[c]/rowsum;
++  for(int c=0;c<128;c++) staging[c*129+tid]=o[c]*inverse;
+   __syncthreads();
+   for(int i=tid;i<128*64;i+=THREADS) {
+     int r=i/64, c=(i%64)*2;

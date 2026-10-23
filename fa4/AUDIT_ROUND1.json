@@ -1,0 +1,90 @@
+{
+  "correctness_checks": 1040,
+  "benchmark_rows": 208,
+  "ncu_reports": 26,
+  "final_sanitizer_checks": 18,
+  "all_source_hashes_match": true,
+  "python_syntax_passed": true,
+  "winners": [
+    {
+      "shape": [
+        1,
+        512,
+        8,
+        128
+      ],
+      "causal": false,
+      "fastest_custom": "v6"
+    },
+    {
+      "shape": [
+        1,
+        1024,
+        8,
+        128
+      ],
+      "causal": false,
+      "fastest_custom": "v6"
+    },
+    {
+      "shape": [
+        1,
+        4096,
+        8,
+        128
+      ],
+      "causal": false,
+      "fastest_custom": "v24"
+    },
+    {
+      "shape": [
+        1,
+        8192,
+        8,
+        128
+      ],
+      "causal": false,
+      "fastest_custom": "v24"
+    },
+    {
+      "shape": [
+        1,
+        4096,
+        8,
+        128
+      ],
+      "causal": true,
+      "fastest_custom": "v24"
+    },
+    {
+      "shape": [
+        1,
+        8192,
+        8,
+        128
+      ],
+      "causal": true,
+      "fastest_custom": "v24"
+    },
+    {
+      "shape": [
+        2,
+        4096,
+        16,
+        128
+      ],
+      "causal": false,
+      "fastest_custom": "v24"
+    },
+    {
+      "shape": [
+        2,
+        4096,
+        16,
+        128
+      ],
+      "causal": true,
+      "fastest_custom": "v24"
+    }
+  ]
+}

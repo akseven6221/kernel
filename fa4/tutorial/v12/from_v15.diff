@@ -1,0 +1,27 @@
+--- v15/kernel.cu
++++ v16/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v15: four independent maximum chains, keeping the original rowsum order.
++// v16: raise startup/softmax register limits to reduce allocation pressure.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -79,7 +79,7 @@
+ constexpr int CACK=QFULL+88, PVDONE=QFULL+104, EPIDONE=QFULL+120;
+ constexpr int ALLOC=QFULL+128, FINAL=QFULL+136, SCALE=QFULL+144;
+ template<bool CAUSAL>
+-__global__ __maxnreg__(160) void attention(
++__global__ __maxnreg__(168) void attention(
+     const __grid_constant__ CUtensorMap qm,const __grid_constant__ CUtensorMap km,
+     const __grid_constant__ CUtensorMap vm,half* output,int seq,int heads) {
+   extern __shared__ __align__(1024) unsigned char sm[];
+@@ -148,7 +148,7 @@
+       asm volatile("tcgen05.dealloc.cta_group::1.sync.aligned.b32 %0, 512;" :: "r"(tm):"memory");
+     }
+   } else if(wg<2) {
+-    asm volatile("setmaxnreg.inc.sync.aligned.u32 200;" ::: "memory");
++    asm volatile("setmaxnreg.inc.sync.aligned.u32 224;" ::: "memory");
+     const int stage=wg, query=qr+stage*128+local;
+     float rowmax=-INFINITY, rowsum=0;
+     for(int j=0;j<lengths[stage];j++) {

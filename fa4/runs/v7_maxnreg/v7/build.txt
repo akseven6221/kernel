@@ -1,0 +1,31 @@
+$ nvcc -std=c++17 -O3 -lineinfo -arch=sm_100a --shared -Xcompiler=-fPIC --keep --keep-dir /tmp/artifacts/v7 -Xptxas=-v /root/fa4/v7/kernel.cu -o /tmp/fa4_v7.so -L/usr/local/cuda/lib64/stubs -lcuda
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                       ^
+
+/root/fa4/v7/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=512;
+                              ^
+
+ptxas fatal   : (C7602) Insufficient registers (128) to compile instruction at line 6261 in function _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii. Try to compile with register target of 146 or higher.
+ptxas fatal   : Ptx assembly aborted due to errors

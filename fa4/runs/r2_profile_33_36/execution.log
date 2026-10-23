@@ -1,0 +1,154 @@
+/root/fa4/v33/kernel.cu(130): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+/root/fa4/v33/kernel.cu(130): warning #177-D: variable "scales" was declared but never referenced
+    float* scales=reinterpret_cast<float*>(sm+SCALE);
+           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                ^
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                       ^
+
+/root/fa4/v33/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=384;
+                              ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    24 bytes stack frame, 24 bytes spill stores, 52 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 130.088 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    24 bytes stack frame, 20 bytes spill stores, 32 bytes spill loads
+ptxas info    : Used 168 registers, used 4 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 115.336 ms
+
+Saved /tmp/artifacts/v33/sass.txt: 2374360 bytes
+/root/fa4/v36/kernel.cu(88): warning #177-D: variable "lane" was declared but never referenced
+    const int tid=threadIdx.x, wg=tid/128, local=tid%128, warp=local/32, lane=tid%32;
+                                                                         ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v36/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=256;
+                ^
+
+/root/fa4/v36/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=256;
+                       ^
+
+/root/fa4/v36/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=256;
+                              ^
+
+/root/fa4/v36/kernel.cu(77): warning #177-D: variable "fa4::VFULL" was declared but never referenced
+  constexpr int QFULL=6*TILE_BYTES, KFULL=QFULL+8, VFULL=QFULL+24;
+                                                   ^
+
+/root/fa4/v36/kernel.cu(78): warning #177-D: variable "fa4::VEMPTY" was declared but never referenced
+  constexpr int KEMPTY=QFULL+40, VEMPTY=QFULL+56;
+                                 ^
+
+/root/fa4/v36/kernel.cu(79): warning #177-D: variable "fa4::PFULL" was declared but never referenced
+  constexpr int SFULL=QFULL+72, PFULL=QFULL+88, CFULL=QFULL+104;
+                                ^
+
+/root/fa4/v36/kernel.cu(79): warning #177-D: variable "fa4::CFULL" was declared but never referenced
+  constexpr int SFULL=QFULL+72, PFULL=QFULL+88, CFULL=QFULL+104;
+                                                ^
+
+/root/fa4/v36/kernel.cu(80): warning #177-D: variable "fa4::CACK" was declared but never referenced
+  constexpr int CACK=QFULL+120, PVDONE=QFULL+136, EPIDONE=QFULL+152;
+                ^
+
+/root/fa4/v36/kernel.cu(80): warning #177-D: variable "fa4::PVDONE" was declared but never referenced
+  constexpr int CACK=QFULL+120, PVDONE=QFULL+136, EPIDONE=QFULL+152;
+                                ^
+
+/root/fa4/v36/kernel.cu(81): warning #177-D: variable "fa4::SCALE" was declared but never referenced
+  constexpr int ALLOC=QFULL+160, FINAL=QFULL+168, SCALE=QFULL+176;
+                                                  ^
+
+/root/fa4/v36/kernel.cu(88): warning #177-D: variable "lane" was declared but never referenced
+    const int tid=threadIdx.x, wg=tid/128, local=tid%128, warp=local/32, lane=tid%32;
+                                                                         ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/root/fa4/v36/kernel.cu(10): warning #177-D: variable "fa4::M" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=256;
+                ^
+
+/root/fa4/v36/kernel.cu(10): warning #177-D: variable "fa4::N" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=256;
+                       ^
+
+/root/fa4/v36/kernel.cu(10): warning #177-D: variable "fa4::D" was declared but never referenced
+  constexpr int M=128, N=128, D=128, THREADS=256;
+                              ^
+
+/root/fa4/v36/kernel.cu(77): warning #177-D: variable "fa4::VFULL" was declared but never referenced
+  constexpr int QFULL=6*TILE_BYTES, KFULL=QFULL+8, VFULL=QFULL+24;
+                                                   ^
+
+/root/fa4/v36/kernel.cu(78): warning #177-D: variable "fa4::VEMPTY" was declared but never referenced
+  constexpr int KEMPTY=QFULL+40, VEMPTY=QFULL+56;
+                                 ^
+
+/root/fa4/v36/kernel.cu(79): warning #177-D: variable "fa4::PFULL" was declared but never referenced
+  constexpr int SFULL=QFULL+72, PFULL=QFULL+88, CFULL=QFULL+104;
+                                ^
+
+/root/fa4/v36/kernel.cu(79): warning #177-D: variable "fa4::CFULL" was declared but never referenced
+  constexpr int SFULL=QFULL+72, PFULL=QFULL+88, CFULL=QFULL+104;
+                                                ^
+
+/root/fa4/v36/kernel.cu(80): warning #177-D: variable "fa4::CACK" was declared but never referenced
+  constexpr int CACK=QFULL+120, PVDONE=QFULL+136, EPIDONE=QFULL+152;
+                ^
+
+/root/fa4/v36/kernel.cu(80): warning #177-D: variable "fa4::PVDONE" was declared but never referenced
+  constexpr int CACK=QFULL+120, PVDONE=QFULL+136, EPIDONE=QFULL+152;
+                                ^
+
+/root/fa4/v36/kernel.cu(81): warning #177-D: variable "fa4::SCALE" was declared but never referenced
+  constexpr int ALLOC=QFULL+160, FINAL=QFULL+168, SCALE=QFULL+176;
+                                                  ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb1EEEv14CUtensorMap_stS1_S1_P6__halfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 233 registers, used 4 barriers
+ptxas info    : Compile time = 107.669 ms
+ptxas info    : Compiling entry function '_ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii' for 'sm_100a'
+ptxas info    : Function properties for _ZN3fa49attentionILb0EEEv14CUtensorMap_stS1_S1_P6__halfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 235 registers, used 4 barriers
+ptxas info    : Compile time = 95.700 ms
+
+Saved /tmp/artifacts/v36/sass.txt: 2041800 bytes

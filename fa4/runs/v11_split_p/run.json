@@ -1,0 +1,6 @@
+{
+  "timestamp_utc": "2026-10-14T10:55:15.066805+00:00",
+  "versions": "v7,v11",
+  "mode": "benchmark",
+  "cuda_image": "nvidia/cuda:12.8.1-devel-ubuntu24.04"
+}

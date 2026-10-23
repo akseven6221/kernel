@@ -1,0 +1,158 @@
+--- v39/kernel.cu
++++ v43/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v39: M128 N64, one Q-stage, 2 CTAs/SM, 256 TMEM columns per CTA.
++// v43: M128 N128, one Q-stage, one K/V pair, 256 TMEM columns per CTA.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -30,23 +30,23 @@
+ __device__ __forceinline__ void load_kv(uint32_t dst,const CUtensorMap* map,int row,int head,uint32_t bar) {
+ #pragma unroll
+   for(int d=0;d<2;d++)
+-    asm volatile("cp.async.bulk.tensor.3d.shared::cluster.global.mbarrier::complete_tx::bytes [%0], [%1, {%2, %3, %4}], [%5];" :: "r"(dst+d*8192),"l"(map),"r"(d*64),"r"(head),"r"(row),"r"(bar):"memory");
++    asm volatile("cp.async.bulk.tensor.3d.shared::cluster.global.mbarrier::complete_tx::bytes [%0], [%1, {%2, %3, %4}], [%5];" :: "r"(dst+d*16384),"l"(map),"r"(d*64),"r"(head),"r"(row),"r"(bar):"memory");
+ }
+ __device__ __forceinline__ uint64_t desc(uint32_t a, bool mn=false) {
+-  return uint64_t(a>>4) | (uint64_t(mn?512:0)<<16) | (uint64_t(64)<<32) | (uint64_t(1)<<46) | (uint64_t(2)<<61);
++  return uint64_t(a>>4) | (uint64_t(mn?1024:0)<<16) | (uint64_t(64)<<32) | (uint64_t(1)<<46) | (uint64_t(2)<<61);
+ }
+ __device__ __forceinline__ void qk(uint32_t s,uint32_t q,uint32_t k) {
+-  constexpr uint32_t id=(1u<<4)|((64/8)<<17)|((128/16)<<24);
++  constexpr uint32_t id=(1u<<4)|((128/8)<<17)|((128/16)<<24);
+ #pragma unroll
+   for(int i=0;i<8;i++) {
+     const int off=(i/4)*16384+(i%4)*32;
+-    asm volatile("{ .reg .pred p; setp.ne.u32 p, %4, 0; tcgen05.mma.cta_group::1.kind::f16 [%0], %1, %2, %3, p; }" :: "r"(s),"l"(desc(q+off)),"l"(desc(k+(i/4)*8192+(i%4)*32)),"r"(id),"r"(i):"memory");
++    asm volatile("{ .reg .pred p; setp.ne.u32 p, %4, 0; tcgen05.mma.cta_group::1.kind::f16 [%0], %1, %2, %3, p; }" :: "r"(s),"l"(desc(q+off)),"l"(desc(k+off)),"r"(id),"r"(i):"memory");
+   }
+ }
+ __device__ __forceinline__ void pv(uint32_t o,uint32_t p,uint32_t v,bool accumulate) {
+   constexpr uint32_t id=(1u<<4)|(1u<<16)|((128/8)<<17)|((128/16)<<24);
+ #pragma unroll
+-  for(int i=0;i<4;i++)
++  for(int i=0;i<8;i++)
+     asm volatile("{ .reg .pred a; setp.ne.u32 a, %4, 0; tcgen05.mma.cta_group::1.kind::f16 [%0], [%1], %2, %3, a; }" :: "r"(o),"r"(p+i*8),"l"(desc(v+i*2048,true)),"r"(id),"r"(int(accumulate||i>0)):"memory");
+ }
+ // Generated register-vector PTX wrappers follow.
+@@ -99,7 +99,7 @@
+   const int bh=CAUSAL?linear%int(gridDim.y):int(blockIdx.y);
+   const int head=bh%heads,batch=bh/heads;
+   const int qr=(CAUSAL?(int(gridDim.x)-1-linear/int(gridDim.y)):int(blockIdx.x))*128;
+-  const int length=CAUSAL?min((qr+128+63)/64,(seq+63)/64):(seq+63)/64;
++  const int length=CAUSAL?min((qr+128+127)/128,(seq+127)/128):(seq+127)/128;
+   if(tid==0) {
+     init(base+QFULL);init(base+FINAL);init(base+SFULL);init_count(base+PFULL,128);init_count(base+EPIDONE,128);
+ #pragma unroll
+@@ -112,26 +112,26 @@
+   __syncthreads();
+   const uint32_t tm=*reinterpret_cast<uint32_t*>(sm+ALLOC),rowtm=uint32_t(warp*32)<<16;
+   if(wg==1) {
+-    asm volatile("setmaxnreg.dec.sync.aligned.u32 64;" ::: "memory");
++    asm volatile("setmaxnreg.dec.sync.aligned.u32 56;" ::: "memory");
+     if(warp==1 && lane==0) {
+       expect(base+QFULL,TILE_BYTES);load(base,&qm,batch*seq+qr,head,base+QFULL);
+       for(int j=0;j<length;j++) {
+-        const int slot=j%2;const uint32_t kb=base+TILE_BYTES+slot*TILE_BYTES;
+-        if(j>=2) wait(base+KEMPTY+slot*8,((j-2)/2)&1);
+-        expect(base+KFULL+slot*8,TILE_BYTES/2);load_kv(kb,&km,batch*seq+j*64,head,base+KFULL+slot*8);
+-        if(j>=2) wait(base+VEMPTY+slot*8,((j-2)/2)&1);
+-        expect(base+VFULL+slot*8,TILE_BYTES/2);load_kv(kb+TILE_BYTES/2,&vm,batch*seq+j*64,head,base+VFULL+slot*8);
++        const int slot=0;const uint32_t kb=base+TILE_BYTES+slot*TILE_BYTES;
++        if(j>=1) wait(base+KEMPTY+slot*8,(j-1)&1);
++        expect(base+KFULL+slot*8,TILE_BYTES);load_kv(kb,&km,batch*seq+j*128,head,base+KFULL+slot*8);
++        if(j>=1) wait(base+VEMPTY+slot*8,(j-1)&1);
++        expect(base+VFULL+slot*8,TILE_BYTES);load_kv(kb+TILE_BYTES,&vm,batch*seq+j*128,head,base+VFULL+slot*8);
+       }
+     }
+     if(warp==0) {
+       if(lane==0) {
+         wait(base+QFULL,0);fence();
+         for(int j=0;j<length;j++) {
+-          const int slot=j%2;const uint32_t kb=base+TILE_BYTES+slot*TILE_BYTES;
+-          wait(base+KFULL+slot*8,(j/2)&1);fence();
++          const int slot=0;const uint32_t kb=base+TILE_BYTES+slot*TILE_BYTES;
++          wait(base+KFULL+slot*8,j&1);fence();
+           qk(tm,base,kb);commit(base+SFULL);commit(base+KEMPTY+slot*8);
+-          wait(base+VFULL+slot*8,(j/2)&1);wait(base+PFULL,j&1);fence();
+-          pv(tm+128,tm+32,kb+TILE_BYTES/2,j>0);commit(base+VEMPTY+slot*8);
++          wait(base+VFULL+slot*8,j&1);wait(base+PFULL,j&1);fence();
++          pv(tm+128,tm+64,kb+TILE_BYTES,j>0);commit(base+VEMPTY+slot*8);
+         }
+         commit(base+FINAL);
+       }
+@@ -140,22 +140,22 @@
+       asm volatile("tcgen05.dealloc.cta_group::1.sync.aligned.b32 %0,256;" :: "r"(tm):"memory");
+     }
+   } else {
+-    asm volatile("setmaxnreg.inc.sync.aligned.u32 184;" ::: "memory");
++    asm volatile("setmaxnreg.inc.sync.aligned.u32 192;" ::: "memory");
+     const int stage=0,query=qr+local;
+     float rowmax=-INFINITY,rowsum=0;
+     for(int j=0;j<length;j++) {
+       wait(base+SFULL,j&1);fence();
+-      float scores[64];ld64(tm+rowtm,scores);
++      float scores[128];ld128(tm+rowtm,scores);
+       asm volatile("tcgen05.wait::ld.sync.aligned;" ::: "memory");
+-      if(j*64+63>=seq || (CAUSAL && j*64+63>query)) {
+-#pragma unroll
+-        for(int c=0;c<64;c++) {
+-          if(j*64+c>=seq || (CAUSAL && j*64+c>query)) scores[c]=-INFINITY;
++      if(j*128+127>=seq || (CAUSAL && j*128+127>query)) {
++#pragma unroll
++        for(int c=0;c<128;c++) {
++          if(j*128+c>=seq || (CAUSAL && j*128+c>query)) scores[c]=-INFINITY;
+         }
+       }
+       float maxima[4]={-INFINITY,-INFINITY,-INFINITY,-INFINITY};
+ #pragma unroll
+-      for(int c=0;c<64;c++) maxima[c%4]=fmaxf(maxima[c%4],scores[c]);
++      for(int c=0;c<128;c++) maxima[c%4]=fmaxf(maxima[c%4],scores[c]);
+       float mx=fmaxf(fmaxf(maxima[0],maxima[1]),fmaxf(maxima[2],maxima[3]));
+       const float candidate=fmaxf(rowmax,mx);
+       const float next=(j==0||(rowmax-candidate)*0.127517430824596f<-8.0f)?candidate:rowmax;
+@@ -163,12 +163,12 @@
+       rowmax=next;
+ 
+       const float scaled_ref=-next*0.127517430824596f;
+-      uint32_t packed[32];float sums[4]={0,0,0,0};
++      uint32_t packed[64];float sums[4]={0,0,0,0};
+       // FMA's common reference-rounding shift can overflow FP16 P for very large scores.
+       // Subtract first in this range, so the current maximum has exponent argument exactly zero.
+       if(fabsf(next)>65536.0f) {
+ #pragma unroll
+-      for(int c=0;c<32;c++) {
++      for(int c=0;c<64;c++) {
+         float a=fast_exp2((scores[2*c]-next)*0.127517430824596f);
+         float b=fast_exp2((scores[2*c+1]-next)*0.127517430824596f);
+         sums[c%4]+=a+b;
+@@ -176,7 +176,7 @@
+       }
+       } else {
+ #pragma unroll
+-      for(int c=0;c<32;c++) {
++      for(int c=0;c<64;c++) {
+         float a=fast_exp2(fmaf(scores[2*c],0.127517430824596f,scaled_ref));
+         float b=fast_exp2(fmaf(scores[2*c+1],0.127517430824596f,scaled_ref));
+         sums[c%4]+=a+b;
+@@ -185,7 +185,7 @@
+       }
+       const float psum=(sums[0]+sums[1])+(sums[2]+sums[3]);
+       rowsum=rowsum*alpha+psum;
+-      st_p32(tm+32+rowtm,packed);
++      st64(tm+64+rowtm,packed);
+       asm volatile("tcgen05.wait::st.sync.aligned;" ::: "memory");
+     asm volatile("tcgen05.fence::before_thread_sync;" ::: "memory");
+       // SFULL implies the previous PV is complete. Fold the rare correction into this owner.
+@@ -242,8 +242,8 @@
+ extern "C" int fa4_create(void** result,void* q,void* k,void* v,int batch,int seq,int heads) {
+   auto* ctx=new fa4::Context{}; ctx->batch=batch;ctx->seq=seq;ctx->heads=heads;
+   CUresult r=fa4::encode(&ctx->q,q,batch,seq,heads);
+-  if(!r) r=fa4::encode(&ctx->k,k,batch,seq,heads,64);
+-  if(!r) r=fa4::encode(&ctx->v,v,batch,seq,heads,64);
++  if(!r) r=fa4::encode(&ctx->k,k,batch,seq,heads,128);
++  if(!r) r=fa4::encode(&ctx->v,v,batch,seq,heads,128);
+   if(r) {delete ctx;return int(r);}
+   cudaError_t e=cudaFuncSetAttribute(fa4::attention<false>,cudaFuncAttributeMaxDynamicSharedMemorySize,fa4::SHARED_BYTES);
+   if(!e) e=cudaFuncSetAttribute(fa4::attention<true>,cudaFuncAttributeMaxDynamicSharedMemorySize,fa4::SHARED_BYTES);

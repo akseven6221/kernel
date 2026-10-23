@@ -1,0 +1,16 @@
+{
+  "torch": "2.10.0+cu128",
+  "device": "NVIDIA B200",
+  "capability": [
+    10,
+    0
+  ],
+  "packages": {
+    "flash-attn-4": "4.0.0b35",
+    "nvidia-cutlass-dsl": "4.8.0",
+    "apache-tvm-ffi": "0.1.14.post1",
+    "quack-kernels": "0.6.5"
+  },
+  "timing": "CUDA Graph, 20 nodes, 10 warmups, 9 alternating rounds; CUDA events; median",
+  "pid": 29
+}

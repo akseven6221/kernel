@@ -1,0 +1,23 @@
+--- v14/kernel.cu
++++ v15/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v14: fuse score scaling and reference subtraction into one FMA.
++// v15: four independent maximum chains, keeping the original rowsum order.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -161,9 +161,10 @@
+           if(j*128+c>=seq || (CAUSAL && j*128+c>query)) scores[c]=-INFINITY;
+         }
+       }
+-      float mx=-INFINITY;
+-#pragma unroll
+-      for(int c=0;c<128;c++) mx=fmaxf(mx,scores[c]);
++      float maxima[4]={-INFINITY,-INFINITY,-INFINITY,-INFINITY};
++#pragma unroll
++      for(int c=0;c<128;c++) maxima[c%4]=fmaxf(maxima[c%4],scores[c]);
++      float mx=fmaxf(fmaxf(maxima[0],maxima[1]),fmaxf(maxima[2],maxima[3]));
+       const float candidate=fmaxf(rowmax,mx);
+       const float next=(j==0||(rowmax-candidate)*0.127517430824596f<-8.0f)?candidate:rowmax;
+       const float alpha=j==0?0.0f:fast_exp2((rowmax-next)*0.127517430824596f);

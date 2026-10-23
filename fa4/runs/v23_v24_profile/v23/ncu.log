@@ -1,0 +1,5 @@
+==WARNING== Note: Running with unmodified GPU clocks. If not controlled otherwise, profiling results may be inconsistent.
+==PROF== Connected to process 141 (/usr/local/bin/python3)
+==PROF== Profiling "void fa4::attention<(bool)0>(CUtensorMap_st, CUtensorMap_st, CUtensorMap_st, __half *, int, int)": 0%....50%....100% - 39 passes
+==PROF== Disconnected from process 141
+==PROF== Report: /tmp/artifacts/v23/profile.ncu-rep

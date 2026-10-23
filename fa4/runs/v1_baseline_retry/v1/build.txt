@@ -1,0 +1,6 @@
+$ nvcc -std=c++17 -O3 -lineinfo -arch=sm_100a --shared -Xcompiler=-fPIC --keep --keep-dir /tmp/artifacts/v1 -Xptxas=-v /root/fa4/v1/kernel.cu -o /tmp/fa4_v1.so -L/usr/local/cuda/lib64/stubs -lcuda
+/root/fa4/v1/kernel.cu(101): error: identifier "__half2_as_uint" is undefined
+        packed[c]=__half2_as_uint(__floats2half2_rn(a,b));
+                  ^
+
+1 error detected in the compilation of "/root/fa4/v1/kernel.cu".

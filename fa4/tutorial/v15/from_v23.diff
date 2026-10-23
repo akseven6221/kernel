@@ -1,0 +1,86 @@
+--- v23/kernel.cu
++++ v24/kernel.cu
+@@ -1,5 +1,5 @@
+ // FA4 data path baseline: TMA -> QK tcgen05 -> TMEM softmax -> PV tcgen05.
+-// v23: combine the measured rowsum ILP and causal query-major reverse scheduling.
++// v24: separate K and V readiness/lifetime to prefetch K as soon as QK completes.
+ #include <cuda.h>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+@@ -8,7 +8,7 @@
+ #include <cmath>
+ namespace fa4 {
+ constexpr int M=128, N=128, D=128, THREADS=384;
+-constexpr int TILE_BYTES=32768, SHARED_BYTES=6*TILE_BYTES+1168;
++constexpr int TILE_BYTES=32768, SHARED_BYTES=6*TILE_BYTES+1200;
+ __device__ __forceinline__ void wait(uint32_t a, uint32_t phase) {
+   asm volatile("{ .reg .pred p; L: mbarrier.try_wait.parity.acquire.cta.shared::cta.b64 p, [%0], %1; @!p bra L; }" :: "r"(a), "r"(phase) : "memory");
+ }
+@@ -74,10 +74,11 @@
+ __device__ __forceinline__ void arrive(uint32_t a) { asm volatile("mbarrier.arrive.release.cta.shared::cta.b64 _, [%0];" :: "r"(a):"memory"); }
+ __device__ __forceinline__ void wg_sync() { asm volatile("bar.sync 2, 128;" ::: "memory"); }
+ // Barrier offsets protect distinct ownership transitions; all are 8-byte aligned.
+-constexpr int QFULL=6*TILE_BYTES, KVFULL=QFULL+8, KVEMPTY=QFULL+24;
+-constexpr int SFULL=QFULL+40, PFULL=QFULL+56, CFULL=QFULL+72;
+-constexpr int CACK=QFULL+88, PVDONE=QFULL+104, EPIDONE=QFULL+120;
+-constexpr int ALLOC=QFULL+128, FINAL=QFULL+136, SCALE=QFULL+144;
++constexpr int QFULL=6*TILE_BYTES, KFULL=QFULL+8, VFULL=QFULL+24;
++constexpr int KEMPTY=QFULL+40, VEMPTY=QFULL+56;
++constexpr int SFULL=QFULL+72, PFULL=QFULL+88, CFULL=QFULL+104;
++constexpr int CACK=QFULL+120, PVDONE=QFULL+136, EPIDONE=QFULL+152;
++constexpr int ALLOC=QFULL+160, FINAL=QFULL+168, SCALE=QFULL+176;
+ template<bool CAUSAL>
+ __global__ __maxnreg__(168) void attention(
+     const __grid_constant__ CUtensorMap qm,const __grid_constant__ CUtensorMap km,
+@@ -96,7 +97,7 @@
+     init(base+QFULL);init(base+FINAL); init_count(base+EPIDONE,256);
+ #pragma unroll
+     for(int s=0;s<2;s++) {
+-      init(base+KVFULL+s*8);init(base+KVEMPTY+s*8);init(base+SFULL+s*8);
++      init(base+KFULL+s*8);init(base+VFULL+s*8);init(base+KEMPTY+s*8);init(base+VEMPTY+s*8);init(base+SFULL+s*8);
+       init_count(base+PFULL+s*8,128);init_count(base+CFULL+s*8,128);
+       init_count(base+CACK+s*8,128);init(base+PVDONE+s*8);
+     }
+@@ -115,11 +116,13 @@
+       load(base+TILE_BYTES,&qm,batch*seq+qr+128,head,base+QFULL);
+       for(int j=0;j<lengths[1];j++) {
+         const int slot=j%2;
+-        if(j>=2) wait(base+KVEMPTY+slot*8,((j-2)/2)&1);
++        if(j>=2) wait(base+KEMPTY+slot*8,((j-2)/2)&1);
+         const uint32_t kb=base+2*TILE_BYTES+slot*2*TILE_BYTES;
+-        expect(base+KVFULL+slot*8,2*TILE_BYTES);
+-        load(kb,&km,batch*seq+j*128,head,base+KVFULL+slot*8);
+-        load(kb+TILE_BYTES,&vm,batch*seq+j*128,head,base+KVFULL+slot*8);
++        expect(base+KFULL+slot*8,TILE_BYTES);
++        load(kb,&km,batch*seq+j*128,head,base+KFULL+slot*8);
++        if(j>=2) wait(base+VEMPTY+slot*8,((j-2)/2)&1);
++        expect(base+VFULL+slot*8,TILE_BYTES);
++        load(kb+TILE_BYTES,&vm,batch*seq+j*128,head,base+VFULL+slot*8);
+       }
+     }
+     if(warp==0) {
+@@ -128,20 +131,22 @@
+         for(int j=0;j<lengths[1];j++) {
+           const int slot=j%2;
+           const uint32_t kb=base+2*TILE_BYTES+slot*2*TILE_BYTES;
+-          wait(base+KVFULL+slot*8,(j/2)&1);fence();
++          wait(base+KFULL+slot*8,(j/2)&1);fence();
+ #pragma unroll
+           for(int s=0;s<2;s++) if(j<lengths[s]) {
+             // P reuses S storage: wait until previous PV has finished reading P.
+             if(j>0) wait(base+PVDONE+s*8,(j-1)&1);
+             fence();qk(tm+s*128,base+s*TILE_BYTES,kb);commit(base+SFULL+s*8);
+           }
++          commit(base+KEMPTY+slot*8);
++          wait(base+VFULL+slot*8,(j/2)&1);fence();
+ #pragma unroll
+           for(int s=0;s<2;s++) if(j<lengths[s]) {
+             wait(base+PFULL+s*8,j&1);fence();
+             pv(tm+256+s*128,tm+s*128+64,kb+TILE_BYTES,j>0);
+             commit(base+PVDONE+s*8);
+           }
+-          commit(base+KVEMPTY+slot*8);
++          commit(base+VEMPTY+slot*8);
+         }
+         commit(base+FINAL);
+       }
